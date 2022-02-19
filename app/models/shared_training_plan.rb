@@ -1,0 +1,2 @@
+class SharedTrainingPlan < ApplicationRecord
+end
