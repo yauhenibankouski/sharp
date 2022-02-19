@@ -38,6 +38,46 @@ puts "Creating 6 trainings"
 
 training1 = Training.new(
     {
-        
+      title: "Chest Workout"
+      description: "Intensive training of Pectoralis major and minor, Serratus anterior, and the Subclavius"
+      activity: "Gym"
     }
 )
+if training1.save
+  puts "Training  #{training1.id} saved!"
+else
+  puts "XXXXXXXXXXXX"
+  puts "Issue with training #{training1.id}"
+  puts "XXXXXXXXXXXX"
+end
+
+training2 = Training.new(
+    {
+      title: "Shoulder Workout Routine"
+      description: "Try this tri-set deltoids workout to grow bigger, stronger and wider shoulders"
+      activity: "Gym"
+    }
+)
+if training2.save
+  puts "Training  #{training2.id} saved!"
+else
+  puts "XXXXXXXXXXXX"
+  puts "Issue with training #{training2.id}"
+  puts "XXXXXXXXXXXX"
+end
+
+training3 = Training.new(
+    {
+      title: "Shoulder Workout Routine"
+      description: "Try this tri-set deltoids workout to grow bigger, stronger and wider shoulders"
+      activity: "Gym"
+    }
+)
+if training3.save
+  puts "Training  #{training3.id} saved!"
+else
+  puts "XXXXXXXXXXXX"
+  puts "Issue with training #{training3.id}"
+  puts "XXXXXXXXXXXX"
+end
+
