@@ -110,28 +110,42 @@ end
 
 puts 'Creating 10 exercises'
 
+@user = User.all.sample
 titles_array = ['Lunges', 'dumbbell press', 'Dumbbell rows', 'Single-leg deadlifts', 'Squats', 'Push-ups', 'Abdominal Crunches', 'Bent-over Row', 'Bench Press', 'Side Planks']
-technique_array = ['2 minutes rest between each repetition', '1 minutes rest between each repetition', 'keep your back straight']
+description_array = ['2 minutes rest between each repetition', '1 minutes rest between each repetition', 'keep your back straight']
 titles_array.each_with_index do |title, i|
   puts "Creating exercise #{i + 1}"
   exercise = Exercise.new(
     {
-      user: User.all.sample,
+      user: @user,
       title: title,
-      description: 'So especially if you are a beginner, it is a good idea to seek the advice of a fitness trainer - whether it is a personal trainer or a trainer at your gym -- to be sure your form is safe and correct.',
-      technique: technique_array.sample,
+      description: description_array.sample,
       sets: rand(1..6),
       repetitions: rand(6..22)
     }
   )
+  if exercise.save
+    puts "Exercise #{exercise.id} saved!"
+  else
+    puts "XXXXXXXXXXXXXXXXXXXXX"
+    puts "Issue with exercise #{exercise.id}"
+    puts "XXXXXXXXXXXXXXXXXXXXX"
+  end
 
   puts 'Creating shared exercises'
 
-  SharedExercise.create!(
-    user: User.all.sample,
-    description: 'So especially if you are a beginner, it is a good idea to seek the advice of a fitness trainer - whether it is a personal trainer or a trainer at your gym -- to be sure your form is safe and correct.',
+  shared_exercise = SharedExercise.new(
+    user: @user,
+    description: exercise.description,
     title: exercise.title,
     sets: rand(1..6),
     repetitions: rand(6..22)
   )
+  if shared_exercise.save
+    puts "Shared exercise #{shared_exercise.id} saved!"
+  else
+    puts "XXXXXXXXXXXXXXXXXXXXX"
+    puts "Issue with shared exercise #{shared_exercise.id}"
+    puts "XXXXXXXXXXXXXXXXXXXXX"
+  end
 end
