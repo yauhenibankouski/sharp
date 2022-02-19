@@ -21,6 +21,10 @@ puts 'Creating 4 users'
   puts "Creating user #{i + 1}"
   user = User.new(
     {
+      first_name: Faker::Name.first_name,
+      last_name: Faker::Name.last_name,
+      weight: rand(40..250),
+      gender: "M" || "F",
       email: Faker::Internet.email,
       password: (0...8).map { (65 + rand(26)).chr }.join
     }
@@ -37,11 +41,12 @@ end
 puts "Creating 6 trainings"
 
 training1 = Training.new(
-    {
-      title: "Chest Workout"
-      description: "Intensive training of Pectoralis major and minor, Serratus anterior, and the Subclavius"
-      activity: "Gym"
-    }
+  {
+    title: "Chest Workout",
+    description: "Intensive training of Pectoralis major and minor, Serratus anterior, and the Subclavius",
+    activity: "Gym",
+    user: User.all.sample
+  }
 )
 if training1.save
   puts "Training  #{training1.id} saved!"
@@ -52,11 +57,12 @@ else
 end
 
 training2 = Training.new(
-    {
-      title: "Shoulder Workout Routine"
-      description: "Try this tri-set deltoids workout to grow bigger, stronger and wider shoulders"
-      activity: "Gym"
-    }
+  {
+    title: "Shoulder Workout Routine",
+    description: "Try this tri-set deltoids workout to grow bigger, stronger and wider shoulders",
+    activity: "Gym",
+    user: User.all.sample
+  }
 )
 if training2.save
   puts "Training  #{training2.id} saved!"
@@ -67,11 +73,12 @@ else
 end
 
 training3 = Training.new(
-    {
-      title: "Shoulder Workout Routine"
-      description: "Try this tri-set deltoids workout to grow bigger, stronger and wider shoulders"
-      activity: "Gym"
-    }
+  {
+    title: "Shoulder Workout Routine",
+    description: "Try this tri-set deltoids workout to grow bigger, stronger and wider shoulders",
+    activity: "Gym",
+    user: User.all.sample
+  }
 )
 if training3.save
   puts "Training  #{training3.id} saved!"
@@ -81,3 +88,18 @@ else
   puts "XXXXXXXXXXXX"
 end
 
+training4 = Training.new(
+  {
+    title: "Mindfulness Yoga",
+    description: "This class incorporates yoga postures, gentle movement sequences, breath work, supported silent meditation, and guided relaxation to support increased awareness and mindfulness of the breath and body, and quieting of the nervous system.",
+    activity: "Yoga",
+    user: User.all.sample
+  }
+)
+  if training4.save
+    puts "Training #{training4.id} saved!"
+  else
+    puts "XXXXXXXXXXXX"
+    puts "Issue with training #{training4.id}"
+    puts "XXXXXXXXXXXX"
+  end
