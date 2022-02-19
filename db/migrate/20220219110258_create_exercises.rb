@@ -6,7 +6,7 @@ class CreateExercises < ActiveRecord::Migration[6.1]
       t.string :technique
       t.integer :sets
       t.integer :repetitions
-      t.reference :user
+      t.references :user, null: false, foreign_key: true
 
       t.timestamps
     end
