@@ -5,15 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
-puts 'Deleting users'
-User.delete_all
-puts 'Users deleted'
-
-puts 'Deleting trainings'
-Training.delete_all
-puts 'Trainings deleted'
-
 puts 'Deleting Exercises'
 Exercise.delete_all
 puts 'exercises deleted'
@@ -21,6 +12,14 @@ puts 'exercises deleted'
 puts 'Deleting SharedExercises'
 SharedExercise.delete_all
 puts 'shared exercises deleted'
+
+puts 'Deleting trainings'
+Training.delete_all
+puts 'Trainings deleted'
+
+puts 'Deleting users'
+User.delete_all
+puts 'Users deleted'
 
 puts '----------------------------------------------------------------'
 
@@ -47,7 +46,7 @@ puts 'Creating 4 users'
   technique_array = ['2 minutes rest between each repetition', '1 minutes rest between each repetition', 'keep your back straight']
   titles_array.each_with_index do |title, i|
     puts "Creating exercise #{i + 1}"
-    Exercise.create!(
+    exercise = Exercise.create!(
       user: user,
       title: title,
       description: 'So especially if you are a beginner, it is a good idea to seek the advice of a fitness trainer - whether it is a personal trainer or a trainer at your gym -- to be sure your form is safe and correct.',
@@ -55,13 +54,22 @@ puts 'Creating 4 users'
       sets: rand(1..6),
       repetitions: rand(6..22)
     )
+    SharedExercise.create!(
+      user: user,
+      title: exercise.title,
+      sets: rand(1..6),
+      repetitions: rand(6..22)
+    )
   end
 end
+
 
 puts "Creating 6 trainings"
 
 training1 = Training.new(
   {
 
-    }
+  }
 )
+
+puts 'Creating shared exercises'
