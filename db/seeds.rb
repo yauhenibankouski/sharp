@@ -5,14 +5,21 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+puts 'Deleting Exercises'
+Exercise.delete_all
+puts 'exercises deleted'
 
-puts 'Deleting users'
-User.delete_all
-puts 'Users deleted'
+puts 'Deleting SharedExercises'
+SharedExercise.delete_all
+puts 'shared exercises deleted'
 
 puts 'Deleting trainings'
 Training.delete_all
 puts 'Trainings deleted'
+
+puts 'Deleting users'
+User.delete_all
+puts 'Users deleted'
 
 puts '----------------------------------------------------------------'
 
@@ -55,7 +62,6 @@ else
   puts "Issue with training #{training1.id}"
   puts "XXXXXXXXXXXX"
 end
-
 training2 = Training.new(
   {
     title: "Shoulder Workout Routine",
@@ -71,7 +77,6 @@ else
   puts "Issue with training #{training2.id}"
   puts "XXXXXXXXXXXX"
 end
-
 training3 = Training.new(
   {
     title: "Shoulder Workout Routine",
@@ -87,7 +92,6 @@ else
   puts "Issue with training #{training3.id}"
   puts "XXXXXXXXXXXX"
 end
-
 training4 = Training.new(
   {
     title: "Mindfulness Yoga",
@@ -96,10 +100,52 @@ training4 = Training.new(
     user: User.all.sample
   }
 )
-  if training4.save
-    puts "Training #{training4.id} saved!"
+if training4.save
+  puts "Training #{training4.id} saved!"
+else
+  puts "XXXXXXXXXXXX"
+  puts "Issue with training #{training4.id}"
+  puts "XXXXXXXXXXXX"
+end
+
+puts 'Creating 10 exercises'
+
+@user = User.all.sample
+titles_array = ['Lunges', 'dumbbell press', 'Dumbbell rows', 'Single-leg deadlifts', 'Squats', 'Push-ups', 'Abdominal Crunches', 'Bent-over Row', 'Bench Press', 'Side Planks']
+description_array = ['2 minutes rest between each repetition', '1 minutes rest between each repetition', 'keep your back straight']
+titles_array.each_with_index do |title, i|
+  puts "Creating exercise #{i + 1}"
+  exercise = Exercise.new(
+    {
+      user: @user,
+      title: title,
+      description: description_array.sample,
+      sets: rand(1..6),
+      repetitions: rand(6..22)
+    }
+  )
+  if exercise.save
+    puts "Exercise #{exercise.id} saved!"
   else
-    puts "XXXXXXXXXXXX"
-    puts "Issue with training #{training4.id}"
-    puts "XXXXXXXXXXXX"
+    puts "XXXXXXXXXXXXXXXXXXXXX"
+    puts "Issue with exercise #{exercise.id}"
+    puts "XXXXXXXXXXXXXXXXXXXXX"
   end
+
+  puts 'Creating shared exercises'
+
+  shared_exercise = SharedExercise.new(
+    user: @user,
+    description: exercise.description,
+    title: exercise.title,
+    sets: rand(1..6),
+    repetitions: rand(6..22)
+  )
+  if shared_exercise.save
+    puts "Shared exercise #{shared_exercise.id} saved!"
+  else
+    puts "XXXXXXXXXXXXXXXXXXXXX"
+    puts "Issue with shared exercise #{shared_exercise.id}"
+    puts "XXXXXXXXXXXXXXXXXXXXX"
+  end
+end
