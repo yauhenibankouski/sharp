@@ -14,6 +14,14 @@ puts 'Deleting trainings'
 Training.delete_all
 puts 'Trainings deleted'
 
+puts 'Deleting Exercises'
+Exercise.delete_all
+puts 'exercises deleted'
+
+puts 'Deleting SharedExercises'
+SharedExercise.delete_all
+puts 'shared exercises deleted'
+
 puts '----------------------------------------------------------------'
 
 puts 'Creating 4 users'
@@ -32,12 +40,28 @@ puts 'Creating 4 users'
     puts "Issue with user #{i + 1}"
     puts "XXXXXXXXXXXXXX"
   end
+
+  puts 'Creating 10 exercises'
+
+  titles_array = ['Lunges', 'dumbbell press', 'Dumbbell rows', 'Single-leg deadlifts', 'Squats', 'Push-ups', 'Abdominal Crunches', 'Bent-over Row', 'Bench Press', 'Side Planks']
+  technique_array = ['2 minutes rest between each repetition', '1 minutes rest between each repetition', 'keep your back straight']
+  titles_array.each_with_index do |title, i|
+    puts "Creating exercise #{i + 1}"
+    Exercise.create!(
+      user: user,
+      title: title,
+      description: 'So especially if you are a beginner, it is a good idea to seek the advice of a fitness trainer - whether it is a personal trainer or a trainer at your gym -- to be sure your form is safe and correct.',
+      technique: technique_array.sample,
+      sets: rand(1..6),
+      repetitions: rand(6..22)
+    )
+  end
 end
 
 puts "Creating 6 trainings"
 
 training1 = Training.new(
-    {
-        
+  {
+
     }
 )
