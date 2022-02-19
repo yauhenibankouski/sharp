@@ -12,6 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2022_02_19_134443) do
 
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -75,6 +76,28 @@ ActiveRecord::Schema.define(version: 2022_02_19_134443) do
     t.index ["user_id"], name: "index_shared_exercises_on_user_id"
   end
 
+
+  create_table "shared_training_plans", force: :cascade do |t|
+    t.bigint "training_id", null: false
+    t.bigint "shared_exercise_id", null: false
+    t.bigint "booking_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["booking_id"], name: "index_shared_training_plans_on_booking_id"
+    t.index ["shared_exercise_id"], name: "index_shared_training_plans_on_shared_exercise_id"
+    t.index ["training_id"], name: "index_shared_training_plans_on_training_id"
+
+  create_table "training_plans", force: :cascade do |t|
+    t.string "name"
+    t.bigint "exercise_id", null: false
+    t.bigint "training_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["exercise_id"], name: "index_training_plans_on_exercise_id"
+    t.index ["training_id"], name: "index_training_plans_on_training_id"
+
+  end
+
   create_table "trainings", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.text "description"
@@ -106,5 +129,13 @@ ActiveRecord::Schema.define(version: 2022_02_19_134443) do
   add_foreign_key "bookings", "users"
   add_foreign_key "exercises", "users"
   add_foreign_key "shared_exercises", "users"
+
+  add_foreign_key "shared_training_plans", "bookings"
+  add_foreign_key "shared_training_plans", "shared_exercises"
+  add_foreign_key "shared_training_plans", "trainings"
+
+  add_foreign_key "training_plans", "exercises"
+  add_foreign_key "training_plans", "trainings"
+
   add_foreign_key "trainings", "users"
 end
