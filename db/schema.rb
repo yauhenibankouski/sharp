@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 2022_02_19_175246) do
   create_table "exercises", force: :cascade do |t|
     t.string "title"
     t.text "description"
-    t.string "technique"
+    t.text "technique"
     t.integer "sets"
     t.integer "repetitions"
     t.bigint "user_id", null: false
@@ -88,7 +88,6 @@ ActiveRecord::Schema.define(version: 2022_02_19_175246) do
   end
 
   create_table "training_plans", force: :cascade do |t|
-    t.string "name"
     t.bigint "exercise_id", null: false
     t.bigint "training_id", null: false
     t.datetime "created_at", precision: 6, null: false
