@@ -1,1 +1,10 @@
-<h1>Hi from exercises new!</h1>
+<h2>Add a new exercise</h2>
+
+<%= simple_form_for @exercise do |f| %>
+  <%= f.input :title %>
+  <%= f.input :description %>
+  <%= f.input :technique %>
+  <%= f.input :sets %>
+  <%= f.input :repetitions %>
+  <%= f.submit %>
+<% end %>
