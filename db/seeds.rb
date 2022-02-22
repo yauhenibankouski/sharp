@@ -5,20 +5,30 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-puts 'Deleting Exercises'
-Exercise.delete_all
-puts 'exercises deleted'
+
 
 puts 'Deleting SharedExercises'
-SharedExercise.delete_all
+SharedExercise.destroy_all
 puts 'shared exercises deleted'
 
+puts 'Deleting bookings'
+Booking.destroy_all
+puts 'Bookings deleted'
+
+puts 'Deleting training plans'
+TrainingPlan.destroy_all
+puts 'Training plans deleted'
+
 puts 'Deleting trainings'
-Training.delete_all
+Training.destroy_all
 puts 'Trainings deleted'
 
+puts 'Deleting Exercises'
+Exercise.destroy_all
+puts 'exercises deleted'
+
 puts 'Deleting users'
-User.delete_all
+User.destroy_all
 puts 'Users deleted'
 
 puts '----------------------------------------------------------------'
@@ -148,4 +158,62 @@ titles_array.each_with_index do |title, i|
     puts "Issue with shared exercise #{shared_exercise.id}"
     puts "XXXXXXXXXXXXXXXXXXXXX"
   end
+end
+
+puts "Creating 4 bookings"
+
+4.times do |i|
+  puts "Creating booking #{i + 1}"
+
+  booking = Booking.new(
+    {
+      user_id: @user.id,
+      client_id: User.all.sample.id,
+      status: "Accepted"
+    }
+  )
+  if booking.save
+    puts "Booking #{i + 1} saved!"
+  else
+    puts "XXXXXXXXXXXXXX"
+    puts "Issue with booking #{i + 1}"
+    puts "XXXXXXXXXXXXXX"
+  end
+end
+
+puts "Creating 10 training plans"
+
+10.times do |i|
+  puts "Creating training plan #{i+1}"
+
+  training_plan = TrainingPlan.new(
+    {
+      training_id: Training.all.sample.id,
+      exercise_id: Exercise.all.sample.id,
+      name: "RANDOM"
+    }
+  )
+  if training_plan.save
+    puts "Training plan #{i+1} saved!"
+  else
+    puts "XXXXXXXXXXXXXX"
+    puts "Issue with training plan #{i + 1}"
+    puts "XXXXXXXXXXXXXX"
+  end
+end
+
+puts "Creating shared training plan"
+
+shared_training_plan = SharedTrainingPlan.new(
+  training_id: Training.all.sample.id,
+  shared_exercise_id: SharedExercise.all.sample.id,
+  booking_id: Booking.all.sample.id
+)
+
+if shared_training_plan.save
+  puts "Shared training plan #{shared_training_plan.id} saved!"
+else
+  puts "XXXXXXXXXXXXXXXXXXXXX"
+  puts "Issue with shared training plan #{shared_training_plan.id}"
+  puts "XXXXXXXXXXXXXXXXXXXXX"
 end
