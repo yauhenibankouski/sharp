@@ -3,5 +3,5 @@ Rails.application.routes.draw do
   root to: 'pages#home'
 
   # Exercises
-  resources :exercises, only: %i[new create]
+  resources :exercises
 end
