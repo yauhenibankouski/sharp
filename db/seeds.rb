@@ -7,17 +7,18 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-puts 'Deleting SharedExercises'
-SharedExercise.destroy_all
-puts 'shared exercises deleted'
-
-puts 'Deleting bookings'
-Booking.destroy_all
-puts 'Bookings deleted'
 
 puts 'Deleting training plans'
 TrainingPlan.destroy_all
 puts 'Training plans deleted'
+
+puts 'SharedTrainingPlan'
+SharedTrainingPlan.destroy_all
+puts 'shared training_plan deleted'
+
+puts 'Deleting SharedExercises'
+SharedExercise.destroy_all
+puts 'shared exercises deleted'
 
 puts 'Deleting trainings'
 Training.destroy_all
@@ -27,14 +28,18 @@ puts 'Deleting Exercises'
 Exercise.destroy_all
 puts 'exercises deleted'
 
+puts 'Deleting bookings'
+Booking.destroy_all
+puts 'Bookings deleted'
+
 puts 'Deleting users'
 User.destroy_all
 puts 'Users deleted'
 
 puts '----------------------------------------------------------------'
 
-puts 'Creating 4 users'
-4.times do |i|
+puts 'Creating 10 users'
+10.times do |i|
   puts "Creating user #{i + 1}"
   user = User.new(
     {
@@ -130,6 +135,7 @@ titles_array.each_with_index do |title, i|
       user: @user,
       title: title,
       description: description_array.sample,
+      technique: description_array.sample,
       sets: rand(1..6),
       repetitions: rand(6..22)
     }
@@ -160,15 +166,15 @@ titles_array.each_with_index do |title, i|
   end
 end
 
-puts "Creating 4 bookings"
+puts "Creating 2 bookings"
 
-4.times do |i|
+2.times do |i|
   puts "Creating booking #{i + 1}"
 
   booking = Booking.new(
     {
-      user_id: @user.id,
-      client_id: User.all.sample.id,
+      user: @user,
+      client: User.all.reject { |user| user == @user}.sample,
       status: "Accepted"
     }
   )
@@ -188,9 +194,8 @@ puts "Creating 10 training plans"
 
   training_plan = TrainingPlan.new(
     {
-      training_id: Training.all.sample.id,
-      exercise_id: Exercise.all.sample.id,
-      name: "RANDOM"
+      training: Training.all.sample,
+      exercise: Exercise.all.sample,
     }
   )
   if training_plan.save
@@ -205,9 +210,9 @@ end
 puts "Creating shared training plan"
 
 shared_training_plan = SharedTrainingPlan.new(
-  training_id: Training.all.sample.id,
-  shared_exercise_id: SharedExercise.all.sample.id,
-  booking_id: Booking.all.sample.id
+  training: Training.all.sample,
+  shared_exercise: SharedExercise.all.sample,
+  booking: Booking.all.sample
 )
 
 if shared_training_plan.save
