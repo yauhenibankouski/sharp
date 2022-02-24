@@ -3,10 +3,12 @@ class BookingsController < ApplicationController
   end
 
   def clients
-    @clients = current_user.bookings
+    bookings = current_user.bookings
+    @clients = bookings.each { |booking| booking.client }
   end
 
   def trainers
-    @trainers = Booking.where(client: current_user)
+    bookings = Booking.where(client: current_user)
+    @trainers = bookings.each { |booking| booking.user }
   end
 end
