@@ -1,3 +1,7 @@
 <h1>Training Plan <%= @training_plan.id %></h1>
-<h2><%= @training_plan.training %>
-<h2><%= @training_plan.exercise %>
+<h2><%= @training_plan.training.title %></h2>
+<h2><%= @training_plan.training.activity %></h2>
+<h2><%= @training_plan.training.description %></h2>
+<h2><%= @training_plan.exercise.title %></h2>
+<h2>Note: <%= @training_plan.exercise.description %></h2>
+<h2><%= @training_plan.exercise.repetitions %> reps / <%= @training_plan.exercise.sets %> sets</h2>
