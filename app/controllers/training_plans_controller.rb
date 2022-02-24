@@ -1,13 +1,17 @@
 class TrainingPlansController < ApplicationController
 
+  def index
+  end
+
+  def show
+  end
+
   def new
     @training_plan = TrainingPlan.new
   end
 
   def create
     @training_plan = TrainingPlan.new(training_plan_params)
-    @training_plan.exercise = 
-    @training_plan.training =
     if @training_plan.save
       redirect_to root_path
     else
