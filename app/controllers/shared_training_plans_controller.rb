@@ -1,0 +1,2 @@
+class SharedTrainingPlansController < ApplicationController
+end
