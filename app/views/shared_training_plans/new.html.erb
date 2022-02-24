@@ -4,6 +4,7 @@
   <% unless current_user.training_plans.empty? %>
     <%= simple_form_for [@booking, @shared_training_plan] do |f| %>
       <%= f.input :training, collection: current_user.trainings %>
+      <%= f.input :shared_exercise, collection: current_user.exercises %>
       <%= f.submit %>
     <% end %>
   <% else %>

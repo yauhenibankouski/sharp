@@ -8,13 +8,13 @@
       <% end %>
     </div>
       <div class="d-flex">
-        <% @trainings.each do |training| %>
+        <% @trainings.uniq.each do |training| %>
           <div class="card rounded" style="width: 18rem;">
             <div class="card-body">
               <h5 class="card-title"><%= training.title %></h5>
               <h6 class="card-subtitle mb-2 text-muted">Trainer: <%= @booking.user.first_name %></h6>
               <ul class="card-text">
-                <% training.shared_exercises.each do |exercise| %>
+                <% training.client_exercises(@booking).each do |exercise| %>
                   <li> <%= link_to exercise.title %> </li>
                 <% end %>
               </ul>
