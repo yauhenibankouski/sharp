@@ -48,7 +48,7 @@ puts 'Creating 10 users'
       weight: rand(40..250),
       gender: "M" || "F",
       email: Faker::Internet.email,
-      password: (0...8).map { (65 + rand(26)).chr }.join
+      password: "123456"
     }
   )
   if user.save

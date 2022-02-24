@@ -1,0 +1,14 @@
+<div class="container">
+  <h2>Create a new plan for <%= "#{@booking.client.first_name} #{@booking.client.last_name}" %> </h2>
+
+  <% unless current_user.training_plans.empty? %>
+    <%= simple_form_for [@booking, @shared_training_plan] do |f| %>
+      <%= f.input :training, collection: current_user.trainings %>
+      <%= f.submit %>
+    <% end %>
+  <% else %>
+    <h3>You don't seem to have any training plans created</h3>
+    <%= link_to 'Create a training plan' %>
+    <%= link_to 'Back to client', booking_shared_training_plans_path(@booking) %>
+  <% end %>
+</div>

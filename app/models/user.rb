@@ -8,4 +8,5 @@ class User < ApplicationRecord
   has_many :exercises
   has_many :bookings
   has_many :shared_exercises
+  has_many :training_plans, through: :trainings
 end

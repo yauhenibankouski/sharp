@@ -4,4 +4,9 @@ Rails.application.routes.draw do
 
   # Exercises
   resources :exercises
+
+  # SharedTrainingPlans
+  resources :bookings do
+    resources :shared_training_plans
+  end
 end

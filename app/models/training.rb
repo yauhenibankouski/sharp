@@ -3,6 +3,7 @@ class Training < ApplicationRecord
   has_many :training_plans
   has_many :exercises, through: :training_plans
   has_many :shared_training_plans
+  has_many :shared_exercises, through: :shared_training_plans
 
   #Validations
   validates :title, presence: true

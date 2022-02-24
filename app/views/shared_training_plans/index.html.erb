@@ -1,0 +1,28 @@
+<div class="container">
+  <% if @booking.user == current_user || @booking.client == current_user %>
+    <div class="d-flex">
+      <h2><%= @booking.client.first_name %>'s Training Plans</h2>
+
+      <% if @booking.user == current_user %>
+        <%= link_to 'Add a new plan', new_booking_shared_training_plan_path(@booking)%>
+      <% end %>
+    </div>
+
+      <% @trainings.each do |training| %>
+        <div class="card rounded" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title"><%= training.title %></h5>
+            <h6 class="card-subtitle mb-2 text-muted">Trainer: <%= @booking.user.first_name %></h6>
+            <ul class="card-text">
+              <% training.shared_exercises.each do |exercise| %>
+                <li> <%= link_to exercise.title %> </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      <% end %>
+    <%= link_to "Back to my trainers", bookings_path %>
+  <% else %>
+    <h2>Sorry, seems like you don't belong here :)</h2>
+  <% end %>
+</div>
