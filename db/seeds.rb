@@ -1,13 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
-
-
 puts 'Deleting training plans'
 TrainingPlan.destroy_all
 puts 'Training plans deleted'
@@ -36,29 +26,26 @@ puts 'Deleting users'
 User.destroy_all
 puts 'Users deleted'
 
-puts '----------------------------------------------------------------'
-
-puts 'Creating 10 users'
-10.times do |i|
-  puts "Creating user #{i + 1}"
-  user = User.new(
+def create_user(name)
+  User.create!(
     {
-      first_name: Faker::Name.first_name,
-      last_name: Faker::Name.last_name,
+      first_name: name,
+      last_name: '-',
       weight: rand(40..250),
-      gender: "M" || "F",
-      email: Faker::Internet.email,
+      gender: "M",
+      email: "#{name}@test.com",
       password: "123456"
     }
   )
-  if user.save
-    puts "User #{i + 1} saved!"
-  else
-    puts "XXXXXXXXXXXXXX"
-    puts "Issue with user #{i + 1}"
-    puts "XXXXXXXXXXXXXX"
-  end
 end
+
+puts '----------------------------------------------------------------'
+
+puts 'Creating 4 users'
+create_user('yauheni')
+create_user('whalton')
+create_user('bassem')
+create_user('aris')
 
 puts "Creating 6 trainings"
 
@@ -79,8 +66,8 @@ else
 end
 training2 = Training.new(
   {
-    title: "Shoulder Workout Routine",
-    description: "Try this tri-set deltoids workout to grow bigger, stronger and wider shoulders",
+    title: "Back Workout Routine",
+    description: "Try this back workout to grow bigger, stronger and wider back",
     activity: "Gym",
     user: User.all.sample
   }
@@ -128,6 +115,7 @@ puts 'Creating 10 exercises'
 @user = User.all.sample
 titles_array = ['Lunges', 'dumbbell press', 'Dumbbell rows', 'Single-leg deadlifts', 'Squats', 'Push-ups', 'Abdominal Crunches', 'Bent-over Row', 'Bench Press', 'Side Planks']
 description_array = ['2 minutes rest between each repetition', '1 minutes rest between each repetition', 'keep your back straight']
+
 titles_array.each_with_index do |title, i|
   puts "Creating exercise #{i + 1}"
   exercise = Exercise.new(
@@ -207,18 +195,11 @@ puts "Creating 10 training plans"
   end
 end
 
-puts "Creating shared training plan"
-
-shared_training_plan = SharedTrainingPlan.new(
-  training: Training.all.sample,
-  shared_exercise: SharedExercise.all.sample,
-  booking: Booking.all.sample
-)
-
-if shared_training_plan.save
-  puts "Shared training plan #{shared_training_plan.id} saved!"
-else
-  puts "XXXXXXXXXXXXXXXXXXXXX"
-  puts "Issue with shared training plan #{shared_training_plan.id}"
-  puts "XXXXXXXXXXXXXXXXXXXXX"
+puts "Creating 7 shared training plans"
+7.times do
+  SharedTrainingPlan.create!(
+    training: Training.all.sample,
+    shared_exercise: SharedExercise.all.sample,
+    booking: Booking.all.sample
+  )
 end
