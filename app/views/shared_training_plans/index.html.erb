@@ -30,7 +30,6 @@
         </div>
       <% end %>
     </div>
-    <h3 class='mt-2'>Add a plan</h3>
     <%= render 'form' %>
     <% if @booking.user == current_user %>
       <%= link_to "Back to my clients", bookings_path, class: "btn btn-secondary" %>
