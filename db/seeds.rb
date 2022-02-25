@@ -113,7 +113,8 @@ titles_array.each_with_index do |title, i|
     description: exercise.description,
     title: exercise.title,
     sets: rand(1..6),
-    repetitions: rand(6..22)
+    repetitions: rand(6..22),
+    exercise: exercise
   )
 end
 
