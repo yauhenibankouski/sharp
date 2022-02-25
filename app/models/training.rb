@@ -13,4 +13,5 @@ class Training < ApplicationRecord
   def client_exercises(booking)
     SharedTrainingPlan.where(booking: booking, training: self).map(&:shared_exercise)
   end
+
 end

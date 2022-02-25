@@ -1,7 +1,7 @@
 <div class="container">
   <% if @booking.user == current_user || @booking.client == current_user %>
-    <h2><%= @booking.client.first_name.capitalize %>'s Training Plans</h2>
-    <div class="d-flex">
+    <h3><%= @booking.client.first_name.capitalize %>'s Training Plans</h3>
+    <div >
       <% @trainings.uniq.each do |training| %>
         <div class="card rounded" style="width: 18rem;">
           <div class="card-body">
@@ -11,13 +11,28 @@
               <% training.client_exercises(@booking).each do |exercise| %>
                 <li> <%= link_to exercise.title %> </li>
               <% end %>
+              <% if @booking.user == current_user %>
+                <p class='my-1'>Quick add</p>
+                <% current_user.available_exercises(training.client_exercises(@booking)).each do |exercise| %>
+                  <li>
+                    <%= link_to exercise.title %>
+                     /
+                    <%= simple_form_for [@booking, @shared_training_plan] do |f| %>
+                      <%= f.hidden_field :training, value: training.id  %>
+                      <%= f.hidden_field :shared_exercise, value: exercise.id  %>
+                      <%= f.submit 'Add' %>
+                    <% end %>
+                  </li>
+                <% end %>
+              <% end %>
             </ul>
           </div>
         </div>
       <% end %>
     </div>
+    <h3 class='mt-2'>Add a plan</h3>
+    <%= render 'form' %>
     <% if @booking.user == current_user %>
-      <%= link_to 'Add a new plan', new_booking_shared_training_plan_path(@booking), class: "btn btn-primary"%>
       <%= link_to "Back to my clients", bookings_path, class: "btn btn-secondary" %>
     <% else %>
       <%= link_to "Back to my trainers", bookings_path, class: "btn btn-secondary" %>

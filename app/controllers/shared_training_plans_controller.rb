@@ -3,26 +3,19 @@ class SharedTrainingPlansController < ApplicationController
     @booking = Booking.find(params[:booking_id])
     shared_training_plans = SharedTrainingPlan.where(booking: @booking)
     @trainings = shared_training_plans.map(&:training)
-    # raise
-  end
-
-  def new
     @shared_training_plan = SharedTrainingPlan.new
-    @booking = Booking.find(params[:booking_id])
   end
 
   def create
-    raise
     booking = Booking.find(params[:booking_id])
     training = Training.find(params[:shared_training_plan][:training])
     shared_exercise = create_shared_exercise(params)
-
     @shared_training_plan = SharedTrainingPlan.new({ training: training, shared_exercise: shared_exercise, booking: booking })
 
     if @shared_training_plan.save
       redirect_to booking_shared_training_plans_path(booking)
     else
-      render :new
+      render :index
     end
   end
 
@@ -40,7 +33,8 @@ class SharedTrainingPlansController < ApplicationController
         description: exercise.description,
         sets: exercise.sets,
         repetitions: exercise.repetitions,
-        user: exercise.user
+        user: exercise.user,
+        exercise: exercise
       }
     )
   end

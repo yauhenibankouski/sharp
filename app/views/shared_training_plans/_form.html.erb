@@ -1,0 +1,12 @@
+<div class="form">
+  <% unless current_user.training_plans.empty? || current_user.available_trainings(@trainings).empty? %>
+    <%= simple_form_for [@booking, @shared_training_plan], remote: true do |f| %>
+        <%= f.input :training, collection: current_user.available_trainings(@trainings) %>
+        <%= f.input :shared_exercise, collection: current_user.exercises %>
+        <%= f.submit 'Add client plan', class: 'btn btn-primary' %>
+      <% end %>
+    <% else %>
+      <p>You don't seem to have any other available training plans</p>
+    <% end %>
+    <%= link_to 'Create a training plan', '', class: "btn btn-warning" %>
+</div>

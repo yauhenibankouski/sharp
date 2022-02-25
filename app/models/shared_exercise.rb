@@ -4,6 +4,7 @@ class SharedExercise < ApplicationRecord
   has_many :shared_training_plans
 
   validates :user, presence: true
+  validates :exercise, presence: true
   validates :title, presence: true
   validates :description, presence: true
   validates :sets, presence: true, numericality: { only_integer: true }

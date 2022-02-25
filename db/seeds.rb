@@ -48,8 +48,10 @@ create_user('bassem')
 create_user('aris')
 
 puts "Creating 4 trainings"
-@user1 = User.first
-@user2 = User.last
+@user1 = User.all[0]
+@user2 = User.all[1]
+@user3 = User.all[2]
+@user4 = User.all[3]
 
 Training.create!(
   {
@@ -78,7 +80,7 @@ Training.create!(
   }
 )
 
-Training.new(
+Training.create!(
   {
     title: "Mindfulness Yoga",
     description: "This class incorporates yoga postures, gentle movement sequences, breath work, supported silent meditation, and guided relaxation to support increased awareness and mindfulness of the breath and body, and quieting of the nervous system.",
@@ -123,36 +125,48 @@ puts "Creating 2 bookings"
 Booking.create!(
   {
     user: @user1,
-    client: User.all.reject { |user| user == @user1 }.sample,
+    client: @user3,
     status: "Accepted"
   }
 )
 Booking.create!(
   {
     user: @user2,
-    client: User.all.reject { |user| user == @user2 }.sample,
+    client: @user4,
     status: "Accepted"
   }
 )
 
 puts "Creating 10 training plans"
 
-10.times do |i|
+5.times do |i|
   puts "Creating training plan #{i + 1}"
 
   TrainingPlan.create!(
     {
-      training: Training.all.sample,
-      exercise: Exercise.all.sample,
+      training: @user1.trainings.sample,
+      exercise: @user1.exercises.sample
+    }
+  )
+  TrainingPlan.create!(
+    {
+      training: @user2.trainings.sample,
+      exercise: @user2.exercises.sample
     }
   )
 end
 
-puts "Creating 7 shared training plans"
-7.times do
+puts "Creating 4 shared training plans"
+4.times do
   SharedTrainingPlan.create!(
-    training: Training.all.sample,
-    shared_exercise: SharedExercise.all.sample,
-    booking: Booking.all.sample
+    training: @user1.trainings.sample,
+    shared_exercise: @user1.shared_exercises.sample,
+    booking: Booking.where(user: @user1).sample
+  )
+
+  SharedTrainingPlan.create!(
+    training: @user2.trainings.sample,
+    shared_exercise: @user2.shared_exercises.sample,
+    booking: Booking.where(user: @user2).sample
   )
 end

@@ -4,6 +4,6 @@ class SharedTrainingPlan < ApplicationRecord
   belongs_to :booking
 
   validates :training, presence: true
-  validates :shared_exercise, presence: true
   validates :booking, presence: true
+  validates :shared_exercise, presence: true, uniqueness: { scope: :booking_id }
 end

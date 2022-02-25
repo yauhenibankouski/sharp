@@ -7,6 +7,6 @@ Rails.application.routes.draw do
 
   # SharedTrainingPlans
   resources :bookings do
-    resources :shared_training_plans
+    resources :shared_training_plans, except: [:new]
   end
 end
