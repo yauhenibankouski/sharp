@@ -12,6 +12,7 @@ class SharedTrainingPlansController < ApplicationController
   end
 
   def create
+    raise
     booking = Booking.find(params[:booking_id])
     training = Training.find(params[:shared_training_plan][:training])
     shared_exercise = create_shared_exercise(params)

@@ -1,28 +1,27 @@
 <div class="container">
   <% if @booking.user == current_user || @booking.client == current_user %>
+    <h2><%= @booking.client.first_name.capitalize %>'s Training Plans</h2>
     <div class="d-flex">
-      <h2><%= @booking.client.first_name.capitalize %>'s Training Plans</h2>
-
-      <% if @booking.user == current_user %>
-        <%= link_to 'Add a new plan', new_booking_shared_training_plan_path(@booking)%>
+      <% @trainings.uniq.each do |training| %>
+        <div class="card rounded" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title"><%= training.title %></h5>
+            <h6 class="card-subtitle mb-2 text-muted">Trainer: <%= @booking.user.first_name %></h6>
+            <ul class="card-text">
+              <% training.client_exercises(@booking).each do |exercise| %>
+                <li> <%= link_to exercise.title %> </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
       <% end %>
     </div>
-      <div class="d-flex">
-        <% @trainings.uniq.each do |training| %>
-          <div class="card rounded" style="width: 18rem;">
-            <div class="card-body">
-              <h5 class="card-title"><%= training.title %></h5>
-              <h6 class="card-subtitle mb-2 text-muted">Trainer: <%= @booking.user.first_name %></h6>
-              <ul class="card-text">
-                <% training.client_exercises(@booking).each do |exercise| %>
-                  <li> <%= link_to exercise.title %> </li>
-                <% end %>
-              </ul>
-            </div>
-          </div>
-        <% end %>
-      </div>
-    <%= link_to "Back to my trainers", bookings_path %>
+    <% if @booking.user == current_user %>
+      <%= link_to 'Add a new plan', new_booking_shared_training_plan_path(@booking), class: "btn btn-primary"%>
+      <%= link_to "Back to my clients", bookings_path, class: "btn btn-secondary" %>
+    <% else %>
+      <%= link_to "Back to my trainers", bookings_path, class: "btn btn-secondary" %>
+    <% end %>
   <% else %>
     <h2>Sorry, seems like you don't belong here :)</h2>
   <% end %>
