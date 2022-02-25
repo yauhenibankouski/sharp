@@ -11,7 +11,7 @@
               <% training.client_exercises(@booking).each do |exercise| %>
                 <li> <%= link_to exercise.title %> </li>
               <% end %>
-              <% if @booking.user == current_user %>
+              <% if @booking.user == current_user && !current_user.available_exercises(training.client_exercises(@booking)).empty? %>
                 <p class='my-1'>Quick add</p>
                 <% current_user.available_exercises(training.client_exercises(@booking)).each do |exercise| %>
                   <li>
