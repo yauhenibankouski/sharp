@@ -17,5 +17,5 @@ Rails.application.routes.draw do
 
   # Bookings/clients - see all clients
   get "/bookings/clients", to: "bookings#clients", as: "clients"
-  
+
 end

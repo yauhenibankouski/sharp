@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="d-flex align-items-center">
+    <h3>
+      <%= link_to root_path do %>
+        <i class="fas fa-angle-left pr-3"></i>
+      <% end %>
+    </h3>
+    <h2>Pick your expert</h2>
+  </div>
+  <% @available_trainers.each do |trainer| %>
+    <div class="card">
+      <img class="card-img-top rounded"
+           src="https://source.unsplash.com/random"
+           alt="Image of user goes here"
+           height='100px'
+           >
+
+      <div class="card-body">
+        <div class="d-flex justify-content-between">
+          <h3 class="card-subtitle"> <%= "#{trainer.first_name.capitalize} #{trainer.last_name.capitalize}" %> </h3>
+          <div>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="far fa-star"></i>
+          </div>
+        </div>
+        <p class="card-text text-muted"> <%= trainer.about %> </p>
+        <% if current_user.my_trainer?(trainer) %>
+          <%= trainer.booking(current_user).status %>
+        <% else %>
+          <a href="#" id="book" class="btn btn-primary">Book <%= trainer.first_name.capitalize %>!</a>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
