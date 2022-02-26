@@ -2,6 +2,11 @@
 
 <%= "Find me at bookings/clients" %>
 
-<div>
-
+<div class="d-flex">
+  <% @clients.each do |client| %>
+    <p><%= "#{client.first_name}  #{client.last_name}" %></p>
+        <%# <%= link_to 'Show', exercise %>
+        <%# <%= link_to 'Edit', edit_exercise_path(exercise) %>
+        <%# <%= link_to 'Delete', exercise, method: :delete, remote: true %> %>
+  <% end %>
 </div>
