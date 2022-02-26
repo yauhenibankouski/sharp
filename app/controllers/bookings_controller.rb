@@ -4,11 +4,11 @@ class BookingsController < ApplicationController
 
   def clients
     bookings = current_user.bookings
-    @clients = bookings.each { |booking| booking.client }
+    @clients = bookings.map { |booking| booking.client }
   end
 
   def trainers
     bookings = Booking.where(client: current_user)
-    @trainers = bookings.each { |booking| booking.user }
+    @trainers = bookings.map { |booking| booking.user }
   end
 end
