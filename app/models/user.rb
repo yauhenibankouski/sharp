@@ -15,8 +15,8 @@ class User < ApplicationRecord
     Booking.find_by(user_id: trainer.id, client_id: id) ? true : false
   end
 
-  def booking(current_user)
-    Booking.find_by(user_id: id, client_id: current_user.id)
+  def my_bookings
+    Booking.find_by(client_id: id)
   end
 
   def available_trainings(used_trainings)

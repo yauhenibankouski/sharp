@@ -1,8 +1,7 @@
 class SharedTrainingPlansController < ApplicationController
   def index
     @booking = Booking.find(params[:booking_id])
-    shared_training_plans = SharedTrainingPlan.where(booking: @booking)
-    @trainings = shared_training_plans.map(&:training)
+    @trainings = SharedTrainingPlan.where(booking: @booking).map(&:training)
     @shared_training_plan = SharedTrainingPlan.new
   end
 
