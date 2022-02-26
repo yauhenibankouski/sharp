@@ -1,0 +1,2 @@
+class SharedExerciseHistory < ApplicationRecord
+end

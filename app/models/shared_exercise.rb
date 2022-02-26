@@ -3,8 +3,6 @@ class SharedExercise < ApplicationRecord
   belongs_to :exercise
   has_many :shared_training_plans
   has_one_attached :photo
-
-
   validates :user, presence: true
   validates :exercise, presence: true
   validates :title, presence: true
