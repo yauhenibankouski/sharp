@@ -8,7 +8,7 @@
     <h2>Pick your expert</h2>
   </div>
   <% @available_trainers.each do |trainer| %>
-    <div class="card">
+    <div class="card mb-3">
       <img class="card-img-top rounded"
            src="https://source.unsplash.com/random"
            alt="Image of user goes here"
@@ -47,7 +47,12 @@
               </div>
           <% end %>
         <% else %>
-          <a href="#" id="book" class="btn btn-primary">Book <%= trainer.first_name.capitalize %>!</a>
+            <%= simple_form_for @booking, id: 'book' do |f| %>
+              <%= f.hidden_field :status, value: 'Pending' %>
+              <%= f.hidden_field :user_id, value: trainer.id %>
+              <%= f.hidden_field :client_id, value: current_user.id %>
+              <%= f.submit "Book #{trainer.first_name.capitalize}!", class: 'btn btn-primary'%>
+            <% end %>
         <% end %>
       </div>
     </div>
