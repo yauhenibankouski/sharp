@@ -1,0 +1,8 @@
+NEW TRAINING. Find me here --> app/views/trainings/new.html.erb
+
+<%= simple_form_for(@training) do |f| %>
+  <%= f.input :title %>
+  <%= f.input :description %>
+  <%= f.input :activity %>
+  <%= f.submit %>
+<% end %>
