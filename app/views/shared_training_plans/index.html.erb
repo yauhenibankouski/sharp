@@ -9,7 +9,7 @@
             <h6 class="card-subtitle mb-2 text-muted">Trainer: <%= @booking.user.first_name %></h6>
             <ul class="card-text">
               <% training.client_exercises(@booking).each do |exercise| %>
-                <li> <%= link_to exercise.title %> </li>
+                <li> <%= link_to exercise.title, booking_shared_exercise_path(@booking, exercise) %> </li>
               <% end %>
               <% if @booking.user == current_user && !current_user.available_exercises(training.client_exercises(@booking)).empty? %>
                 <p class='my-1'>Quick add</p>

@@ -1,6 +1,7 @@
 class Exercise < ApplicationRecord
   belongs_to :user
   has_many :training_plans
+  has_one_attached :photo
 
   #Validations
   validates :title, presence: true
