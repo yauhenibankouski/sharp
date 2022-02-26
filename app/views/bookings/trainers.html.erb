@@ -1,0 +1,14 @@
+<h1>My Trainers</h1>
+<div class="main">
+  <ul class="cards">
+    <% @trainers.each do |trainer| %>
+        <div class="card">
+          <img src="" />
+          <div class="card">
+            <%= link_to "Personal Trainer: #{trainer.first_name.capitalize} #{trainer.last_name.capitalize}", booking_shared_training_plans_path(bookings_path) %>
+          </div>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+</div>

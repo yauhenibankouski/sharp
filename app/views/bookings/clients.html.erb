@@ -1,12 +1,14 @@
-<h1> My Clients </h1>
-
-<%= "Find me at bookings/clients" %>
-
-<div class="d-flex">
-  <% @clients.each do |client| %>
-    <p><%= "#{client.first_name}  #{client.last_name}" %></p>
-        <%# <%= link_to 'Show', exercise %>
-        <%# <%= link_to 'Edit', edit_exercise_path(exercise) %>
-        <%# <%= link_to 'Delete', exercise, method: :delete, remote: true %> %>
-  <% end %>
+<h1>My Clients</h1>
+<div class="main">
+  <ul class="cards">
+    <% @clients.each do |client| %>
+        <div class="card">
+          <img src="" />
+          <div class="card">
+           <%= link_to "Your client: #{client.first_name.capitalize} #{client.last_name.capitalize}", booking_shared_training_plans_path(bookings_path) %>
+          </div>
+        </div>
+      </li>
+    <% end %>
+  </ul>
 </div>
