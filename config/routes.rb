@@ -7,6 +7,13 @@ Rails.application.routes.draw do
   # Exercises
   resources :exercises
 
+
+  # SharedTrainingPlans
+  resources :bookings do
+    resources :shared_training_plans, except: [:new]
+  end
+
   # Bookings/clients - see all clients
   get "/bookings/clients", to: "bookings#clients", as: "clients"
+
 end
