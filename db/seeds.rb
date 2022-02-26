@@ -137,27 +137,34 @@ Booking.create!(
   }
 )
 
-puts "Creating 10 training plans"
+TrainingPlan.create!(
+  {
+    training: @user1.trainings.first,
+    exercise: @user1.exercises.sample
+  }
+)
 
-5.times do |i|
-  puts "Creating training plan #{i + 1}"
+TrainingPlan.create!(
+  {
+    training: @user1.trainings.last,
+    exercise: @user1.exercises.sample
+  }
+)
 
-  TrainingPlan.create!(
-    {
-      training: @user1.trainings.sample,
-      exercise: @user1.exercises.sample
-    }
-  )
-  TrainingPlan.create!(
-    {
-      training: @user2.trainings.sample,
-      exercise: @user2.exercises.sample
-    }
-  )
-end
+TrainingPlan.create!(
+  {
+    training: @user2.trainings.first,
+    exercise: @user2.exercises.sample
+  }
+)
 
-puts "Creating 4 shared training plans"
-4.times do
+TrainingPlan.create!(
+  {
+    training: @user2.trainings.last,
+    exercise: @user2.exercises.sample
+  }
+)
+
   SharedTrainingPlan.create!(
     training: @user1.trainings.sample,
     shared_exercise: @user1.shared_exercises.sample,
@@ -169,4 +176,3 @@ puts "Creating 4 shared training plans"
     shared_exercise: @user2.shared_exercises.sample,
     booking: Booking.where(user: @user2).sample
   )
-end
