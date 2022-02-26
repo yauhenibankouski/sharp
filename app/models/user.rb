@@ -8,4 +8,36 @@ class User < ApplicationRecord
   has_many :exercises
   has_many :bookings
   has_many :shared_exercises
+  has_many :training_plans, through: :trainings
+
+  def available_trainings(used_trainings)
+    trainings.select do |training|
+      available_training?(used_trainings, training)
+    end
+  end
+
+  def available_exercises(used_exercises)
+    exercises.select do |exercise|
+      available_exercise?(used_exercises, exercise)
+    end
+  end
+
+  def available_training?(used_trainings, training)
+    used_trainings.select do |tr|
+      return false if tr == training
+    end
+    true
+  end
+
+  def available_exercise?(used_exercises, exercise)
+    used_exercises.select do |ex|
+      return false if ex.exercise_id == exercise.id
+    end
+    true
+  end
+
+  has_many :trainings, dependent: :destroy
+  has_many :exercises, dependent: :destroy
+  has_many :bookings, dependent: :destroy
+  has_many :shared_exercises, dependent: :destroy
 end
