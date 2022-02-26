@@ -1,0 +1,12 @@
+Find me here --> app/views/trainings/show.html.erb
+Single training.
+
+<h2><%= link_to "My trainings", trainings_path %></h2>
+
+<h2><%= @training.title %></h2>
+<p><%= @training.description %></p>
+<p><%= @training.activity %></p>
+
+
+<%# <%= link_to "Delete training", training_path(@training), method: :delete, data: {confirm: 'Do you want to proceed with training deletion?'} %>
+<%= link_to "Edit training", edit_training_path(@training), data: {confirm: 'Do you want to proceed with training edit?'} %>
