@@ -1,14 +1,13 @@
 <h1>My Clients</h1>
-<div class="main">
-  <ul class="cards">
+<p>Find me in app/views/bookings/clients.html.erb</p>
+  <% if current_user %>
+    <h3> <%= current_user.first_name.capitalize %>: Client's Overview </h3>
+    <h3 class="mt-4"></h3>
+    <p class="text-muted m-0">Clients</p>
     <% @clients.each do |client| %>
-        <div class="card">
-          <img src="" />
-          <div class="card">
-           <%= link_to "Your client: #{client.first_name.capitalize} #{client.last_name.capitalize}", booking_shared_training_plans_path(bookings_path) %>
-          </div>
-        </div>
-      </li>
+      <%= link_to "Your client: #{client.first_name.capitalize} #{client.last_name.capitalize}", booking_shared_training_plans_path(client) %>
     <% end %>
-  </ul>
-</div>
+  <% else %>
+  <h3>You don't have a Client assigned.</h3>
+  <%= link_to "Home", home_path %>
+  <% end %>
