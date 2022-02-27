@@ -1,6 +1,10 @@
-<%= cl_image_tag @exercise.photo.key, height: 300, width: 400, crop: :fill %>
-<h2><%= @exercise.title %></h2>
-<p><%= @exercise.description %></p>
-<p><%= @exercise.technique %></p>
-<p><%= @exercise.sets %></p>
-<p><%= @exercise.repetitions %></p>
+<%= cl_image_tag @shared_exercise.photo.key, height: 300, width: 400, crop: :fill %>
+<h2><%= @shared_exercise.title %></h2>
+<p><%= @shared_exercise.description %></p>
+<p><%= @shared_exercise.technique %></p>
+<p><%= @shared_exercise.sets %></p>
+<p><%= @shared_exercise.repetitions %></p>
+
+
+<%= link_to 'Upload', new_shared_exercise_shared_exercise_history_log_path(@shared_exercise) %>
+<%#= link_to 'View history', shared_exercise_shared_exercise_history_logs_path %>
