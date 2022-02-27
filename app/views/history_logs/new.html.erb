@@ -1,0 +1,7 @@
+<p>I am empty</p>
+
+<%= simple_form_for [@booking, @shared_exercise, @history_log] do |f| %>
+  <%= f.input :notes %>
+  <%= f.input :file, as: :file, label: false %>
+  <%= f.submit 'Upload' %>
+<% end %>
