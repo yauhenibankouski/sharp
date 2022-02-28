@@ -13,6 +13,12 @@ class BookingsController < ApplicationController
     end
   end
 
+  def destroy
+    @booking = Booking.find(params[:id])
+    @booking.delete
+    redirect_to bookings_path, notice: "Booking request canceled!"
+  end
+
   def clients
     bookings = current_user.bookings
     @clients = bookings.map(&:client)

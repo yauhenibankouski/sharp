@@ -34,21 +34,27 @@
               <div class='m-0 p-1 text-black-50'>
                 <i class="fas fa-spinner"></i>
                 <span>Request sent to <%= trainer.first_name.capitalize %></span>
+                <%= simple_form_for trainer.bookings.select { |b| b.client_id == current_user.id}, id: 'cancel', remote: true, method: :delete do |f| %>
+                  <%= f.submit "Cancel", class: 'btn btn-danger' %>
+                <% end %>
               </div>
             <% when 'Accepted' %>
               <%= link_to "See assigned workouts",
-                  booking_shared_training_plans_path(trainer.bookings.select { |b| b.client_id == current_user.id }),
+                  booking_shared_training_plans_path(trainer.bookings.select { |b| b.client_id == current_user.id }.first),
                   class: 'btn btn-success text-white rounded' %>
             <% when 'Rejected' %>
               <div class='m-0 p-1'>
                 <i class="fas fa-exclamation-triangle text-warning"></i>
                 <span class="text-dark">It seems that <%= trainer.first_name.capitalize %> is full right now</span>
                 <p class="text-black-50">You've been added to <%= trainer.first_name.capitalize %>'s' waitlist and we'll notify you when the request is approved</p>
+                <%= simple_form_for trainer.bookings.select { |b| b.client_id == current_user.id }.first, id: 'cancel', remote: true, method: :delete do |f| %>
+                  <%= f.submit "Cancel", class: 'btn btn-danger' %>
+                <% end %>
               </div>
           <% end %>
         <% else %>
-            <%= simple_form_for @booking, id: 'book' do |f| %>
-              <%= f.hidden_field :status, value: 'Pending' %>
+            <%= simple_form_for @booking, id: 'book', remote: true do |f| %>
+              <%= f.hidden_field :status, value: "Pending" %>
               <%= f.hidden_field :user_id, value: trainer.id %>
               <%= f.hidden_field :client_id, value: current_user.id %>
               <%= f.submit "Book #{trainer.first_name.capitalize}!", class: 'btn btn-primary'%>
