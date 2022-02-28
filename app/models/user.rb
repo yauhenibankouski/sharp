@@ -25,12 +25,6 @@ class User < ApplicationRecord
     end
   end
 
-  def available_exercises(used_exercises)
-    exercises.select do |exercise|
-      available_exercise?(used_exercises, exercise)
-    end
-  end
-
   def available_training?(used_trainings, training)
     used_trainings.select do |tr|
       return false if tr == training
@@ -38,10 +32,4 @@ class User < ApplicationRecord
     true
   end
 
-  def available_exercise?(used_exercises, exercise)
-    used_exercises.select do |ex|
-      return false if ex.exercise_id == exercise.id
-    end
-    true
-  end
 end

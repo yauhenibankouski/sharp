@@ -1,41 +1,25 @@
 <div class="container">
+  <div class="d-flex align-items-center">
+    <h3>
+      <%= link_to bookings_path do %>
+        <i class="fas fa-angle-left pr-3"></i>
+      <% end %>
+    </h3>
+    <h4><%= @booking.user == current_user ? "#{@booking.client.first_name.capitalize}'s" : "My" %> training plans</h4>
+  </div>
   <% if @booking.user == current_user || @booking.client == current_user %>
-    <h3><%= @booking.client.first_name.capitalize %>'s Training Plans</h3>
     <div >
       <% @trainings.uniq.each do |training| %>
         <div class="card rounded" style="width: 18rem;">
           <div class="card-body">
-            <h5 class="card-title"><%= training.title %></h5>
-            <h6 class="card-subtitle mb-2 text-muted">Trainer: <%= @booking.user.first_name %></h6>
-            <ul class="card-text">
-              <% training.client_exercises(@booking).each do |exercise| %>
-                <li> <%= link_to exercise.title %> </li>
-              <% end %>
-              <% if @booking.user == current_user && !current_user.available_exercises(training.client_exercises(@booking)).empty? %>
-                <p class='my-1'>Quick add</p>
-                <% current_user.available_exercises(training.client_exercises(@booking)).each do |exercise| %>
-                  <li>
-                    <%= link_to exercise.title %>
-                     /
-                    <%= simple_form_for [@booking, @shared_training_plan] do |f| %>
-                      <%= f.hidden_field :training, value: training.id  %>
-                      <%= f.hidden_field :shared_exercise, value: exercise.id  %>
-                      <%= f.submit 'Add' %>
-                    <% end %>
-                  </li>
-                <% end %>
-              <% end %>
-            </ul>
+            <h5 class="card-title"><%= link_to training.title, booking_shared_training_plan_path(@booking, training.id) %></h5>
+            <h6 class="card-subtitle mb-3 text-muted">Trainer: <%= @booking.user.first_name.capitalize %></h6>
+            <h6 class="card-subtitle mb-2 text-black-50"><%= training.description %></h6>
           </div>
         </div>
       <% end %>
     </div>
-    <%= render 'form' %>
-    <% if @booking.user == current_user %>
-      <%= link_to "Back to my clients", bookings_path, class: "btn btn-secondary" %>
-    <% else %>
-      <%= link_to "Back to my trainers", bookings_path, class: "btn btn-secondary" %>
-    <% end %>
+    <%= render 'shared_training_plans/form' %>
   <% else %>
     <h2>Sorry, seems like you don't belong here :)</h2>
   <% end %>
