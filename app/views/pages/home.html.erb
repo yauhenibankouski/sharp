@@ -15,6 +15,9 @@
   <% current_user.bookings.each do |b| %>
     <%= link_to "Client #{b.client.first_name.capitalize}'s training plans",  booking_shared_training_plans_path(b) %>
   <% end %>
+  <%= link_to "Create training", new_training_path %>
+  <%= link_to "Create exercise", new_exercise_path %>
+
 <% else %>
   <h3>Not signed in...</h3>
 <% end %>
