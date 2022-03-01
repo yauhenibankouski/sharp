@@ -1,10 +1,12 @@
 <h2>My exercise templates</h2>
 
-<div class="d-flex">
+<ul>
   <% @exercises.each do |exercise| %>
+  <li>
     <p><%= "#{exercise.id} - #{exercise.title}" %></p>
     <%= link_to 'Show', exercise %>
     <%= link_to 'Edit', edit_exercise_path(exercise) %>
     <%= link_to 'Delete', exercise, method: :delete, remote: true %>
   <% end %>
-</div>
+  </li>
+</ul>

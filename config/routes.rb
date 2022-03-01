@@ -15,6 +15,14 @@ Rails.application.routes.draw do
       get "/clients", to: "bookings#clients", as: "clients"
       get "/trainers", to: "bookings#trainers", as: "trainers"
     end
-    resources :shared_training_plans, except: [:new]
+    
+    resources :shared_training_plans, except: [:new] do
+      #collection does not take an id and overrides default member method
+      collection do
+        resources :shared_exercises, only: [:show] do
+          resources :history_logs, only: [:new, :create, :index, :delete]
+        end
+      end
+    end
   end
 end

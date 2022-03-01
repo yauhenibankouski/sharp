@@ -1,2 +1,7 @@
-<h2>Exercise <%= @exercise.id %></h2>
-<p><%= @exercise.title %></p>
+<%= cl_image_tag @exercise.photo.key, height: 300, width: 400, crop: :fill %>
+
+<h2><%= @exercise.title %></h2>
+<p><%= @exercise.description %></p>
+<p><%= @exercise.technique %></p>
+<p><%= @exercise.sets %></p>
+<p><%= @exercise.repetitions %></p>
