@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   resources :training_plans
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-
   # Trainings
   resources :trainings
   # Exercises

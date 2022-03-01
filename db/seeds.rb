@@ -26,7 +26,7 @@ puts 'Deleting users'
 User.destroy_all
 puts 'Users deleted'
 
-def create_user(name)
+def create_user(name, boolean = false)
   User.create!(
     {
       first_name: name,
@@ -34,7 +34,9 @@ def create_user(name)
       weight: rand(40..250),
       gender: "M",
       email: "#{name}@test.com",
-      password: "123456"
+      password: "123456",
+      trainer: boolean,
+      about: "This is the about me placeholder text for #{name.capitalize}"
     }
   )
 end
@@ -42,8 +44,8 @@ end
 puts '----------------------------------------------------------------'
 
 puts 'Creating 4 users'
-create_user('yauheni')
-create_user('whalton')
+create_user('yauheni', true)
+create_user('whalton', true)
 create_user('bassem')
 create_user('aris')
 

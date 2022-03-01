@@ -10,15 +10,18 @@ class User < ApplicationRecord
   has_many :shared_exercises, dependent: :destroy
   has_many :training_plans, through: :trainings
 
+
+  def my_trainer?(trainer)
+    Booking.find_by(user_id: trainer.id, client_id: id) ? true : false
+  end
+
+  def my_bookings
+    Booking.find_by(client_id: id)
+  end
+
   def available_trainings(used_trainings)
     trainings.select do |training|
       available_training?(used_trainings, training)
-    end
-  end
-
-  def available_exercises(used_exercises)
-    exercises.select do |exercise|
-      available_exercise?(used_exercises, exercise)
     end
   end
 

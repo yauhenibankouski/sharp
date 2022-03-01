@@ -1,19 +1,35 @@
 class SharedTrainingPlansController < ApplicationController
   def index
     @booking = Booking.find(params[:booking_id])
-    shared_training_plans = SharedTrainingPlan.where(booking: @booking)
-    @trainings = shared_training_plans.map(&:training)
+    @trainings = SharedTrainingPlan.where(booking: @booking).map(&:training)
     @shared_training_plan = SharedTrainingPlan.new
+  end
+
+  def show
+    stp = SharedTrainingPlan.includes(:shared_exercise)
+                            .includes(:training)
+                            .includes(:booking)
+                            .where(booking: params[:booking_id], training: params[:id])
+                            .first
+    @shared_training_plan = SharedTrainingPlan.new
+    @booking = stp.booking
+    @training = stp.training
+    @shared_exercises = stp.training.shared_exercises
+    @available_exercises = available_exercises(@shared_exercises)
   end
 
   def create
     booking = Booking.find(params[:booking_id])
     training = Training.find(params[:shared_training_plan][:training])
     shared_exercise = create_shared_exercise(params)
-    @shared_training_plan = SharedTrainingPlan.new({ training: training, shared_exercise: shared_exercise, booking: booking })
+    @shared_training_plan = SharedTrainingPlan.new(
+      {
+        training: training, shared_exercise: shared_exercise, booking: booking
+      }
+    )
 
     if @shared_training_plan.save
-      redirect_to booking_shared_training_plans_path(booking)
+      redirect_to booking_shared_training_plan_path(booking, training)
     else
       render :index
     end
@@ -37,5 +53,18 @@ class SharedTrainingPlansController < ApplicationController
         exercise: exercise
       }
     )
+  end
+
+  def available_exercises(used_exercises)
+    current_user.exercises.select do |exercise|
+      available_exercise?(used_exercises, exercise)
+    end
+  end
+
+  def available_exercise?(used_exercises, exercise)
+    used_exercises.select do |ex|
+      return false if ex.exercise_id == exercise.id
+    end
+    true
   end
 end

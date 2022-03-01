@@ -1,0 +1,66 @@
+<div class="container">
+  <div class="d-flex align-items-center">
+    <h3>
+      <%= link_to root_path do %>
+        <i class="fas fa-angle-left pr-3"></i>
+      <% end %>
+    </h3>
+    <h2>Pick your expert</h2>
+  </div>
+  <% @available_trainers.each do |trainer| %>
+    <div class="card mb-3">
+      <img class="card-img-top rounded"
+           src="https://source.unsplash.com/random"
+           alt="Image of user goes here"
+           height='100px'
+           >
+
+      <div class="card-body">
+        <div class="d-flex justify-content-between">
+          <h3 class="card-subtitle"> <%= "#{trainer.first_name.capitalize} #{trainer.last_name.capitalize}" %> </h3>
+          <%# <h3 class="card-subtitle"> <%= trainer.bookings </h3> %>
+          <div>
+            <i class="fas fa-star text-warning"></i>
+            <i class="fas fa-star text-warning"></i>
+            <i class="fas fa-star text-warning"></i>
+            <i class="fas fa-star text-warning"></i>
+            <i class="far fa-star text-warning"></i>
+          </div>
+        </div>
+        <p class="card-text text-black-50"> <%= trainer.about %> </p>
+        <% if trainer.bookings.any? { |b| b.client_id == current_user.id } %>
+          <% case trainer.bookings.select { |b| b.client_id == current_user.id }.first.status %>
+            <% when 'Pending' %>
+              <div class='m-0 p-1 text-black-50'>
+                <i class="fas fa-spinner"></i>
+                <span>Request sent to <%= trainer.first_name.capitalize %></span>
+                <%= simple_form_for trainer.bookings.select { |b| b.client_id == current_user.id}, id: 'cancel', remote: true, method: :delete do |f| %>
+                  <%= f.submit "Cancel", class: 'btn btn-danger' %>
+                <% end %>
+              </div>
+            <% when 'Accepted' %>
+              <%= link_to "See assigned workouts",
+                  booking_shared_training_plans_path(trainer.bookings.select { |b| b.client_id == current_user.id }.first),
+                  class: 'btn btn-success text-white rounded' %>
+            <% when 'Rejected' %>
+              <div class='m-0 p-1'>
+                <i class="fas fa-exclamation-triangle text-warning"></i>
+                <span class="text-dark">It seems that <%= trainer.first_name.capitalize %> is full right now</span>
+                <p class="text-black-50">You've been added to <%= trainer.first_name.capitalize %>'s' waitlist and we'll notify you when the request is approved</p>
+                <%= simple_form_for trainer.bookings.select { |b| b.client_id == current_user.id }.first, id: 'cancel', remote: true, method: :delete do |f| %>
+                  <%= f.submit "Cancel", class: 'btn btn-danger' %>
+                <% end %>
+              </div>
+          <% end %>
+        <% else %>
+            <%= simple_form_for @booking, id: 'book', remote: true do |f| %>
+              <%= f.hidden_field :status, value: "Pending" %>
+              <%= f.hidden_field :user_id, value: trainer.id %>
+              <%= f.hidden_field :client_id, value: current_user.id %>
+              <%= f.submit "Book #{trainer.first_name.capitalize}!", class: 'btn btn-primary'%>
+            <% end %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
