@@ -32,4 +32,10 @@ class User < ApplicationRecord
     true
   end
 
+  def available_exercise?(used_exercises, exercise)
+    used_exercises.select do |ex|
+      return false if ex.exercise_id == exercise.id
+    end
+    true
+  end
 end

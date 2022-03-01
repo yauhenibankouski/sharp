@@ -19,7 +19,13 @@
         </div>
       <% end %>
     </div>
-    <%= render 'shared_training_plans/form' %>
+
+    <%= render 'form' %>
+    <% if @booking.user == current_user %>
+      <%= link_to "Back to my clients", clients_bookings_path, class: "btn btn-secondary" %>
+    <% else %>
+      <%= link_to "Back to my trainers", trainers_bookings_path, class: "btn btn-secondary" %>
+    <% end %>
   <% else %>
     <h2>Sorry, seems like you don't belong here :)</h2>
   <% end %>

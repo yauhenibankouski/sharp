@@ -11,9 +11,10 @@ Rails.application.routes.draw do
 
   # SharedTrainingPlans
   resources :bookings do
+    collection do
+      get "/clients", to: "bookings#clients", as: "clients"
+      get "/trainers", to: "bookings#trainers", as: "trainers"
+    end
     resources :shared_training_plans, except: [:new]
   end
-
-  # Bookings/clients - see all clients
-  get "/bookings/clients", to: "bookings#clients", as: "clients"
 end
