@@ -1,14 +1,15 @@
 class BookingsController < ApplicationController
   def index
+
   end
 
   def clients
-    bookings = current_user.bookings
-    @clients = bookings.map { |booking| booking.client }
+    @bookings = Booking.where(client: current_user)
+    @clients = current_user.bookings.map(&:client)
   end
 
   def trainers
-    bookings = Booking.where(client: current_user)
-    @trainers = bookings.map { |booking| booking.user }
+    @trainers = current_user.bookings.map(&:user)
   end
+
 end
