@@ -127,6 +127,8 @@ ActiveRecord::Schema.define(version: 2022_02_27_162853) do
     t.string "last_name"
     t.float "weight"
     t.string "gender"
+    t.boolean "trainer", default: false
+    t.text "about"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

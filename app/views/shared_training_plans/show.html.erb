@@ -1,0 +1,55 @@
+<div class="">
+  <% if @booking.user == current_user || @booking.client == current_user %>
+    <div class="d-flex align-items-center pl-3">
+    <h3>
+      <%= link_to booking_shared_training_plans_path(@booking) do %>
+        <i class="fas fa-angle-left pr-3"></i>
+      <% end %>
+    </h3>
+    <h4><%= @training.title %></h4>
+  </div>
+    <div class="training-card-wrapper">
+      <img src="https://source.unsplash.com/random" alt="" height="150px" width="100%" class="rounded">
+      <div >
+        <div class="card training-card" style="width: 18rem; border-radius: 1rem;">
+          <div class="card-body">
+            <h5 class="card-title text-center">Good luck, champ!</h5>
+            <ol class="card-text">
+              <% @training.shared_exercises.each do |exercise| %>
+                <li>
+                  <span><%= link_to exercise.title %></span>
+                  <% if @booking.user == current_user && !@available_exercises.empty? %>
+                    <span style="font-size: 10px"><%= link_to 'X', '', class: 'text-danger' %></span>
+                  <% end %>
+                  <div class="exercise-info text-black-50" style="font-size: .7rem">
+                    <span>
+                      <%= exercise.sets %> sets / <%= exercise.repetitions %> reps
+
+                    </span>
+                  </div>
+                </li>
+              <% end %>
+            </ol>
+              <% if @booking.user == current_user && !@available_exercises.empty? %>
+                <p class='my-1'>Quick add</p>
+                <ul>
+                  <% @available_exercises.each do |exercise| %>
+                    <li>
+                      <%= simple_form_for [@booking, @shared_training_plan] do |f| %>
+                        <%= link_to exercise.title %>
+                        <%= f.hidden_field :training, value: @training.id  %>
+                        <%= f.hidden_field :shared_exercise, value: exercise.id  %>
+                        <%= f.submit '+', class: 'text-primary px-2'%>
+                      <% end %>
+                    </li>
+                  <% end %>
+                </ul>
+              <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% else %>
+    <h2>Sorry, seems like you don't belong here :)</h2>
+  <% end %>
+</div>

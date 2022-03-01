@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   resources :training_plans
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-
   # Trainings
   resources :trainings
   # Exercises
@@ -12,6 +11,11 @@ Rails.application.routes.draw do
 
   # SharedTrainingPlans
   resources :bookings do
+    collection do
+      get "/clients", to: "bookings#clients", as: "clients"
+      get "/trainers", to: "bookings#trainers", as: "trainers"
+    end
+    
     resources :shared_training_plans, except: [:new] do
       #collection does not take an id and overrides default member method
       collection do
@@ -21,10 +25,4 @@ Rails.application.routes.draw do
       end
     end
   end
-
-  resources :shared_exercises, only: [:new]
-
-  # Bookings/clients - see all clients
-  get "/bookings/clients", to: "bookings#clients", as: "clients"
-
 end

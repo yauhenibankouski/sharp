@@ -1,0 +1,13 @@
+<h1>My Trainers</h1>
+<p>Find me in app/views/bookings/trainers.html.erb</p>
+<% if current_user %>
+  <h3> <%= current_user.first_name.capitalize %>: Trainer's Overview </h3>
+  <h3 class="mt-4"></h3>
+  <p class="text-muted m-0">Trainers</p>
+  <% Booking.where(client: current_user).each do |b| %>
+    <%= link_to "Trainer #{b.user.first_name.capitalize}'s training plans",  booking_shared_training_plans_path(b) %>
+  <% end %>
+  <% else %>
+  <h3>You don't have a trainer assigned.</h3>
+  <%= link_to "Choose your trainer", bookings_path %>
+<% end %>

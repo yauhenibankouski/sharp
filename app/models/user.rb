@@ -4,27 +4,24 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  # has_many :trainings
-  # has_many :exercises
-  # has_many :bookings
-  # has_many :shared_exercises
-
   has_many :trainings, dependent: :destroy
   has_many :exercises, dependent: :destroy
   has_many :bookings, dependent: :destroy
   has_many :shared_exercises, dependent: :destroy
-
   has_many :training_plans, through: :trainings
+
+
+  def my_trainer?(trainer)
+    Booking.find_by(user_id: trainer.id, client_id: id) ? true : false
+  end
+
+  def my_bookings
+    Booking.find_by(client_id: id)
+  end
 
   def available_trainings(used_trainings)
     trainings.select do |training|
       available_training?(used_trainings, training)
-    end
-  end
-
-  def available_exercises(used_exercises)
-    exercises.select do |exercise|
-      available_exercise?(used_exercises, exercise)
     end
   end
 
@@ -41,6 +38,4 @@ class User < ApplicationRecord
     end
     true
   end
-
-
 end
