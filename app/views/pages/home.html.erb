@@ -2,7 +2,6 @@
 <p>Find me in app/views/pages/home.html.erb</p>
 <% if current_user %>
   <h3>Signed in as: <%= current_user.first_name.capitalize %> </h3>
-
   <h2>Temporary links for accessibility</h2>
   <h3 class="mt-4">Client's dashboard</h3>
   <p class="text-muted m-0">Trainers</p>
@@ -21,3 +20,6 @@
 <% else %>
   <h3>Not signed in...</h3>
 <% end %>
+<%= link_to_if(current_user.nil?, "Get started", user_session_path, class: 'btn btn-primary m-5') do
+      link_to('Sign out',  destroy_user_session_path, :method => 'delete', class: 'btn btn-danger m-5')
+    end %>
