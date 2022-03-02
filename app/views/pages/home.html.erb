@@ -1,55 +1,55 @@
 
-<main>
-  <section>
-  <div class="container">
+<div class="container">
   <% if current_user %>
-    <h3 class="mt-4"><%= current_user.first_name.capitalize %></h3>
-    <p class="text-muted m-0">Profile</p>
-    <div class="row">
-      <div class="col">
-        <div class="content-area">
-          <main class="site-main" role="main">
-            <div>
-              <div class="row">
-                <div class="col-x">
-                  <div>
-                    <p class="text-muted m-0">Client overview</p>
-                  </div>
-                    <% Booking.where(client: current_user).each do |b| %>
-                  <div>
-                    <%= link_to "My Trainers",  trainers_bookings_path(b) %>
-                  </div>
-                  <div>
-                    <%= link_to "Pick an Expert", bookings_path %>
-                  </div>
-                  <div>
-                    <%= link_to "My Trainings", training_plans_path %>
-                  </div>
-                    <% end %>
-                    <div>
-                    <p class="text-muted m-0">Expert overview</p>
-                    </div>
-                    <% current_user.bookings.each do |b| %>
-                    <div>
-                    <%= link_to "My Clients",  clients_bookings_path(b) %>
-                    </div>
-                    <div>
-                    <%= link_to "Create training", new_training_path %>
-                    </div>
-                    <div>
-                    <%= link_to "Create exercise", new_exercise_path %>
-                    </div>
-                    <% end %>
-                  <% else %>
-                    <h3>Not signed in...</h3>
-                  <% end %>
-                </div>
-              </div>
-            </div>
-          </main>
-        </div>
+  <h3 class="mt-4"><%= current_user.first_name.capitalize %></h3>
+  <p class="text-muted m-0">Profile</p>
+  <div class="row justify-content-center">
+    <p class="text-muted m-0">Client overview</p>
+  </div>
+  <div class="row text-center d-flex">
+    <div class="card col-sm-4 justify-content-center" style="width: 18rem;">
+      <div class="card-body">
+        <% Booking.where(client: current_user).each do |b| %>
+          <%= link_to "My Trainers",  trainers_bookings_path(b) %>
       </div>
     </div>
+    <div class="card col-sm-4 justify-content-center" style="width: 18rem;">
+      <div class="body">
+        <%= link_to "Pick an Expert", bookings_path %>
+     </div>
+    </div>
+    <div class="card col-sm-4 justify-content-center" style="width: 18rem;">
+      <div class="body">
+        <%= link_to "My Trainings", training_plans_path %>
+      </div>
+    </div>
+        <% end %>
   </div>
-  </section>
-</main>
+</div>
+<div class="container">
+  <div class="row justify-content-center">
+    <p class="text-muted m-0">Expert overview</p>
+  </div>
+  <div class="row text-center d-flex">
+    <div class="card col-sm-4 justify-content-center" style="width: 18rem;">
+      <div class="card-body">
+       <% current_user.bookings.each do |b| %>
+       <%= link_to "My Clients",  clients_bookings_path(b) %>
+      </div>
+    </div>
+    <div class="card col-sm-4 justify-content-center" style="width: 18rem;">
+      <div class="body">
+       <%= link_to "Create training", new_training_path %>
+     </div>
+    </div>
+    <div class="card col-sm-4 justify-content-center" style="width: 18rem;">
+      <div class="body">
+       <%= link_to "Create exercise", new_exercise_path %>
+      </div>
+    </div>
+        <% end %>
+  </div>
+  <% else %>
+    <h3>Not signed in...</h3>
+  <% end %>
+</div>
