@@ -11,7 +11,7 @@ class MessagesController < ApplicationController
         @chatroom,
         render_to_string(partial: "message", locals: { message: @message })
       )
-      redirect_to booking_shared_training_plan_chatroom_path(@booking, @shared_training_plan, @chatroom, anchor: "message-#{@message.id}")
+      redirect_to booking_shared_exercise_chatroom_path(@booking, @shared_exercise, @chatroom, anchor: "message-#{@message.id}")
     else
       render "booking/shared_training_plan/shared_exercise/chatrooms/show"
      end

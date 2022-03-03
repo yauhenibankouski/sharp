@@ -5,6 +5,8 @@
   <% end %>
 </div>
 
-<%= simple_form_for @message, url: booking_shared_training_plan_chatroom_messages_path(@booking.id, @shared_training_plan.id, @chatroom.id), remote: true do |f| %>
-  <%= f.input :content, label: false, placeholder: "Type here" %>
+
+<%= simple_form_for [@booking, @shared_exercise, @chatroom, @message] do |f| %>
+  <%= f.input :content %>
+  <%= f.submit %>
 <% end %>
