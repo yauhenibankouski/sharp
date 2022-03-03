@@ -9,8 +9,7 @@
   <div class="row text-center d-flex">
     <div class="card col-sm-4 justify-content-center" style="width: 18rem;">
       <div class="card-body">
-        <% Booking.where(client: current_user).each do |b| %>
-          <%= link_to "My Trainers",  trainers_bookings_path(b) %>
+          <%= link_to "My Trainers",  trainers_bookings_path %>
       </div>
     </div>
     <div class="card col-sm-4 justify-content-center" style="width: 18rem;">
@@ -23,15 +22,13 @@
         <%= link_to "My Trainings", training_plans_path %>
       </div>
     </div>
-        <% end %>
   </div>
 </div>
 <div class="container">
   <div class="row text-center d-flex">
     <div class="card col-sm-4 justify-content-center" style="width: 18rem;">
       <div class="card-body">
-       <% current_user.bookings.each do |b| %>
-       <%= link_to "My Clients",  clients_bookings_path(b) %>
+       <%= link_to "My Clients",  clients_bookings_path %>
       </div>
     </div>
     <div class="card col-sm-4 justify-content-center" style="width: 18rem;">
@@ -44,7 +41,6 @@
        <%= link_to "Create exercise", new_exercise_path %>
       </div>
     </div>
-        <% end %>
   </div>
   <% else %>
     <div class="container-fluid">
