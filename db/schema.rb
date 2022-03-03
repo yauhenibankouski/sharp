@@ -10,8 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_01_183522) do
 
+ActiveRecord::Schema.define(version: 2022_03_01_203336) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -74,6 +74,8 @@ ActiveRecord::Schema.define(version: 2022_03_01_183522) do
     t.text "notes"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "shared_exercise_id", null: false
+    t.index ["shared_exercise_id"], name: "index_history_logs_on_shared_exercise_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -153,8 +155,7 @@ ActiveRecord::Schema.define(version: 2022_03_01_183522) do
   add_foreign_key "bookings", "users"
   add_foreign_key "bookings", "users", column: "client_id"
   add_foreign_key "exercises", "users"
-  add_foreign_key "messages", "chatrooms"
-  add_foreign_key "messages", "users"
+  add_foreign_key "history_logs", "shared_exercises"
   add_foreign_key "shared_exercises", "exercises"
   add_foreign_key "shared_exercises", "users"
   add_foreign_key "shared_training_plans", "bookings"

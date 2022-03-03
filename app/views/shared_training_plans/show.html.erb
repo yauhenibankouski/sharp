@@ -17,9 +17,13 @@
             <ol class="card-text">
               <% @training.shared_exercises.each do |exercise| %>
                 <li>
-                  <span><%= link_to exercise.title %></span>
+                  <span><%= link_to exercise.title, booking_shared_exercise_path(@booking, exercise)  %></span>
                   <% if @booking.user == current_user && !@available_exercises.empty? %>
-                    <span style="font-size: 10px"><%= link_to 'X', '', class: 'text-danger' %></span>
+                    <span style="font-size: 10px">
+                      <%= link_to 'X', booking_shared_exercise_path(@booking, exercise), method: :delete,
+                                                                                         remote: true,
+                                                                                         class: 'text-danger' %>
+                    </span>
                   <% end %>
                   <div class="exercise-info text-black-50" style="font-size: .7rem">
                     <span>
@@ -35,7 +39,7 @@
                 <ul>
                   <% @available_exercises.each do |exercise| %>
                     <li>
-                      <%= simple_form_for [@booking, @shared_training_plan] do |f| %>
+                      <%= simple_form_for [@booking, @shared_training_plan], remote: true do |f| %>
                         <%= link_to exercise.title %>
                         <%= f.hidden_field :training, value: @training.id  %>
                         <%= f.hidden_field :shared_exercise, value: exercise.id  %>
