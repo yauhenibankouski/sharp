@@ -2,6 +2,6 @@
 
 <%= simple_form_for [@booking, @shared_exercise, @history_log] do |f| %>
   <%= f.input :notes %>
-  <%= f.input :content, as: :file, label: false %>
+  <%= f.input :photo, as: :file, label: false %>
   <%= f.submit 'Upload' %>
 <% end %>

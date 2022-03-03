@@ -17,7 +17,7 @@
             <ol class="card-text">
               <% @training.shared_exercises.each do |exercise| %>
                 <li>
-                  <span><%= link_to exercise.title %></span>
+                  <span><%= link_to exercise.title, booking_shared_exercise_path(@booking, exercise)  %></span>
                   <% if @booking.user == current_user && !@available_exercises.empty? %>
                     <span style="font-size: 10px">
                       <%= link_to 'X', booking_shared_exercise_path(@booking, exercise), method: :delete,
