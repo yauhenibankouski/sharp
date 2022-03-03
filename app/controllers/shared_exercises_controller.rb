@@ -1,10 +1,15 @@
 class SharedExercisesController < ApplicationController
-
-  # find the booking parsing the url
-  #
   def show
     @booking = Booking.find(params[:booking_id])
     @shared_exercise = SharedExercise.find(params[:id])
   end
 
+  def destroy
+    @booking = Booking.find(params[:booking_id])
+    @shared_exercise = SharedExercise.find(params[:id])
+    training = @shared_exercise.shared_training_plans.first.training
+    SharedTrainingPlan.find_by(booking: @booking, shared_exercise: @shared_exercise).delete
+    @shared_exercise.destroy
+    redirect_to booking_shared_training_plan_path(@booking, training.id)
+  end
 end
