@@ -2,6 +2,7 @@ class SharedExercisesController < ApplicationController
   def show
     @booking = Booking.find(params[:booking_id])
     @shared_exercise = SharedExercise.find(params[:id])
+    @message = Message.new
   end
 
   def destroy

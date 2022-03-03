@@ -1,20 +1,21 @@
 class MessagesController < ApplicationController
   def create
-    @chatroom = Chatroom.find(params[:chatroom_id])
     @booking = Booking.find(params[:booking_id])
     @shared_exercise = SharedExercise.find(params[:shared_exercise_id])
     @message = Message.new(message_params)
-    @message.chatroom = @chatroom
+    @message.shared_exercise = @shared_exercise
     @message.user = current_user
     if @message.save
-      ChatroomChannel.broadcast_to(
-        @chatroom,
+      SharedExerciseChannel.broadcast_to(
+        @shared_exercise,
         render_to_string(partial: "message", locals: { message: @message })
       )
-      redirect_to booking_shared_exercise_chatroom_path(@booking, @shared_exercise, @chatroom, anchor: "message-#{@message.id}")
+      redirect_to booking_shared_exercise_path(@booking, @shared_exercise, anchor: "message-#{@message.id}")
     else
-      render "booking/shared_training_plan/shared_exercise/chatrooms/show"
+      puts "WRONG"
+      #render "booking/shared_training_plan/shared_exercise/chatrooms/show"
      end
+  
   end
   
   private

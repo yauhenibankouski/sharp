@@ -20,7 +20,7 @@ ActiveStorage.start()
 
 // External imports
 import "bootstrap";
-import { initChatroomCable } from "../channels/chatroom_channel"
+import { initChatroomCable } from "../channels/shared_exercise_channel"
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';

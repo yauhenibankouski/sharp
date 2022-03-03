@@ -20,9 +20,7 @@ Rails.application.routes.draw do
       #collection does not take an id and overrides default member method
       collection do
         resources :shared_exercises, only: [:show, :destroy] do
-          resources :chatrooms, only: :show do
-            resources :messages, only: :create
-          end
+          resources :messages, only: :create
           resources :history_logs, only: [:new, :create, :index, :delete]
         end
       end
