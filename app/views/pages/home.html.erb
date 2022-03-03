@@ -6,46 +6,54 @@
   <div class="row justify-content-center">
     <p class="text-muted m-0">My overview</p>
   </div>
-  <div class="row text-center d-flex">
+    <% Booking.where(client: current_user).each do |b| %>
+  <div class="row justify-content-center">
     <div class="card col-sm-4 justify-content-center" style="width: 18rem;">
-      <div class="card-body">
-        <% Booking.where(client: current_user).each do |b| %>
-          <%= link_to "My Trainers",  trainers_bookings_path(b) %>
-      </div>
+      <%= image_tag("personal_trainer.png") %>
+    <div class="card-body">
+        <%= link_to "My Trainers",  trainers_bookings_path(b) %>
     </div>
-    <div class="card col-sm-4 justify-content-center" style="width: 18rem;">
-      <div class="body">
-        <%= link_to "Pick an Expert", bookings_path %>
-     </div>
+  </div>
+  <div class="card col-sm-4 justify-content-center" style="width: 18rem;">
+    <%= image_tag("yoga.png") %>
+    <div class="card-body">
+      <%= link_to "Pick an Expert", bookings_path %>
     </div>
-    <div class="card col-sm-4 justify-content-center" style="width: 18rem;">
-      <div class="body">
-        <%= link_to "My Trainings", training_plans_path %>
-      </div>
+  </div>
+  <div class="card col-sm-4 justify-content-center" style="width: 18rem;">
+    <%= image_tag("training_stats.png") %>
+    <div class="card-body">
+      <%= link_to "My Trainings", training_plans_path %>
     </div>
-        <% end %>
+   </div>
+  </div>
+      <% end %>
   </div>
 </div>
-<div class="container">
-  <div class="row text-center d-flex">
+  <% current_user.bookings.each do |b| %>
+  <div class="row justify-content-center">
     <div class="card col-sm-4 justify-content-center" style="width: 18rem;">
-      <div class="card-body">
-       <% current_user.bookings.each do |b| %>
+      <%= image_tag("mindfullness.png") %>
+    <div class="card-body">
        <%= link_to "My Clients",  clients_bookings_path(b) %>
-      </div>
     </div>
-    <div class="card col-sm-4 justify-content-center" style="width: 18rem;">
-      <div class="body">
-       <%= link_to "Create training", new_training_path %>
-     </div>
-    </div>
-    <div class="card col-sm-4 justify-content-center" style="width: 18rem;">
-      <div class="body">
-       <%= link_to "Create exercise", new_exercise_path %>
-      </div>
-    </div>
-        <% end %>
   </div>
+  <div class="card col-sm-4 justify-content-center" style="width: 18rem;">
+    <%= image_tag("finish_line.png") %>
+    <div class="card-body">
+      <%= link_to "Create training", new_training_path %>
+    </div>
+  </div>
+  <div class="card col-sm-4 justify-content-center" style="width: 18rem;">
+    <%= image_tag("exercise.png") %>
+    <div class="card-body">
+      <%= link_to "Create exercise", new_exercise_path %>
+    </div>
+   </div>
+  </div>
+      <% end %>
+  </div>
+</div>
   <% else %>
     <div class="container-fluid">
       <div class="card text-center">
