@@ -50,6 +50,16 @@
         <% end %>
   </div>
   <% else %>
-    <h3>Not signed in...</h3>
+<div class="card text-center">
+  <div class="card-header">
+    SHARP
+  </div>
+  <%= image_tag("exercise.png") %>
+  <%= link_to "Start", new_user_session_path %>
+</div>
+  <div class="card-footer text-muted">
+      <%= "Keep track on your progress and start training" %>
+  </div>
+</div>
   <% end %>
 </div>
