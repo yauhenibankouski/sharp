@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="d-flex align-items-center">
+  <div class="d-flex align-items-center justify-content-center page-head-title">
     <h3>
       <%= link_to bookings_path do %>
         <i class="fas fa-angle-left pr-3"></i>
@@ -8,23 +8,22 @@
     <h4><%= @booking.user == current_user ? "#{@booking.client.first_name.capitalize}'s" : "My" %> training plans</h4>
   </div>
   <% if @booking.user == current_user || @booking.client == current_user %>
-    <div >
+    <div>
       <% @trainings.uniq.each do |training| %>
-        <div class="card rounded" style="width: 18rem;">
+        <div class="training-card">
           <div class="card-body">
             <h5 class="card-title"><%= link_to training.title, booking_shared_training_plan_path(@booking, training.id) %></h5>
-            <h6 class="card-subtitle mb-3 text-muted">Trainer: <%= @booking.user.first_name.capitalize %></h6>
-            <h6 class="card-subtitle mb-2 text-black-50"><%= training.description %></h6>
+            <%# <h6 class="card-subtitle mb-3 text-muted">Trainer: <%= @booking.user.first_name.capitalize %></h6>
+            <%# <h6 class="card-subtitle mb-2 text-black-50"><%= training.description%></h6>
           </div>
         </div>
       <% end %>
     </div>
-
     <%= render 'form' %>
     <% if @booking.user == current_user %>
-      <%= link_to "Back to my clients", clients_bookings_path, class: "btn btn-secondary" %>
+      <%= link_to "My clients", clients_bookings_path, class: "button-orange" %>
     <% else %>
-      <%= link_to "Back to my trainers", trainers_bookings_path, class: "btn btn-secondary" %>
+      <%= link_to "My trainers", trainers_bookings_path, class: "button-orange" %>
     <% end %>
   <% else %>
     <h2>Sorry, seems like you don't belong here :)</h2>
