@@ -1,13 +1,13 @@
 <div class="">
   <% if @booking.user == current_user || @booking.client == current_user %>
-    <div class="d-flex align-items-center pl-3">
-    <h3>
-      <%= link_to booking_shared_training_plans_path(@booking) do %>
-        <i class="fas fa-angle-left pr-3"></i>
-      <% end %>
-    </h3>
-    <h4><%= @training.title %></h4>
-  </div>
+    <div class="jumbotron d-flex align-items-center bg-dark text-light mb-0">
+      <h2>
+        <%= link_to booking_shared_training_plans_path(@booking) do %>
+          <i class="fas fa-angle-left pr-3 text-light"></i>
+        <% end %>
+      </h2>
+      <h2><%= @training.title %></h2>
+    </div>
     <div class="training-card-wrapper">
       <img src="https://source.unsplash.com/random" alt="" height="150px" width="100%" class="rounded">
       <div >
@@ -17,10 +17,10 @@
             <ol class="card-text">
               <% @training.shared_exercises.each do |exercise| %>
                 <li>
-                  <span><%= link_to exercise.title, booking_shared_exercise_path(@booking, exercise)  %></span>
+                  <span><%= link_to exercise.title, booking_shared_training_plan_shared_exercise_path(@booking, @stp, exercise)  %></span>
                   <% if @booking.user == current_user && !@available_exercises.empty? %>
                     <span style="font-size: 10px">
-                      <%= link_to 'X', booking_shared_exercise_path(@booking, exercise), method: :delete,
+                      <%= link_to 'X', booking_shared_training_plan_shared_exercise_path(@booking, @stp, exercise), method: :delete,
                                                                                          remote: true,
                                                                                          class: 'text-danger' %>
                     </span>

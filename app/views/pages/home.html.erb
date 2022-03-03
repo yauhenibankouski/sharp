@@ -1,67 +1,68 @@
 
-<div class="container">
   <% if current_user %>
-  <h3 class="mt-4"><%= current_user.first_name.capitalize %></h3>
-  <p class="text-muted m-0">Profile</p>
-  <div class="row justify-content-center">
-    <p class="text-muted m-0">My overview</p>
-  </div>
-  <div class="row text-center d-flex">
-    <div class="card col-sm-4 justify-content-center" style="width: 18rem;">
-      <div class="card-body">
-          <%= link_to "My Trainers",  trainers_bookings_path %>
+    <div class="jumbotron align-items-center bg-dark text-light">
+      <h2 class="mt-4"><%= current_user.first_name.capitalize %></h2>
+      <h5>Dashboard</h5>
+    </div>
+
+    <div class="container">
+      <div class="row justify-content-center">
+        <p class="text-muted m-0">My overview</p>
+      </div>
+      <div class="row text-center d-flex">
+        <div class="card col-sm-4 justify-content-center" style="width: 18rem;">
+          <div class="card-body">
+              <%= link_to "My Trainers",  trainers_bookings_path %>
+          </div>
+        </div>
+        <div class="card col-sm-4 justify-content-center" style="width: 18rem;">
+          <div class="body">
+            <%= link_to "Pick an Expert", bookings_path %>
+        </div>
+        </div>
+        <div class="card col-sm-4 justify-content-center" style="width: 18rem;">
+          <div class="body">
+            <%= link_to "My Trainings", training_plans_path %>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="card col-sm-4 justify-content-center" style="width: 18rem;">
-      <div class="body">
-        <%= link_to "Pick an Expert", bookings_path %>
-     </div>
-    </div>
-    <div class="card col-sm-4 justify-content-center" style="width: 18rem;">
-      <div class="body">
-        <%= link_to "My Trainings", training_plans_path %>
+    <div class="container">
+      <div class="row text-center d-flex">
+        <div class="card col-sm-4 justify-content-center" style="width: 18rem;">
+          <div class="card-body">
+          <%= link_to "My Clients",  clients_bookings_path %>
+          </div>
+        </div>
+        <div class="card col-sm-4 justify-content-center" style="width: 18rem;">
+          <div class="body">
+          <%= link_to "Create training", new_training_path %>
+        </div>
+        </div>
+        <div class="card col-sm-4 justify-content-center" style="width: 18rem;">
+          <div class="body">
+          <%= link_to "Create exercise", new_exercise_path %>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</div>
-<div class="container">
-  <div class="row text-center d-flex">
-    <div class="card col-sm-4 justify-content-center" style="width: 18rem;">
-      <div class="card-body">
-       <%= link_to "My Clients",  clients_bookings_path %>
-      </div>
-    </div>
-    <div class="card col-sm-4 justify-content-center" style="width: 18rem;">
-      <div class="body">
-       <%= link_to "Create training", new_training_path %>
-     </div>
-    </div>
-    <div class="card col-sm-4 justify-content-center" style="width: 18rem;">
-      <div class="body">
-       <%= link_to "Create exercise", new_exercise_path %>
-      </div>
-    </div>
-  </div>
   <% else %>
-    <div class="container-fluid">
-      <div class="card text-center">
-        <div class="card-header">
-          SHARP
+      <div class="container-fluid">
+        <div class="card text-center">
+          <div class="card-header">
+            SHARP
+          </div>
+          <%= image_tag("exercise.png") %>
+          <div class="row">
+          <div class="card col-sm-6 justify-content-center">
+          <%= link_to "Log in", user_session_path, class: 'btn btn-primary m-5' %>
+          </div>
+          <div class="card col-sm-6 justify-content-center">
+          <%= link_to "Sign up", new_user_registration_path, class: 'btn btn-primary m-5' %>
+          </div>
+          </div>
         </div>
-        <%= image_tag("exercise.png") %>
-        <div class="row">
-        <div class="card col-sm-6 justify-content-center">
-        <%= link_to "Log in", user_session_path, class: 'btn btn-primary m-5' %>
-        </div>
-        <div class="card col-sm-6 justify-content-center">
-        <%= link_to "Sign up", new_user_registration_path, class: 'btn btn-primary m-5' %>
-        </div>
-        </div>
-      </div>
         <div class="card-footer text-muted">
-            <%= "Keep track on your progress and start training" %>
+          <%= "Keep track on your progress and start training" %>
         </div>
       </div>
-        <% end %>
-    </div>
-</div>
+  <% end %>

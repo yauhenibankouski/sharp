@@ -1,20 +1,21 @@
 class SharedTrainingPlansController < ApplicationController
   def index
     @booking = Booking.find(params[:booking_id])
-    @trainings = SharedTrainingPlan.where(booking: @booking).map(&:training)
     @shared_training_plan = SharedTrainingPlan.new
+    @shared_training_plans = SharedTrainingPlan.includes(:training).where(booking: @booking)
+    @trainings = @shared_training_plans.map(&:training)
   end
 
   def show
-    stp = SharedTrainingPlan.includes(:shared_exercise)
-                            .includes(:training)
-                            .includes(:booking)
-                            .where(booking: params[:booking_id], training: params[:id])
-                            .first
+    @stp = SharedTrainingPlan.includes(:shared_exercise)
+                             .includes(:training)
+                             .includes(:booking)
+                             .where(booking: params[:booking_id], training: params[:id])
+                             .first
     @shared_training_plan = SharedTrainingPlan.new
-    @booking = stp.booking
-    @training = stp.training
-    @shared_exercises = stp.training.shared_exercises
+    @booking = @stp.booking
+    @training = @stp.training
+    @shared_exercises = @stp.training.shared_exercises
     @available_exercises = available_exercises(@shared_exercises)
   end
 

@@ -1,8 +1,8 @@
 class TrainingPlansController < ApplicationController
-  before_action :set_training_plan, only: %i[show edit update destroy ]
+  before_action :set_training_plan, only: %i[show edit update destroy]
 
   def index
-    @training_plans = TrainingPlan.all
+    @training_plans = current_user.training_plans
   end
 
   def show
@@ -42,9 +42,8 @@ class TrainingPlansController < ApplicationController
   def training_plan_params
     params.require(:training_plan).permit(:exercise, :training)
   end
-  
+
   def set_training_plan
     @training_plan = TrainingPlan.find(params[:id])
   end
-
 end
