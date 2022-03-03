@@ -50,16 +50,25 @@
         <% end %>
   </div>
   <% else %>
-<div class="card text-center">
-  <div class="card-header">
-    SHARP
-  </div>
-  <%= image_tag("exercise.png") %>
-  <%= link_to "Start", new_user_session_path %>
-</div>
-  <div class="card-footer text-muted">
-      <%= "Keep track on your progress and start training" %>
-  </div>
-</div>
-  <% end %>
+    <div class="container-fluid">
+      <div class="card text-center">
+        <div class="card-header">
+          SHARP
+        </div>
+        <%= image_tag("exercise.png") %>
+        <div class="row">
+        <div class="card col-sm-6 justify-content-center">
+        <%= link_to "Log in", user_session_path, class: 'btn btn-primary m-5' %>
+        </div>
+        <div class="card col-sm-6 justify-content-center">
+        <%= link_to "Sign up", new_user_registration_path, class: 'btn btn-primary m-5' %>
+        </div>
+        </div>
+      </div>
+        <div class="card-footer text-muted">
+            <%= "Keep track on your progress and start training" %>
+        </div>
+      </div>
+        <% end %>
+    </div>
 </div>
