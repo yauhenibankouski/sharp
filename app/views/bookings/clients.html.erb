@@ -9,8 +9,8 @@
 
 
   <% unless @bookings.empty? %>
+    <h3 class="text-muted m-0">Pending requests</h3>
     <% @pending_bookings.each do |booking| %>
-      <h3 class="text-muted m-0">Pending requests</h3>
       <h6><%= booking.client.first_name.capitalize %> <%= booking.client.last_name.capitalize %></h6>
       <div class="d-flex">
         <%= simple_form_for booking, id: 'book', method: :patch do |f| %>
@@ -25,8 +25,8 @@
       </div>
     <% end %>
 
+    <h3 class="text-muted m-0">Waitlist</h3>
     <% @rejected_bookings.each do |booking| %>
-      <h3 class="text-muted m-0">Waitlist</h3>
       <p><%= booking.client.first_name.capitalize %> <%= booking.client.last_name.capitalize %></p>
       <%= simple_form_for booking, id: 'book', method: :patch, remote: true do |f| %>
         <%= f.hidden_field :status, value: "Accepted" %>
