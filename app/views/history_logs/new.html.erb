@@ -1,6 +1,13 @@
-<p>I am empty</p>
+<div class="jumbotron d-flex align-items-center bg-dark text-light">
+  <h2>
+    <%= link_to booking_shared_training_plan_shared_exercise_path(@booking, @shared_training_plan, @shared_exercise) do %>
+      <i class="fas fa-angle-left pr-3 text-light"></i>
+    <% end %>
+  </h2>
+  <h2>Add some details</h2>
+</div>
 
-<%= simple_form_for [@booking, @shared_exercise, @history_log] do |f| %>
+<%= simple_form_for [@booking, @shared_training_plan, @shared_exercise, @history_log] do |f| %>
   <%= f.input :notes %>
   <%= f.input :photo, as: :file, label: false %>
   <%= f.submit 'Upload' %>

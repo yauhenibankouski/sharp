@@ -18,11 +18,9 @@ Rails.application.routes.draw do
 
     resources :shared_training_plans, except: [:new] do
       #collection does not take an id and overrides default member method
-      collection do
         resources :shared_exercises, only: [:show, :destroy] do
           resources :history_logs, only: [:new, :create, :index, :delete]
         end
-      end
     end
   end
 end

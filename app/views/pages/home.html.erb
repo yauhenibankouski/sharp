@@ -1,51 +1,45 @@
 
-<div class="container">
   <% if current_user %>
-  <h3 class="mt-4"><%= current_user.first_name.capitalize %></h3>
-  <p class="text-muted m-0">Profile</p>
-  <div class="row justify-content-center">
-    <p class="text-muted m-0">My overview</p>
-  </div>
-  <div class="row text-center d-flex">
-    <div class="card col-sm-4 justify-content-center" style="width: 18rem;">
-      <div class="card-body">
-        <% Booking.where(client: current_user).each do |b| %>
-          <%= link_to "My Trainers",  trainers_bookings_path(b) %>
-      </div>
+    <div class="jumbotron align-items-center bg-dark text-light">
+      <h2 class="mt-4"><%= current_user.first_name.capitalize %></h2>
+      <h5>Dashboard</h5>
     </div>
-    <div class="card col-sm-4 justify-content-center" style="width: 18rem;">
-      <div class="body">
-        <%= link_to "Pick an Expert", bookings_path %>
-     </div>
-    </div>
-    <div class="card col-sm-4 justify-content-center" style="width: 18rem;">
-      <div class="body">
-        <%= link_to "My Trainings", training_plans_path %>
-      </div>
-    </div>
+
+    <div class="container">
+      <h5 class="text-muted m-0">My overview</h5>
+      <div class="dashboard-grid mt-2">
+        <%= link_to trainers_bookings_path, class: "text-center text-dark" do %>
+          <i class="p-3 fas fa-user-tag"></i>
+          <h6 class="fs-md">My trainers</h6>
         <% end %>
-  </div>
-</div>
-<div class="container">
-  <div class="row text-center d-flex">
-    <div class="card col-sm-4 justify-content-center" style="width: 18rem;">
-      <div class="card-body">
-       <% current_user.bookings.each do |b| %>
-       <%= link_to "My Clients",  clients_bookings_path(b) %>
-      </div>
-    </div>
-    <div class="card col-sm-4 justify-content-center" style="width: 18rem;">
-      <div class="body">
-       <%= link_to "Create training", new_training_path %>
-     </div>
-    </div>
-    <div class="card col-sm-4 justify-content-center" style="width: 18rem;">
-      <div class="body">
-       <%= link_to "Create exercise", new_exercise_path %>
-      </div>
-    </div>
+
+        <%= link_to bookings_path, class: "text-center text-dark" do %>
+          <i class="p-3 fas fa-search"></i>
+          <h6 class="fs-md">Pick an expert</h6>
         <% end %>
-  </div>
+
+        <%= link_to training_plans_path, class: "text-center text-dark" do %>
+          <i class="p-3 fas fa-dumbbell"></i>
+          <h6 class="fs-md">My trainings</h6>
+        <% end %>
+
+        <%= link_to clients_bookings_path, class: "text-center text-dark" do %>
+          <i class="p-3 fas fa-users"></i>
+          <h6 class="fs-md">My clients</h6>
+        <% end %>
+
+        <%= link_to new_training_plan_path, class: "text-center text-dark" do %>
+          <i class="p-3 fas fa-plus"></i>
+          <h6 class="fs-md">Create training</h6>
+        <% end %>
+
+        <%= link_to new_exercise_path, class: "text-center text-dark" do %>
+          <i class="p-3 fas fa-plus"></i>
+          <h6 class="fs-md">Create exercise</h6>
+        <% end %>
+
+      </div>
+    </div>
   <% else %>
     <div class="container-fluid">
       <div class="card text-center">
@@ -62,10 +56,8 @@
         </div>
         </div>
       </div>
-        <div class="card-footer text-muted">
-            <%= "Keep track on your progress and start training" %>
-        </div>
+      <div class="card-footer text-muted">
+        <p>Keep track on your progress and start training</p>
       </div>
-        <% end %>
     </div>
-</div>
+  <% end %>
