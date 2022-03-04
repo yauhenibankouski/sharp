@@ -13,6 +13,15 @@ class BookingsController < ApplicationController
     end
   end
 
+  def update
+    @booking = Booking.find(params[:id])
+    if @booking.update(booking_params)
+      redirect_to clients_bookings_path, notice: "Request #{@booking.status}!"
+    else
+      redirect_to clients_bookings_path, notice: "Oops, something went wrong."
+    end
+  end
+
   def destroy
     @booking = Booking.find(params[:id])
     @booking.delete
@@ -21,6 +30,9 @@ class BookingsController < ApplicationController
 
   def clients
     @bookings = current_user.bookings
+    @accepted_bookings = @bookings.where(status: 'Accepted')
+    @pending_bookings = @bookings.where(status: 'Pending')
+    @rejected_bookings = @bookings.where(status: 'Rejected')
   end
 
   def trainers

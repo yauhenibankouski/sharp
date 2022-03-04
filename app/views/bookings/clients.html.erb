@@ -9,9 +9,34 @@
 
 
   <% unless @bookings.empty? %>
-    <p class="text-muted m-0">Clients</p>
-    <% @bookings.each do |b| %>
-      <%= link_to "#{b.client.first_name.capitalize} #{b.client.last_name.capitalize}", booking_shared_training_plans_path(b) %>
+    <% @pending_bookings.each do |booking| %>
+      <h3 class="text-muted m-0">Pending requests</h3>
+      <h6><%= booking.client.first_name.capitalize %> <%= booking.client.last_name.capitalize %></h6>
+      <div class="d-flex">
+        <%= simple_form_for booking, id: 'book', method: :patch do |f| %>
+          <%= f.hidden_field :status, value: "Accepted" %>
+          <%= f.submit "Accept", class: 'btn btn-success'%>
+        <% end %>
+
+        <%= simple_form_for booking, id: 'book', method: :patch do |f| %>
+          <%= f.hidden_field :status, value: "Rejected" %>
+          <%= f.submit "Add to waitlist", class: 'btn btn-warning'%>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% @rejected_bookings.each do |booking| %>
+      <h3 class="text-muted m-0">Waitlist</h3>
+      <p><%= booking.client.first_name.capitalize %> <%= booking.client.last_name.capitalize %></p>
+      <%= simple_form_for booking, id: 'book', method: :patch, remote: true do |f| %>
+        <%= f.hidden_field :status, value: "Accepted" %>
+        <%= f.submit "Accept", class: 'btn btn-success'%>
+      <% end %>
+    <% end %>
+
+    <h3 class="text-muted m-0">Clients</h3>
+    <% @accepted_bookings.each do |booking| %>
+      <%= link_to "#{booking.client.first_name.capitalize} #{booking.client.last_name.capitalize}", booking_shared_training_plans_path(booking) %>
     <% end %>
   <% else %>
     <h3>You don't have any clients yet.</h3>
