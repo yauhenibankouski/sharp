@@ -7,10 +7,11 @@ class SharedTrainingPlansController < ApplicationController
   end
 
   def show
+    training = SharedTrainingPlan.find(params[:id]).training
     @stp = SharedTrainingPlan.includes(:shared_exercise)
                              .includes(:training)
                              .includes(:booking)
-                             .where(booking: params[:booking_id], training: params[:id])
+                             .where(booking: params[:booking_id], training: training)
                              .first
     @shared_training_plan = SharedTrainingPlan.new
     @booking = @stp.booking
@@ -30,7 +31,7 @@ class SharedTrainingPlansController < ApplicationController
     )
 
     if @shared_training_plan.save
-      redirect_to booking_shared_training_plan_path(booking, training)
+      redirect_to booking_shared_training_plan_path(booking, @shared_training_plan)
     else
       render :index
     end

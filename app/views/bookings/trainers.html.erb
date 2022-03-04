@@ -9,9 +9,9 @@
 
 <% if user_signed_in? %>
     <p class="text-muted m-0">Trainers</p>
-    <% @trainers.each do |trainer| %>
+    <% @bookings.each do |b| %>
       <h4>
-        <%= link_to trainer.first_name.capitalize,  booking_shared_training_plans_path(trainer) %>
+        <%= link_to b.user.first_name.capitalize,  booking_shared_training_plans_path(b) %>
       </h4>
     <% end %>
   <% else %>

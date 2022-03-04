@@ -1,1 +1,44 @@
 // Specific CSS for your home-page
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-nav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.round {
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
+  &:first-child {
+    border: none;
+  }
+}
+
+.fs-sm {
+  font-size: 8px;
+  margin: 0;
+}
+
+.fs-md {
+  font-size: 12px;
+  margin: 0;
+}
+
+.dashboard-grid {
+  display: grid;
+  align-items: end;
+  grid-template-columns: 1fr 1fr 1fr;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 1.2rem;
+  padding-bottom: 1rem;
+  gap: .5rem;
+}

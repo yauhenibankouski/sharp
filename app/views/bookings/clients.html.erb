@@ -8,10 +8,10 @@
 </div>
 
 
-  <% unless @clients.empty? %>
+  <% unless @bookings.empty? %>
     <p class="text-muted m-0">Clients</p>
-    <% @clients.each do |client| %>
-      <%= link_to "Your client: #{client.first_name.capitalize} #{client.last_name.capitalize}", booking_shared_training_plans_path(client) %>
+    <% @bookings.each do |b| %>
+      <%= link_to "#{b.client.first_name.capitalize} #{b.client.last_name.capitalize}", booking_shared_training_plans_path(b) %>
     <% end %>
   <% else %>
     <h3>You don't have any clients yet.</h3>

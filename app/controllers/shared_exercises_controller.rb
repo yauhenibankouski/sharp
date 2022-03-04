@@ -10,9 +10,10 @@ class SharedExercisesController < ApplicationController
   def destroy
     @booking = Booking.find(params[:booking_id])
     @shared_exercise = SharedExercise.find(params[:id])
-    training = @shared_exercise.shared_training_plans.first.training
-    SharedTrainingPlan.find_by(booking: @booking, shared_exercise: @shared_exercise).delete
-    @shared_exercise.destroy
-    redirect_to booking_shared_training_plan_path(@booking, training.id)
+    @shared_training_plan = SharedTrainingPlan.find_by(booking: @booking, shared_exercise: @shared_exercise)
+    @shared_training_plan.destroy
+    stp = SharedTrainingPlan.find_by(booking: @booking)
+    @shared_exercise.delete
+    redirect_to booking_shared_training_plan_path(@booking, stp)
   end
 end

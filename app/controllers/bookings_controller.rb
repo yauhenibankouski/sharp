@@ -20,13 +20,11 @@ class BookingsController < ApplicationController
   end
 
   def clients
-    bookings = current_user.bookings
-    @clients = bookings.map(&:client)
+    @bookings = current_user.bookings
   end
 
   def trainers
-    bookings = Booking.where(client: current_user)
-    @trainers = bookings.map(&:user)
+    @bookings = Booking.where(client: current_user)
   end
 
   private

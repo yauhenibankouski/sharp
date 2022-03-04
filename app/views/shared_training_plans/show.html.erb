@@ -18,7 +18,7 @@
               <% @training.shared_exercises.each do |exercise| %>
                 <li>
                   <span><%= link_to exercise.title, booking_shared_training_plan_shared_exercise_path(@booking, @stp, exercise)  %></span>
-                  <% if @booking.user == current_user && !@available_exercises.empty? %>
+                  <% if @booking.user == current_user %>
                     <span style="font-size: 10px">
                       <%= link_to 'X', booking_shared_training_plan_shared_exercise_path(@booking, @stp, exercise), method: :delete,
                                                                                          remote: true,
@@ -41,6 +41,7 @@
                     <li>
                       <%= simple_form_for [@booking, @shared_training_plan], remote: true do |f| %>
                         <%= link_to exercise.title %>
+                        <%= f.hidden_field :id, value: @stp.id  %>
                         <%= f.hidden_field :training, value: @training.id  %>
                         <%= f.hidden_field :shared_exercise, value: exercise.id  %>
                         <%= f.submit '+', class: 'text-primary px-2'%>
