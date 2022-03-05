@@ -12,8 +12,7 @@ class MessagesController < ApplicationController
       )
       redirect_to booking_shared_exercise_path(@booking, @shared_exercise, anchor: "message-#{@message.id}")
     else
-      puts "TODO: RENDER USING PROPER ROUTE"
-      #render "booking/shared_training_plan/shared_exercise/chatrooms/show"
+      render "booking/shared_training_plan/shared_exercise/show"
     end
   end
   
