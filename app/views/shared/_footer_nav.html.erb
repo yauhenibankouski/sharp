@@ -34,13 +34,12 @@
           <p class="fs-sm">My clients</p>
         </li>
       <% end %>
-      <li class="p-2 round text-center text-white flex-grow-1 nav-item dropdown">
-        <%= image_tag "menu-button-of-three-horizontal-lines.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-          <%= link_to "Settings", edit_user_registration_path, class: "dropdown-item" %>
-          <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
-        </div>
-      </li>
+      <li class="p-2 round text-center flex-grow-1">
+          <%= link_to edit_user_registration_path do %>
+            <i class="fas fa-user-circle text-white"></i>
+          <% end %>
+          <p class="fs-sm">Settings</p>
+        </li>
     </ul>
   </div>
 <% end %>
