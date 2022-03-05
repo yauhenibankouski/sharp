@@ -1,5 +1,5 @@
 <% if user_signed_in? %>
-  <div class="bg-dark footer-nav pt-1 pb-1">
+  <div class="footer-nav pt-1 pb-1", style="background-color: var(--orange)">
     <ul class="list-inline d-flex align-items-center justify-content-around text-white m-0">
       <li class="p-2 round text-center flex-grow-1">
         <%= link_to root_path do %>
@@ -34,6 +34,12 @@
           <p class="fs-sm">My clients</p>
         </li>
       <% end %>
+      <li class="p-2 round text-center flex-grow-1">
+          <%= link_to edit_user_registration_path do %>
+            <i class="fas fa-user-circle text-white"></i>
+          <% end %>
+          <p class="fs-sm">Settings</p>
+        </li>
     </ul>
   </div>
 <% end %>
