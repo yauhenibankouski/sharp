@@ -18,12 +18,12 @@
           <h4 class="card-title"><%= booking.client.first_name.capitalize %> <%= booking.client.last_name.capitalize %></h4>
         </div>
         <div class="d-flex">
-          <%= simple_form_for booking, id: 'book', method: :patch do |f| %>
+          <%= simple_form_for booking, id: 'book', method: :patch, remote: true do |f| %>
             <%= f.hidden_field :status, value: "Accepted" %>
             <%= f.submit "Accept", class: 'btn btn-success'%>
           <% end %>
 
-          <%= simple_form_for booking, id: 'book', method: :patch do |f| %>
+          <%= simple_form_for booking, id: 'book', method: :patch, remote: true do |f| %>
             <%= f.hidden_field :status, value: "Rejected" %>
             <%= f.submit "Add to waitlist", class: 'btn btn-warning'%>
           <% end %>
