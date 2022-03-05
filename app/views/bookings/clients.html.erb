@@ -7,7 +7,7 @@
   <h2>My clients</h2>
 </div>
 
-
+<div class='container'>
   <% unless @bookings.empty? %>
     <h3 class="text-muted m-0">Pending requests</h3>
     <% @pending_bookings.each do |booking| %>
@@ -30,7 +30,7 @@
     <h3 class="text-muted m-0">Waitlist</h3>
     <% @rejected_bookings.each do |booking| %>
       <div class="card-general">
-        <p><%= booking.client.first_name.capitalize %> <%= booking.client.last_name.capitalize %></p>
+        <h4 class="card-title"><%= booking.client.first_name.capitalize %> <%= booking.client.last_name.capitalize %></h4>
         <%= simple_form_for booking, id: 'book', method: :patch, remote: true do |f| %>
           <%= f.hidden_field :status, value: "Accepted" %>
           <%= f.submit "Accept", class: 'btn btn-success'%>
@@ -41,10 +41,11 @@
     <h3 class="text-muted m-0">Clients</h3>
     <% @accepted_bookings.each do |booking| %>
     <div class="card-general">
-      <%= link_to "#{booking.client.first_name.capitalize} #{booking.client.last_name.capitalize}", booking_shared_training_plans_path(booking) %>
+      <h4 class="card-title"><%= link_to "#{booking.client.first_name.capitalize} #{booking.client.last_name.capitalize}", booking_shared_training_plans_path(booking) %></h4>
       </div>
     <% end %>
   <% else %>
     <h3>You don't have any clients yet.</h3>
 
   <% end %>
+<div>
