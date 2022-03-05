@@ -15,9 +15,10 @@ class TrainingsController < ApplicationController
   def create
     @training = Training.new(training_params)
     @training.user = current_user
-    # byebug
-    if @training.save
-      redirect_to training_path(@training), notice: 'Training is successfully created.'
+    @exercise = Exercise.find(params[:training][:exercises])
+    @training_plan = TrainingPlan.new(exercise: @exercise, training: @training)
+    if @training.save && @training_plan.save
+      redirect_to training_plan_path(@training_plan), notice: 'Training plan successfully created.'
     else
       render :new
     end

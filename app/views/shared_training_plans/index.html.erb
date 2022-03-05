@@ -1,4 +1,4 @@
-<div class="jumbotron d-flex align-items-center bg-dark text-light">
+<div class="jumbotron d-flex align-items-center bg-orange text-light">
   <h2>
     <% if @booking.user == current_user %>
       <%= link_to clients_bookings_path do %>
@@ -10,27 +10,21 @@
       <% end %>
     <% end %>
   </h2>
-  <h2><%= @booking.user == current_user ? "#{@booking.client.first_name.capitalize}'s" : "My" %> trainings</h2>
+  <h2><%= @booking.user == current_user ? "#{@booking.client.first_name.capitalize}'s" : "Assigned" %> trainings</h2>
 </div>
 
-<div class="container">
+<div class="container h-100">
   <% if @booking.user == current_user || @booking.client == current_user %>
       <% @trainings.uniq.each_with_index do |training, i| %>
         <div class="card-general">
+          <h5 class="card-title"><%= link_to training.title, booking_shared_training_plan_path(@booking, @shared_training_plans[i]) %></h5>
           <div class="card-body">
-            <h5 class="card-title"><%= link_to training.title, booking_shared_training_plan_path(@booking, @shared_training_plans[i]) %></h5>
-            <h6 class="card-subtitle mb-3 text-muted">Trainer: <%= @booking.user.first_name.capitalize %></h6>
+            <h6 class="card-subtitle text-muted">Trainer: <%= @booking.user.first_name.capitalize %></h6>
           </div>
         </div>
       <% end %>
     </div>
     <%= render 'form' %>
-    <% if @booking.user == current_user %>
-      <%= link_to "My clients", clients_bookings_path, class: "button-orange" %>
-    <% else %>
-      <p>Seems like you don't have a trainer yet</p>
-      <%= link_to "Find an expert", bookings_path, class: "button-orange" %>
-    <% end %>
   <% else %>
     <h2>Sorry, seems like you don't belong here :)</h2>
   <% end %>
