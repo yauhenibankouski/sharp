@@ -1,6 +1,7 @@
 <div class="jumbotron d-flex align-items-center text-light" style="background-color:var(--orange)">
   <h2>Sign up</h2>
 </div>
+<div class="container">
   <div class="form-floating mb-3">
     <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
       <%= f.error_notification %>
@@ -32,5 +33,6 @@
           <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, class: "form-link", method: :delete %>
         </div>
       </div>
+    </div>
   </div>
 </div>

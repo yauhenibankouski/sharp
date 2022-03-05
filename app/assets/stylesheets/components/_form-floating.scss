@@ -1,3 +1,41 @@
+/* ----- SimpleForm Styles ----- */
+
+.simple-form {
+  margin-top: 1.5rem;
+  padding: 1.5rem;
+  background-color: #fcfcfc;
+}
+
+.simple-form h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  padding-bottom: 0.5rem;
+}
+
+.simple_form div.input {
+  margin-bottom: 0.65rem;
+  clear: both; /* Required for Webkit, but not for Gecko */
+}
+
+.simple_form {
+  border-radius: .5rem;
+  width: 20rem;
+  margin: 0 auto;
+  background-color: #fcfcfc;
+  padding: 1.25rem 3.12rem 1.25rem;
+  box-shadow: 1px 4px 10px 1px #aaa;
+  font-family: sans-serif;
+}
+
+.simple-form-add {
+  border-radius: .5rem;
+  width: 50vw;
+  margin: 0 auto;
+  padding: 1.25px 3.12px 2.5px;
+  font-family: sans-serif;
+}
+
 .form-floating {
   position: relative;
   width: 100%;
