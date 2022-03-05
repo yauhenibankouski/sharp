@@ -1,5 +1,6 @@
+<% if @exercise.photo.key %>
 <%= cl_image_tag @exercise.photo.key, height: 300, width: 400, crop: :fill %>
-
+<% end %>
 <h2><%= @exercise.title %></h2>
 <p><%= @exercise.description %></p>
 <p><%= @exercise.technique %></p>
