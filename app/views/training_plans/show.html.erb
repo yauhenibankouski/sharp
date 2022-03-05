@@ -1,13 +1,11 @@
-<div class="jumbotron d-flex align-items-center bg-dark text-light">
-  <h2>
-    <%= link_to root_path do %>
-      <i class="fas fa-angle-left pr-3 text-light"></i>
-    <% end %>
-  </h2>
-<h2> <%= @training_plan.training.title %></h2>
-</div>
-
-<div class="container h-100">
+  <div class="jumbotron d-flex align-items-center bg-dark text-light">
+    <h2>
+      <%= link_to training_plans_path do %>
+        <i class="fas fa-angle-left pr-3 text-light"></i>
+      <% end %>
+    </h2>
+    <h2> <%= @training_plan.training.title %></h2>
+  </div>
   <p class="keyword"><%= @training_plan.training.activity %></p>
   <p><%= @training_plan.training.description %></p>
   <% @training_plan_exercises.each do |exercise| %>

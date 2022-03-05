@@ -47,9 +47,7 @@
                 <i class="fas fa-exclamation-triangle text-warning"></i>
                 <span class="text-dark">It seems that <%= trainer.first_name.capitalize %> is full right now</span>
                 <p class="text-black-50">You've been added to <%= trainer.first_name.capitalize %>'s' waitlist and we'll notify you when the request is approved</p>
-                <%= simple_form_for trainer.bookings.select { |b| b.client_id == current_user.id }.first, id: 'cancel', remote: true, method: :delete do |f| %>
-                  <%= f.submit "Cancel", class: 'btn btn-danger' %>
-                <% end %>
+                <%= link_to "Cancel", trainer.bookings.select { |b| b.client_id == current_user.id }.first, id: 'cancel', remote: true, method: :delete %>
               </div>
           <% end %>
         <% else %>
