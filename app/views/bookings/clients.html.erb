@@ -1,13 +1,43 @@
-<h1>My Clients</h1>
-<p>Find me in app/views/bookings/clients.html.erb</p>
-  <% if current_user %>
-    <h3> <%= current_user.first_name.capitalize %>: Client's Overview </h3>
-    <h3 class="mt-4"></h3>
-    <p class="text-muted m-0">Clients</p>
-    <% @clients.each do |client| %>
-      <%= link_to "Your client: #{client.first_name.capitalize} #{client.last_name.capitalize}", booking_shared_training_plans_path(client) %>
+<div class="jumbotron d-flex align-items-center bg-dark text-light">
+  <h2>
+    <%= link_to root_path do %>
+      <i class="fas fa-angle-left pr-3 text-light"></i>
+    <% end %>
+  </h2>
+  <h2>My clients</h2>
+</div>
+
+
+  <% unless @bookings.empty? %>
+    <h3 class="text-muted m-0">Pending requests</h3>
+    <% @pending_bookings.each do |booking| %>
+      <h6><%= booking.client.first_name.capitalize %> <%= booking.client.last_name.capitalize %></h6>
+      <div class="d-flex">
+        <%= simple_form_for booking, id: 'book', method: :patch do |f| %>
+          <%= f.hidden_field :status, value: "Accepted" %>
+          <%= f.submit "Accept", class: 'btn btn-success'%>
+        <% end %>
+
+        <%= simple_form_for booking, id: 'book', method: :patch do |f| %>
+          <%= f.hidden_field :status, value: "Rejected" %>
+          <%= f.submit "Add to waitlist", class: 'btn btn-warning'%>
+        <% end %>
+      </div>
+    <% end %>
+
+    <h3 class="text-muted m-0">Waitlist</h3>
+    <% @rejected_bookings.each do |booking| %>
+      <p><%= booking.client.first_name.capitalize %> <%= booking.client.last_name.capitalize %></p>
+      <%= simple_form_for booking, id: 'book', method: :patch, remote: true do |f| %>
+        <%= f.hidden_field :status, value: "Accepted" %>
+        <%= f.submit "Accept", class: 'btn btn-success'%>
+      <% end %>
+    <% end %>
+
+    <h3 class="text-muted m-0">Clients</h3>
+    <% @accepted_bookings.each do |booking| %>
+      <%= link_to "#{booking.client.first_name.capitalize} #{booking.client.last_name.capitalize}", booking_shared_training_plans_path(booking) %>
     <% end %>
   <% else %>
-  <h3>You don't have a Client assigned.</h3>
-  <%= link_to "Home", home_path %>
+    <h3>You don't have any clients yet.</h3>
   <% end %>
