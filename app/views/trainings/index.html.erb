@@ -1,8 +1,7 @@
-ALL Trainings
-Find me here --> app/views/trainings/index.html.erb
-
 <ul>
   <% @trainings.each do |training| %>
-    <li><%= training.title %></li>
+    <div class="card-general">
+      <li><%= training.title %></li>
+    </div>
   <% end %>
 </ul>

@@ -1,4 +1,5 @@
 <% if @booking.user == current_user %>
+  <div class="container">
   <div class="form mt-2">
     <% unless current_user.training_plans.empty? || current_user.available_trainings(@trainings).empty? %>
       <%= simple_form_for [@booking, @shared_training_plan], remote: true do |f| %>
@@ -9,6 +10,6 @@
       <% else %>
         <%= link_to 'Create a training', new_training_path, class: "button-orange" %>
       <% end %>
-      <%#= link_to 'Create a plan', '', class: "button-orange" %>
   </div>
 <% end %>
+</div>
