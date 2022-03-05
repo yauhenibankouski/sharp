@@ -1,3 +1,14 @@
+<div class="jumbotron d-flex align-items-center text-light" style="background-color:var(--orange)">
+  <h2>
+    <%= link_to booking_shared_training_plan_shared_exercise_path(@booking, @shared_training_plan, @shared_exercise) do %>
+      <i class="fas fa-angle-left pr-3 text-light"></i>
+    <% end %>
+  </h2>
+  <div class="container text-center">
+    <h2 class="font-weight-bold">History logs</h2>
+  </div>
+</div>
+
 <% @history_log.each do |history_log| %>
   <p><%= history_log.notes %></p>
   <p><%= history_log.photo.key %></p>
@@ -5,3 +16,4 @@
   <%#= link_to 'Edit', edit_training_plan_path(training_plan) %>
   <%#= link_to 'Delete', training_plan, method: :delete, remote: true %>
 <% end %>
+</div>
