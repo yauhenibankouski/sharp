@@ -1,15 +1,15 @@
   <% if @booking.user == current_user || @booking.client == current_user %>
-    <div class="jumbotron d-flex align-items-center bg-dark text-light">
-      <h2>
-        <%= link_to booking_shared_training_plans_path(@booking) do %>
-          <i class="fas fa-angle-left pr-3 text-light"></i>
-        <% end %>
-      </h2>
+    <div class="jumbotron d-flex align-items-center bg-orange text-light">
+    <h2>
+      <%= link_to booking_shared_training_plans_path(@booking) do %>
+        <i class="fas fa-angle-left pr-3 text-light"></i>
+      <% end %>
+    </h2>
     <h2 class="page-head"><%= @training.title %></h2>
   </div>
-
-  <img src="app/assets/images/question-mark.jpeg" alt="" height="150px" width="100%" class="image-placeholder">
-
+    <div class="shared-training-card-wrapper">
+      <img src="<%= asset_path('runner.png')%>" alt="" height="150px" width="100%" class="rounded bg-center">
+      <div >
   <div class="container h-100">
         <div class="card-long">
           <div class="card-body">

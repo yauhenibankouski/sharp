@@ -30,13 +30,16 @@ def create_user(name, boolean = false)
   User.create!(
     {
       first_name: name,
-      last_name: '-',
+      last_name: '',
       weight: rand(40..250),
       gender: "M",
       email: "#{name}@test.com",
       password: "123456",
       trainer: boolean,
-      about: "This is the about me placeholder text for #{name.capitalize}"
+      about: "I care deeply about my clients, and there's nothing of more value to me than helping somebody go through
+      an experience that makes them happy, confident, and strong. I realize how being overweight affects many aspects
+      of your life, and I want to be there for you and help you discover the benefits and joys of training that helped
+      me become the person I am today. I'm here to be your personal guide on every step of the journey."
     }
   )
 end
@@ -84,9 +87,10 @@ Training.create!(
 
 Training.create!(
   {
-    title: "Mindfulness Yoga",
-    description: "This class incorporates yoga postures, gentle movement sequences, breath work, supported silent meditation, and guided relaxation to support increased awareness and mindfulness of the breath and body, and quieting of the nervous system.",
-    activity: "Yoga",
+    title: "Maximum Mass Workout",
+    description: "A mass building routine that features a great combination of effective compound
+    and isolation movements along with intense, high impact five minute burn sets.",
+    activity: "Gym",
     user: @user2
   }
 )
@@ -167,13 +171,13 @@ TrainingPlan.create!(
   }
 )
 
-  SharedTrainingPlan.create!(
+SharedTrainingPlan.create!(
     training: @user1.trainings.sample,
     shared_exercise: @user1.shared_exercises.sample,
     booking: Booking.where(user: @user1).sample
   )
 
-  SharedTrainingPlan.create!(
+SharedTrainingPlan.create!(
     training: @user2.trainings.sample,
     shared_exercise: @user2.shared_exercises.sample,
     booking: Booking.where(user: @user2).sample

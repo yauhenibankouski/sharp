@@ -1,4 +1,4 @@
-<div class="jumbotron d-flex align-items-center text-light" style="background-color:var(--orange)">
+<div class="jumbotron d-flex align-items-center bg-orange text-light">
   <h2>
     <%= link_to root_path do %>
       <i class="fas fa-angle-left pr-3 text-light"></i>
@@ -20,7 +20,6 @@
       <div class="card-body">
         <div class="d-flex justify-content-between">
           <h3 class="card-subtitle"> <%= "#{trainer.first_name.capitalize} #{trainer.last_name.capitalize}" %> </h3>
-          <%# <h3 class="card-subtitle"> <%= trainer.bookings </h3> %>
           <div>
             <i class="fas fa-star text-warning"></i>
             <i class="fas fa-star text-warning"></i>
@@ -29,7 +28,7 @@
             <i class="far fa-star text-warning"></i>
           </div>
         </div>
-        <p class="card-text text-black-50"> <%= trainer.about %> </p>
+        <p class="card-text fs-md mb-3 text-black-50"> <%= trainer.about %> </p>
         <% if trainer.bookings.any? { |b| b.client_id == current_user.id } %>
           <% case trainer.bookings.select { |b| b.client_id == current_user.id }.first.status %>
             <% when 'Pending' %>
