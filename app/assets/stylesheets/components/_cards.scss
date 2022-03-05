@@ -16,6 +16,13 @@
   position: absolute;
   top: 120px;
   margin-left: 1rem;
+  a {
+    color: rgba(0, 0, 0, 0.8);
+    &:hover {
+      color: $orange;
+      text-decoration: none;
+    }
+  }
 }
 
 .card-options{

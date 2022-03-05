@@ -87,9 +87,10 @@ Training.create!(
 
 Training.create!(
   {
-    title: "Mindfulness Yoga",
-    description: "This class incorporates yoga postures, gentle movement sequences, breath work, supported silent meditation, and guided relaxation to support increased awareness and mindfulness of the breath and body, and quieting of the nervous system.",
-    activity: "Yoga",
+    title: "Maximum Mass Workout",
+    description: "A mass building routine that features a great combination of effective compound
+    and isolation movements along with intense, high impact five minute burn sets.",
+    activity: "Gym",
     user: @user2
   }
 )
