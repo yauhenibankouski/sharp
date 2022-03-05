@@ -8,7 +8,7 @@
 </div>
 
 <%= simple_form_for [@booking, @shared_training_plan, @shared_exercise, @history_log] do |f| %>
-  <%= f.input :notes %>
-  <%= f.input :photo, as: :file, label: false %>
+  <%= f.input :notes, label: "Notes" %>
+  <%= f.input :photo, as: :file, label: "Video" %>
   <%= f.submit 'Upload' %>
 <% end %>
