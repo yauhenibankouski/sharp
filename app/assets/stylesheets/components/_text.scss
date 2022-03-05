@@ -48,11 +48,13 @@ ol {
   list-style: none;
   padding-left: 1rem;
 }
+
 ol li {
   margin: 0 0 0.5rem 0.5rem;
   counter-increment: my-awesome-counter;
   position: relative;
 }
+
 ol li::before {
   content: counter(my-awesome-counter);
   color: var(--white);
@@ -64,10 +66,10 @@ ol li::before {
   line-height: var(--size);
   width: var(--size);
   height: var(--size);
-  // top: 0;
   transform: rotate(-10deg);
   background: var(--orange);
   border-radius: 50%;
   text-align: center;
   box-shadow: 1px 1px 0 var(--light-grey);
+  }
 }
