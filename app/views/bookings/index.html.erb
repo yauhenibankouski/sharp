@@ -1,15 +1,17 @@
-<div class="jumbotron d-flex align-items-center bg-dark text-light">
+<div class="jumbotron d-flex align-items-center bg-orange text-light">
   <h2>
     <%= link_to root_path do %>
       <i class="fas fa-angle-left pr-3 text-light"></i>
     <% end %>
   </h2>
-  <h2>Pick your expert</h2>
+  <div class="container text-center">
+    <h2 class="font-weight-bold">Pick your expert</h2>
+  </div>
 </div>
-<div class="container">
+<div class="container h-100">
   <% @available_trainers.each do |trainer| %>
     <div class="card mb-3">
-      <img class="card-img-top rounded"
+      <img class="card-img-top"
            src="https://source.unsplash.com/random"
            alt="Image of user goes here"
            height='100px'
@@ -18,7 +20,6 @@
       <div class="card-body">
         <div class="d-flex justify-content-between">
           <h3 class="card-subtitle"> <%= "#{trainer.first_name.capitalize} #{trainer.last_name.capitalize}" %> </h3>
-          <%# <h3 class="card-subtitle"> <%= trainer.bookings </h3> %>
           <div>
             <i class="fas fa-star text-warning"></i>
             <i class="fas fa-star text-warning"></i>
@@ -27,7 +28,7 @@
             <i class="far fa-star text-warning"></i>
           </div>
         </div>
-        <p class="card-text text-black-50"> <%= trainer.about %> </p>
+        <p class="card-text fs-md mb-3 text-black-50"> <%= trainer.about %> </p>
         <% if trainer.bookings.any? { |b| b.client_id == current_user.id } %>
           <% case trainer.bookings.select { |b| b.client_id == current_user.id }.first.status %>
             <% when 'Pending' %>
@@ -41,15 +42,13 @@
             <% when 'Accepted' %>
               <%= link_to "See assigned workouts",
                   booking_shared_training_plans_path(trainer.bookings.select { |b| b.client_id == current_user.id }.first),
-                  class: 'btn btn-success text-white rounded' %>
+                  class: 'button-orange' %>
             <% when 'Rejected' %>
               <div class='m-0 p-1'>
                 <i class="fas fa-exclamation-triangle text-warning"></i>
                 <span class="text-dark">It seems that <%= trainer.first_name.capitalize %> is full right now</span>
                 <p class="text-black-50">You've been added to <%= trainer.first_name.capitalize %>'s' waitlist and we'll notify you when the request is approved</p>
-                <%= simple_form_for trainer.bookings.select { |b| b.client_id == current_user.id }.first, id: 'cancel', remote: true, method: :delete do |f| %>
-                  <%= f.submit "Cancel", class: 'btn btn-danger' %>
-                <% end %>
+                <%= link_to "Cancel", trainer.bookings.select { |b| b.client_id == current_user.id }.first, id: 'cancel', remote: true, method: :delete %>
               </div>
           <% end %>
         <% else %>

@@ -1,10 +1,13 @@
-<div class="jumbotron d-flex align-items-center bg-dark text-light mb-0">
+
+<div class="jumbotron d-flex align-items-center bg-orange text-light mb-0">
   <h2>
     <%= link_to booking_shared_training_plan_path(@booking, @shared_training_plan) do %>
       <i class="fas fa-angle-left pr-3 text-light"></i>
     <% end %>
   </h2>
-  <h2><%= @shared_exercise.title %></h2>
+  <div class="container text-center">
+    <h2 class="font-weight-bold"><%= @shared_exercise.title %></h2>
+  </div>
 </div>
 
 <% if @shared_exercise.photo.key%>
@@ -16,17 +19,17 @@
 <p><%= @shared_exercise.repetitions %></p>
 
 
-<%= link_to 'Upload', new_booking_shared_training_plan_shared_exercise_history_log_path(@booking, @shared_training_plan, @shared_exercise) %>
-<%= link_to 'My Progress', booking_shared_training_plan_shared_exercise_history_logs_path(@booking, @shared_training_plan, @shared_exercise) %>
+<%= link_to 'Upload', new_booking_shared_training_plan_shared_exercise_history_log_path(@booking, @shared_training_plan, @shared_exercise), class: "button-orange" %>
+<%= link_to 'My Progress', booking_shared_training_plan_shared_exercise_history_logs_path(@booking, @shared_training_plan, @shared_exercise), class: "button-orange" %>
 
-<h1>Chat</h1>
+<h3>Chat</h3>
 <div id="messages" data-shared-exercise-id="<%= @shared_exercise.id %>">
   <% @shared_exercise.messages.each do |message| %>
     <%= render '/messages/message', message: message %>
   <% end %>
 </div>
 
-<%= simple_form_for [@booking, @shared_exercise, @message] do |f| %>
+<%= simple_form_for [@booking, @shared_training_plan, @shared_exercise, @message] do |f| %>
   <%= f.input :content %>
   <%= f.submit %>
 <% end %>
