@@ -1,18 +1,24 @@
-<div class="container">
-  <div class="d-flex align-items-center">
-    <h3>
-      <%= link_to bookings_path do %>
-        <i class="fas fa-angle-left pr-3"></i>
+<div class="jumbotron d-flex align-items-center bg-dark text-light">
+  <h2>
+    <% if @booking.user == current_user %>
+      <%= link_to clients_bookings_path do %>
+        <i class="fas fa-angle-left pr-3 text-light"></i>
       <% end %>
-    </h3>
-    <h4><%= @booking.user == current_user ? "#{@booking.client.first_name.capitalize}'s" : "My" %> training plans</h4>
-  </div>
+    <% else %>
+      <%= link_to trainers_bookings_path do %>
+        <i class="fas fa-angle-left pr-3 text-light"></i>
+      <% end %>
+    <% end %>
+  </h2>
+  <h2><%= @booking.user == current_user ? "#{@booking.client.first_name.capitalize}'s" : "My" %> training plans</h2>
+</div>
+<div class="container">
   <% if @booking.user == current_user || @booking.client == current_user %>
     <div >
-      <% @trainings.uniq.each do |training| %>
+      <% @trainings.uniq.each_with_index do |training, i| %>
         <div class="card rounded" style="width: 18rem;">
           <div class="card-body">
-            <h5 class="card-title"><%= link_to training.title, booking_shared_training_plan_path(@booking, training.id) %></h5>
+            <h5 class="card-title"><%= link_to training.title, booking_shared_training_plan_path(@booking, @shared_training_plans[i]) %></h5>
             <h6 class="card-subtitle mb-3 text-muted">Trainer: <%= @booking.user.first_name.capitalize %></h6>
             <h6 class="card-subtitle mb-2 text-black-50"><%= training.description %></h6>
           </div>
@@ -21,11 +27,6 @@
     </div>
 
     <%= render 'form' %>
-    <% if @booking.user == current_user %>
-      <%= link_to "Back to my clients", clients_bookings_path, class: "btn btn-secondary" %>
-    <% else %>
-      <%= link_to "Back to my trainers", trainers_bookings_path, class: "btn btn-secondary" %>
-    <% end %>
   <% else %>
     <h2>Sorry, seems like you don't belong here :)</h2>
   <% end %>

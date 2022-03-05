@@ -1,12 +1,12 @@
+<div class="jumbotron d-flex align-items-center bg-dark text-light">
+  <h2>
+    <%= link_to root_path do %>
+      <i class="fas fa-angle-left pr-3 text-light"></i>
+    <% end %>
+  </h2>
+  <h2>Pick your expert</h2>
+</div>
 <div class="container">
-  <div class="d-flex align-items-center">
-    <h3>
-      <%= link_to root_path do %>
-        <i class="fas fa-angle-left pr-3"></i>
-      <% end %>
-    </h3>
-    <h2>Pick your expert</h2>
-  </div>
   <% @available_trainers.each do |trainer| %>
     <div class="card mb-3">
       <img class="card-img-top rounded"
