@@ -1,10 +1,12 @@
-<div class="jumbotron d-flex align-items-center bg-dark text-light">
+<div class="jumbotron d-flex align-items-center text-light" style="background-color:var(--orange)"> 
   <h2>
     <%= link_to root_path do %>
       <i class="fas fa-angle-left pr-3 text-light"></i>
     <% end %>
   </h2>
-  <h2>My trainers</h2>
+  <div class="container text-center">
+    <h2 class="font-weight-bold">My trainers</h2>
+  </div>
 </div>
 <div class="container h-100">
   <% if user_signed_in? %>

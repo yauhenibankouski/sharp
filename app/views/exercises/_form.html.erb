@@ -1,9 +1,11 @@
-<%= simple_form_for @exercise do |f| %>
-  <%= f.input :title %>
-  <%= f.input :description %>
-  <%= f.input :technique %>
-  <%= f.input :sets %>
-  <%= f.input :repetitions %>
-  <%= f.input :photo, as: :file %>
-  <%= f.submit%>
-<% end %>
+<div class="form mt-2">
+  <%= simple_form_for @exercise do |f| %>
+    <%= f.input :title %>
+    <%= f.input :description %>
+    <%= f.input :technique %>
+    <%= f.input :sets %>
+    <%= f.input :repetitions %>
+    <%= f.input :photo, as: :file %>
+    <%= f.submit class: "button-orange" %>
+  <% end %>
+</div>
