@@ -7,11 +7,11 @@
   <h2>My training</h2>
 </div>
 
-<div class='container d-flex training'>
+<div class='container'>
   <% unless @training_plans.empty? %>
       <% @training_plans.each do |training_plan| %>
-        <div class="training-card">
-          <p><%= training_plan.training.title %></p>
+        <div class="card-general">
+          <h5 class="card-title"><%= training_plan.training.title %></h5>
           <%= link_to 'Show', training_plan %>
           <%= link_to 'Edit', edit_training_plan_path(training_plan) %>
           <%= link_to 'Delete', training_plan, method: :delete, remote: true %>

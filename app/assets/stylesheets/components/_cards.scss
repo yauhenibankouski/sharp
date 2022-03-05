@@ -1,4 +1,4 @@
-.training-card {
+.card-general {
   position: relative;
   width: 100%;
   height: 160px;
@@ -15,6 +15,13 @@
 .card-title {
   position: absolute;
   top: 120px;
+  margin-left: 1rem;
+}
+
+.card-options{
+  position: absolute;
+  top: 120px;
+  margin-left: 1rem;
 }
 
 .shared-training-card {
