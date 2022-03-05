@@ -8,12 +8,12 @@
     <h2 class="page-head"><%= @training.title %></h2>
   </div>
 
-  <img src="https://source.unsplash.com/random" alt="" height="150px" width="100%" class="rounded">
+  <img src="app/assets/images/question-mark.jpeg" alt="" height="150px" width="100%" class="image-placeholder">
 
   <div class="container h-100">
         <div class="card-long">
           <div class="card-body">
-            <ol class="card-title">
+            <ol>
               <% @training.shared_exercises.each do |exercise| %>
                 <li>
                   <span><%= link_to exercise.title, booking_shared_training_plan_shared_exercise_path(@booking, @stp, exercise)  %></span>
