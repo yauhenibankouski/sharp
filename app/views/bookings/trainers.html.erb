@@ -6,15 +6,16 @@
   </h2>
   <h2>My trainers</h2>
 </div>
-
-<% if user_signed_in? %>
-    <p class="text-muted m-0">Trainers</p>
-    <% @bookings.each do |b| %>
-      <h4>
-        <%= link_to b.user.first_name.capitalize,  booking_shared_training_plans_path(b) %>
-      </h4>
-    <% end %>
-  <% else %>
-    <h3>You haven't booked a trainer yet.</h3>
-    <%= link_to "Choose your trainer", bookings_path %>
-<% end %>
+<div class="container h-100">
+  <% if user_signed_in? %>
+      <p class="text-muted m-0">Trainers</p>
+      <% @bookings.each do |b| %>
+        <h4>
+          <%= link_to b.user.first_name.capitalize,  booking_shared_training_plans_path(b) %>
+        </h4>
+      <% end %>
+    <% else %>
+      <h3>You haven't booked a trainer yet.</h3>
+      <%= link_to "Choose your trainer", bookings_path %>
+  <% end %>
+</div>
