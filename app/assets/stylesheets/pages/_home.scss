@@ -8,12 +8,14 @@ body {
   height: 100vh;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
 
 .footer-nav {
   position: sticky;
-  // bottom: 0;
+  bottom: -5px;
   width: 100%;
+  margin-top: 1rem;
 }
 
 .round {
