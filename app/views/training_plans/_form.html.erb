@@ -1,11 +1,9 @@
 <div class="form mt-2">
-    <%= simple_form_for @training_plan do |f| %>
-      <%= f.input :exercise_id, collection: current_user.exercises, required: true %>
-        <%= simple_form_for @training do |f| %>
-            <%= f.input :title %>
-            <%= f.input :description %>
-            <%= f.input :activity %>
-            <%= f.submit 'Add personal plan', class: 'btn btn-primary' %>
-        <% end %>
-    <% end %>
+  <%= simple_form_for @training do |f| %>
+      <%= f.input :title %>
+      <%= f.input :description %>
+      <%= f.input :activity %>
+      <%= f.input :exercises, collection: current_user.exercises, required: true %>
+      <%= f.submit 'Add personal plan', class: 'button-orange' %>
+  <% end %>
 </div>

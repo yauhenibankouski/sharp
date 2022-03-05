@@ -6,10 +6,10 @@
   </h2>
   <h2>Pick your expert</h2>
 </div>
-<div class="container">
+<div class="container h-100">
   <% @available_trainers.each do |trainer| %>
     <div class="card mb-3">
-      <img class="card-img-top rounded"
+      <img class="card-img-top"
            src="https://source.unsplash.com/random"
            alt="Image of user goes here"
            height='100px'
@@ -41,15 +41,13 @@
             <% when 'Accepted' %>
               <%= link_to "See assigned workouts",
                   booking_shared_training_plans_path(trainer.bookings.select { |b| b.client_id == current_user.id }.first),
-                  class: 'btn btn-success text-white rounded' %>
+                  class: 'button-orange' %>
             <% when 'Rejected' %>
               <div class='m-0 p-1'>
                 <i class="fas fa-exclamation-triangle text-warning"></i>
                 <span class="text-dark">It seems that <%= trainer.first_name.capitalize %> is full right now</span>
                 <p class="text-black-50">You've been added to <%= trainer.first_name.capitalize %>'s' waitlist and we'll notify you when the request is approved</p>
-                <%= simple_form_for trainer.bookings.select { |b| b.client_id == current_user.id }.first, id: 'cancel', remote: true, method: :delete do |f| %>
-                  <%= f.submit "Cancel", class: 'btn btn-danger' %>
-                <% end %>
+                <%= link_to "Cancel", trainer.bookings.select { |b| b.client_id == current_user.id }.first, id: 'cancel', remote: true, method: :delete %>
               </div>
           <% end %>
         <% else %>

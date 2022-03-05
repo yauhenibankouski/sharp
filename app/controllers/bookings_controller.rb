@@ -6,6 +6,7 @@ class BookingsController < ApplicationController
 
   def create
     @booking = Booking.new(booking_params)
+    @booking.status = 'Pending'
     if @booking.save
       redirect_to bookings_path, notice: "Request sent to #{@booking.user.first_name.capitalize}!"
     else
@@ -42,7 +43,7 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    params.require(:booking).permit(:user_id, :client_id, :status)
+    params.require(:booking).permit(:user_id, :client_id)
 
   end
 end

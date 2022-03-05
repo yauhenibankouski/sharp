@@ -40,4 +40,34 @@ abbr {
   text-decoration: none;
   color: var(--grey);
   font-size: small;
+
+@import url("https://fonts.googleapis.com/css?family=Lato:400,400i,700");
+
+ol {
+  counter-reset: my-awesome-counter;
+  list-style: none;
+  padding-left: 1rem;
+}
+ol li {
+  margin: 0 0 0.5rem 0.5rem;
+  counter-increment: my-awesome-counter;
+  position: relative;
+}
+ol li::before {
+  content: counter(my-awesome-counter);
+  color: var(--white);
+  font-size: 1.2rem;
+  font-weight: bold;
+  position: absolute;
+  --size: 2rem;
+  left: calc(-1 * var(--size) - 10px);
+  line-height: var(--size);
+  width: var(--size);
+  height: var(--size);
+  // top: 0;
+  transform: rotate(-10deg);
+  background: var(--orange);
+  border-radius: 50%;
+  text-align: center;
+  box-shadow: 1px 1px 0 var(--light-grey);
 }
