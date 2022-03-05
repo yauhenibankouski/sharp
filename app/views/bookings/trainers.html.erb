@@ -6,8 +6,7 @@
   </h2>
   <h2>My trainers</h2>
 </div>
-
-<div class='container'>
+<div class="container h-100">
   <% if user_signed_in? %>
       <% @bookings.each do |b| %>
         <div class="card-general">
@@ -19,5 +18,5 @@
     <% else %>
       <h3>You haven't booked a trainer yet.</h3>
       <%= link_to "Choose your trainer", bookings_path %>
-<% end %>
+    <% end %>
 </div>
