@@ -3,11 +3,13 @@ class HistoryLogsController < ApplicationController
   def index
     @booking = Booking.find(params[:booking_id])
     @shared_exercise = SharedExercise.find(params[:shared_exercise_id])
+    @shared_training_plan = SharedTrainingPlan.find(params[:shared_training_plan_id])
     @history_log = HistoryLog.where(shared_exercise: @shared_exercise)
   end
 
   def new
     @booking = Booking.find(params[:booking_id])
+    @shared_training_plan = SharedTrainingPlan.find(params[:shared_training_plan_id])
     @shared_exercise = SharedExercise.find(params[:shared_exercise_id])
     @history_log = HistoryLog.new
   end
