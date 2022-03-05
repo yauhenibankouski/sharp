@@ -1,8 +1,8 @@
-NEW TRAINING. Find me here --> app/views/trainings/new.html.erb
+NEW TRAINING. app/views/trainings/new.html.erb
 
-<%= simple_form_for(@training) do |f| %>
-  <%= f.input :title %>
-  <%= f.input :description %>
-  <%= f.input :activity %>
+<%= simple_form_for(@training, :defaults => { :input_html => { :class => "abbr" } }) do |f| %>
+  <%= f.input :title, label: "Notes"%>
+  <%= f.input :description, label: "Description" %>
+  <%= f.input :activity, label: "Activity"%>
   <%= f.submit %>
 <% end %>
