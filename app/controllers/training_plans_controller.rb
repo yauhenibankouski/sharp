@@ -6,6 +6,7 @@ class TrainingPlansController < ApplicationController
   end
 
   def show
+    @training_plan_exercises = @training_plan.training.exercises
   end
 
   def new
@@ -49,6 +50,6 @@ class TrainingPlansController < ApplicationController
   end
 
   def set_training_plan
-    @training_plan = TrainingPlan.find(params[:id])
+    @training_plan = TrainingPlan.includes(:training).includes(:exercise).find(params[:id])
   end
 end

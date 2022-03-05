@@ -1,7 +1,19 @@
-<h1>Training Plan <%= @training_plan.id %></h1>
-<h2><%= @training_plan.training.title %></h2>
-<h2><%= @training_plan.training.activity %></h2>
-<h2><%= @training_plan.training.description %></h2>
-<h2><%= @training_plan.exercise.title %></h2>
-<h2>Note: <%= @training_plan.exercise.description %></h2>
-<h2><%= @training_plan.exercise.repetitions %> reps / <%= @training_plan.exercise.sets %> sets</h2>
+
+
+<div class="jumbotron d-flex align-items-center bg-dark text-light">
+  <h2>
+    <%= link_to root_path do %>
+      <i class="fas fa-angle-left pr-3 text-light"></i>
+    <% end %>
+  </h2>
+  <h2> <%= @training_plan.training.title %></h2>
+</div>
+<p class="keyword"><%= @training_plan.training.activity %></p>
+<p><%= @training_plan.training.description %></p>
+
+<% @training_plan_exercises.each do |exercise| %>
+  <h2><%= exercise.title %></h2>
+    <% end %>
+
+<p><%= @training_plan.exercise.description %></p>
+<p><%= @training_plan.exercise.repetitions %> reps / <%= @training_plan.exercise.sets %> sets</p>
