@@ -10,10 +10,10 @@
     <div class="shared-training-card-wrapper">
       <img src="<%= asset_path('runner.png')%>" alt="" height="150px" width="100%" class="rounded bg-center">
       <div >
-        <div class="card shared-training-card" style="width: 18rem; border-radius: 1rem;">
+  <div class="container h-100">
+        <div class="card-long">
           <div class="card-body">
-            <%# <h5 class="card-title text-center">Good luck, champ!</h5> %>
-            <ol class="card-text">
+            <ol>
               <% @training.shared_exercises.each do |exercise| %>
                 <li>
                   <span><%= link_to exercise.title, booking_shared_training_plan_shared_exercise_path(@booking, @stp, exercise)  %></span>

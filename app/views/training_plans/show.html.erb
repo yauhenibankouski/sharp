@@ -9,11 +9,9 @@
   </div>
   <p class="keyword"><%= @training_plan.training.activity %></p>
   <p><%= @training_plan.training.description %></p>
-
   <% @training_plan_exercises.each do |exercise| %>
     <h2><%= exercise.title %></h2>
-      <% end %>
-
+  <% end %>
   <p><%= @training_plan.exercise.description %></p>
   <p><%= @training_plan.exercise.repetitions %> reps / <%= @training_plan.exercise.sets %> sets</p>
 </div>

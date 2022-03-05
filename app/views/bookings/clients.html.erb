@@ -1,10 +1,12 @@
 <div class="jumbotron d-flex align-items-center bg-orange text-light">
-  <h2>
+<h2>
     <%= link_to root_path do %>
       <i class="fas fa-angle-left pr-3 text-light"></i>
     <% end %>
   </h2>
-  <h2>My clients</h2>
+  <div class="container text-center">
+    <h2 class="font-weight-bold">My clients</h2>
+  </div>
 </div>
 
 <div class="container h-100">
@@ -12,7 +14,9 @@
     <h3 class="text-muted m-0">Pending requests</h3>
     <% @pending_bookings.each do |booking| %>
       <div class="card-general">
-        <h6><%= booking.client.first_name.capitalize %> <%= booking.client.last_name.capitalize %></h6>
+        <div class="card-body">
+          <h4 class="card-title"><%= booking.client.first_name.capitalize %> <%= booking.client.last_name.capitalize %></h4>
+        </div>
         <div class="d-flex">
           <%= simple_form_for booking, id: 'book', method: :patch do |f| %>
             <%= f.hidden_field :status, value: "Accepted" %>
@@ -30,7 +34,9 @@
     <h3 class="text-muted m-0">Waitlist</h3>
     <% @rejected_bookings.each do |booking| %>
       <div class="card-general">
-        <h4 class="card-title"><%= booking.client.first_name.capitalize %> <%= booking.client.last_name.capitalize %></h4>
+        <div class="card-body">
+          <h4 class="card-title"><%= booking.client.first_name.capitalize %> <%= booking.client.last_name.capitalize %></h4>
+        </div>
         <%= simple_form_for booking, id: 'book', method: :patch, remote: true do |f| %>
           <%= f.hidden_field :status, value: "Accepted" %>
           <%= f.submit "Accept", class: 'btn btn-success'%>
@@ -41,11 +47,13 @@
     <h3 class="text-muted m-0">Clients</h3>
     <% @accepted_bookings.each do |booking| %>
     <div class="card-general">
-      <h4 class="card-title"><%= link_to "#{booking.client.first_name.capitalize} #{booking.client.last_name.capitalize}", booking_shared_training_plans_path(booking) %></h4>
+      <div class="card-body">
+        <h4 class="card-title"><%= link_to "#{booking.client.first_name.capitalize} #{booking.client.last_name.capitalize}", booking_shared_training_plans_path(booking) %></h4>
       </div>
+    </div>
     <% end %>
   <% else %>
     <h4 class="text-muted">You don't have any clients yet.</h4>
-
+    <h3>You don't have any clients yet.</h3>
   <% end %>
 </div>
