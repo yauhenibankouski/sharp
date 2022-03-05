@@ -1,4 +1,4 @@
-<div class="jumbotron d-flex align-items-center bg-dark text-light">
+<div class="jumbotron d-flex align-items-center text-light" style="background-color:var(--orange)">
   <h2>
     <% if @booking.user == current_user %>
       <%= link_to clients_bookings_path do %>
@@ -10,7 +10,9 @@
       <% end %>
     <% end %>
   </h2>
-  <h2><%= @booking.user == current_user ? "#{@booking.client.first_name.capitalize}'s" : "My" %> trainings</h2>
+  <div class="container text-center">
+    <h2 class="font-weight-bold"><%= @booking.user == current_user ? "#{@booking.client.first_name.capitalize}'s" : "My" %> trainings</h2>
+  </div>
 </div>
 
 <div class="container">
