@@ -4,6 +4,7 @@ class SharedExercise < ApplicationRecord
   has_many :shared_training_plans
   has_many :history_logs
   has_one_attached :photo
+  has_many :messages
   validates :user, presence: true
   validates :exercise, presence: true
   validates :title, presence: true
