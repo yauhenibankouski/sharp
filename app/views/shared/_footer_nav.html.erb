@@ -1,0 +1,39 @@
+<% if user_signed_in? %>
+  <div class="bg-dark footer-nav pt-1 pb-1">
+    <ul class="list-inline d-flex align-items-center justify-content-around text-white m-0">
+      <li class="p-2 round text-center flex-grow-1">
+        <%= link_to root_path do %>
+          <i class="fas fa-home text-white"></i>
+        <% end %>
+        <p class="fs-sm">Home</p>
+      </li>
+      <li class="p-2 round text-center flex-grow-1">
+        <%= link_to bookings_path do %>
+          <i class="fas fa-search text-white"></i>
+        <% end %>
+        <p class="fs-sm">Find experts</p>
+      </li>
+      <li class="p-2 round text-center flex-grow-1">
+        <%= link_to training_plans_path do %>
+          <i class="fas fa-dumbbell text-white"></i>
+        <% end %>
+        <p class="fs-sm">My trainings</p>
+      </li>
+      <% if current_user && current_user.bookings.empty? %>
+        <li class="p-2 round text-center flex-grow-1">
+          <%= link_to trainers_bookings_path do %>
+            <i class="fas fa-user-tag text-white"></i>
+          <% end %>
+          <p class="fs-sm">My trainers</p>
+        </li>
+      <% else %>
+        <li class="p-2 round text-center flex-grow-1">
+          <%= link_to clients_bookings_path do %>
+            <i class="fas fa-users text-white"></i>
+          <% end %>
+          <p class="fs-sm">My clients</p>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

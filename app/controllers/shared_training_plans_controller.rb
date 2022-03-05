@@ -1,20 +1,22 @@
 class SharedTrainingPlansController < ApplicationController
   def index
     @booking = Booking.find(params[:booking_id])
-    @trainings = SharedTrainingPlan.where(booking: @booking).map(&:training)
     @shared_training_plan = SharedTrainingPlan.new
+    @shared_training_plans = SharedTrainingPlan.includes(:training).where(booking: @booking)
+    @trainings = @shared_training_plans.map(&:training)
   end
 
   def show
-    stp = SharedTrainingPlan.includes(:shared_exercise)
-                            .includes(:training)
-                            .includes(:booking)
-                            .where(booking: params[:booking_id], training: params[:id])
-                            .first
+    training = SharedTrainingPlan.find(params[:id]).training
+    @stp = SharedTrainingPlan.includes(:shared_exercise)
+                             .includes(:training)
+                             .includes(:booking)
+                             .where(booking: params[:booking_id], training: training)
+                             .first
     @shared_training_plan = SharedTrainingPlan.new
-    @booking = stp.booking
-    @training = stp.training
-    @shared_exercises = stp.training.shared_exercises
+    @booking = @stp.booking
+    @training = @stp.training
+    @shared_exercises = @stp.training.shared_exercises
     @available_exercises = available_exercises(@shared_exercises)
   end
 
@@ -29,7 +31,7 @@ class SharedTrainingPlansController < ApplicationController
     )
 
     if @shared_training_plan.save
-      redirect_to booking_shared_training_plan_path(booking, training)
+      redirect_to booking_shared_training_plan_path(booking, @shared_training_plan)
     else
       render :index
     end
