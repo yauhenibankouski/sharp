@@ -1,0 +1,23 @@
+.img-holder {
+  position: relative;
+  height: 100%;
+  object-fit: cover;
+  border-style: none;
+}
+
+.link{
+  // margin-left: 2rem;
+}
+
+.img-holder .link {
+  width: 80%;
+  position: absolute;
+  bottom: 1rem; /*your button position*/
+  right: 0rem; /*your button position*/
+}
+
+
+
+.half{
+  width: 40%;
+}

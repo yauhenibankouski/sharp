@@ -39,23 +39,14 @@
     </div>
   </div>
 <% else %>
-  <div class="container-fluid">
-    <div class="card text-center">
-      <div class="card-header">
-        SHARP
-      </div>
-      <%= image_tag("exercise.png") %>
-      <div class="row">
-      <div class="card col-sm-6 justify-content-center">
-      <%= link_to "Log in", user_session_path, class: 'btn btn-primary m-5' %>
-      </div>
-      <div class="card col-sm-6 justify-content-center">
-      <%= link_to "Sign up", new_user_registration_path, class: 'btn btn-primary m-5' %>
-      </div>
-      </div>
-    </div>
-    <div class="card-footer text-muted">
-      <p>Keep track on your progress and start training</p>
+  <div class="img-holder">
+    <img src="<%= asset_path('home2.jpeg')%>" alt="" height="100%" width="100%" class="bg-center">
+    <div class="link">
+        <%= link_to "Log in", user_session_path, class: 'button-transparent half' %>
+        <%= link_to "Sign up", new_user_registration_path, class: 'button-transparent half' %>
     </div>
   </div>
+  <%# <div class="card-footer text-muted">
+    <p>Keep track on your progress and start training</p>
+  </div> %>
 <% end %>
