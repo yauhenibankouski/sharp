@@ -21,6 +21,7 @@ ActiveStorage.start()
 // External imports
 import "bootstrap";
 import { initChatroomCable } from "../channels/shared_exercise_channel"
+import { initBookingCable, initClientCable } from "../channels/booking_channel";
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
@@ -29,4 +30,6 @@ document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
   initChatroomCable();
+  initBookingCable();
+  initClientCable();
 });
