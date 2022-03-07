@@ -3,6 +3,7 @@ class SharedExercise < ApplicationRecord
   has_many :history_logs
   has_one_attached :photo
   has_many :messages
+  belongs_to :user
   validates :user, presence: true
   validates :exercise, presence: true
   validates :title, presence: true
@@ -12,7 +13,7 @@ class SharedExercise < ApplicationRecord
 
   include PgSearch::Model
   pg_search_scope :search_by_title_and_description,
-                  against: %i[title description],
+                  against: [ :title, :description ],
                   using: {
                     tsearch: { prefix: true }
                   }
