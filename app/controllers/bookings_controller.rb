@@ -60,6 +60,11 @@ class BookingsController < ApplicationController
     @bookings = Booking.where(client: current_user)
   end
 
+  def all_exercises
+    @shared_exercises = Booking.where(client: current_user).map(&:shared_exercises)
+    raise
+  end
+
   private
 
   def booking_params

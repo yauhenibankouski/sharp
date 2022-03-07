@@ -38,7 +38,7 @@
                 <ul>
                   <% @available_exercises.each do |exercise| %>
                     <li>
-                      <%= simple_form_for [@booking, @shared_training_plan], remote: true do |f| %>
+                      <%= simple_form_for [@booking, @shared_training_plan] do |f| %>
                         <%= link_to exercise.title %>
                         <%= f.hidden_field :id, value: @stp.id  %>
                         <%= f.hidden_field :training, value: @training.id  %>
