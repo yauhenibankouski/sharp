@@ -16,7 +16,7 @@
           <h4 class="card-title"><%= link_to "#{b.user.first_name.capitalize} #{b.user.last_name.capitalize}",  booking_shared_training_plans_path(b) %></h4>
         </div>
       </div>
-  <% end %>
+    <% end %>
   <% else %>
     <h3>You haven't booked a trainer yet.</h3>
     <%= link_to "Choose your trainer", bookings_path %>
