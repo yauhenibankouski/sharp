@@ -4,7 +4,6 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.7.4'
 
 gem 'cloudinary', '~> 1.16.0'
-gem 'simple_form'
 
 
 
@@ -32,7 +31,7 @@ gem 'redis', '~> 4.0'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
-
+gem 'pg_search', '~> 2.3.0'
 gem 'devise'
 
 gem 'autoprefixer-rails', '10.2.5'

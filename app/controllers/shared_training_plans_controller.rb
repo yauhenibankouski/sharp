@@ -45,14 +45,18 @@ class SharedTrainingPlansController < ApplicationController
 
   def create_shared_exercise(params)
     exercise = Exercise.find(params[:shared_training_plan][:shared_exercise])
+    shared_exercise = SharedExercise.find_by(exercise_id: exercise.id)
+
+    return shared_exercise unless shared_exercise.nil?
+
     SharedExercise.create!(
       {
         title: exercise.title,
         description: exercise.description,
         sets: exercise.sets,
         repetitions: exercise.repetitions,
-        user: exercise.user,
-        exercise: exercise
+        user_id: exercise.user_id,
+        exercise_id: exercise.id
       }
     )
   end

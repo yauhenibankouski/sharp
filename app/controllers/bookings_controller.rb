@@ -60,6 +60,21 @@ class BookingsController < ApplicationController
     @bookings = Booking.where(client: current_user)
   end
 
+  def all_exercises
+    @bookings = Booking.where(client: current_user)
+    @shared_training_plans = SharedTrainingPlan.includes(:booking)
+                                               .includes(:shared_exercise)
+                                               .select { |stp| @bookings.include?(stp.booking) }
+    @exercises = current_user.exercises
+    return unless params[:query].present?
+
+    results = SharedExercise.search_by_title_and_description(params[:query])
+    @shared_training_plans = @shared_training_plans.select { |stp| results.include?(stp.shared_exercise) }
+
+    @exercises = Exercise.search_by_title_and_description(params[:query])
+                         .select { |exercise| exercise.user == current_user }
+  end
+
   private
 
   def booking_params
