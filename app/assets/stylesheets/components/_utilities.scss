@@ -12,3 +12,15 @@
 .round-one {
   border-radius: 1rem;
 }
+
+html, body {
+  height: 100%;
+}
+
+.container {
+  width: 90%;
+}
+
+.jumbotron.vertical-center {
+  margin-bottom: 1rem; /* Remove the default bottom margin of .jumbotron */
+}
