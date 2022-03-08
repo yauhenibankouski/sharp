@@ -1,8 +1,8 @@
-<% if current_user %>
-  <div class="jumbotron align-items-center text-light" style="background-color:var(--orange)">
-    <h2 class="mt-4"><%= current_user.first_name.capitalize %></h2>
-    <h5>Dashboard</h5>
-  </div>
+  <% if current_user %>
+    <div class="jumbotron align-items-center text-light bg-orange">
+      <h2 class="mt-4"><%= current_user.first_name.capitalize %></h2>
+      <h5>Dashboard</h5>
+    </div>
 
   <div class="container h-100">
     <h5 class="text-muted m-0">My overview</h5>
@@ -35,6 +35,11 @@
       <%= link_to new_exercise_path, class: "text-center text-dark" do %>
         <i class="p-3 fas fa-plus"></i>
         <h6 class="fs-md">Create exercise</h6>
+      <% end %>
+
+      <%= link_to all_exercises_bookings_path, class: "text-center text-dark" do %>
+        <i class="p-3 fas fa-search"></i>
+        <h6 class="fs-md">Search exercises</h6>
       <% end %>
     </div>
   </div>

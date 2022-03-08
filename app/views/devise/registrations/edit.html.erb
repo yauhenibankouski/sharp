@@ -1,7 +1,8 @@
 <div class="jumbotron d-flex align-items-center text-light" style="background-color:var(--orange)">
-  <h2>Edit <%= resource_name.to_s.humanize %></h2>
+  <h2>Edit</h2>
 </div>
-  <div class="form-floating mb-3">
+<div class="container">
+  <div class="form-floating">
     <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
       <%= f.error_notification %>
         <%= f.input :email, required: true, autofocus: true %>
@@ -9,7 +10,6 @@
           <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
             <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
           <% end %>
-
           <%= f.input :password,
                       hint: "leave it blank if you don't want to change it",
                       required: false,
@@ -23,14 +23,15 @@
                       input_html: { autocomplete: "current-password" } %>
     <div class="button-orange">
       <%= f.button :submit, "Update" %>
-            <% end %>
-      <div class="row">
-        <div class="col-4">
+          <% end %>
+    </div>
+    <div class="row">
+      <div class="col-4">
         <%= link_to "Log out", destroy_user_session_path, class: "form-link", method: :delete %>
-        </div>
-        <div class="col-8">
-          <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, class: "form-link", method: :delete %>
-        </div>
       </div>
+      <div class="col-8">
+        <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, class: "form-link", method: :delete %>
+      </div>
+    </div>
   </div>
 </div>
