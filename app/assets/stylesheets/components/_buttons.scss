@@ -29,3 +29,18 @@
   padding: 0.5rem 0.5rem;
   text-align: center;
 }
+
+.button-dark-grey-expert {
+  width: fit-content;
+  height: 40px;
+  color: var(--white);
+  background-color: var(--dark-grey);
+  border-radius: 1rem;
+  border-width: 0;
+  display: inline-block;
+  line-height: 20px;
+  list-style: none;
+  margin-bottom: 1rem;
+  padding: 0.5rem 0.5rem;
+  text-align: center;
+}
