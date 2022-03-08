@@ -1,18 +1,27 @@
-.img-holder {
+.image-holder{
   position: relative;
+}
+
+#home-image{
   height: 100%;
+  width: auto;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
   object-fit: cover;
-  border-style: none;
 }
 
-.link{
-  // margin-left: 2rem;
-}
+// .cover{
+//   height: 100%;
+//   width: auto;
+//   object-fit: cover;
+//   position: relative;
+// }
 
-.img-holder .link {
+.link {
   width: 80%;
   position: absolute;
-  bottom: 1rem; /*your button position*/
+  bottom: 0rem; /*your button position*/
   right: 0rem; /*your button position*/
 }
 

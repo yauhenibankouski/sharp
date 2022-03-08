@@ -39,8 +39,10 @@
     </div>
   </div>
 <% else %>
-  <div class="img-holder">
-    <img src="<%= asset_path('home2.jpeg')%>" alt="" height="100%" width="100%" class="bg-center">
+  <div class="image-holder">
+    <div>
+      <img src="<%= asset_path('home2.jpeg')%>" alt="" id="home-image">
+    </div>
     <div class="link">
         <%= link_to "Log in", user_session_path, class: 'button-transparent half' %>
         <%= link_to "Sign up", new_user_registration_path, class: 'button-transparent half' %>
