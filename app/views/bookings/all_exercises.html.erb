@@ -1,0 +1,52 @@
+<div class="jumbotron d-flex align-items-center bg-orange text-light mb-0">
+  <h2>
+    <%= link_to root_path do %>
+      <i class="fas fa-angle-left pr-3 text-light"></i>
+    <% end %>
+  </h2>
+  <div class="container text-center">
+    <h2 class="font-weight-bold">All exercises</h2>
+  </div>
+</div>
+
+<div class="container">
+  <%= form_tag all_exercises_bookings_path, method: :get, class: 'mt-3' do %>
+    <%= text_field_tag :query,
+      params[:query],
+      class: "form-control round-one",
+      placeholder: "Find by title, description"
+    %>
+<% end %>
+
+  <% unless @shared_training_plans.empty? %>
+    <% @shared_training_plans.map(&:shared_exercise).each_with_index do |exercise, i| %>
+      <div class="card card-md">
+        <div class="card-main">
+          <p>
+            <%= link_to exercise.user.first_name.capitalize, booking_shared_training_plans_path(@shared_training_plans[i].booking),
+                                        class: 'card-txt-secondary text-muted' %>
+          </p>
+          <h4>
+            <%= link_to exercise.title, booking_shared_training_plan_shared_exercise_path(@shared_training_plans[i].booking, @shared_training_plans[i], exercise ),
+                                        class: 'card-txt-primary' %>
+          </h4>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+
+  <% unless @exercises.empty? %>
+    <% @exercises.each_with_index do |exercise, i| %>
+      <div class="card card-md">
+        <div class="card-main">
+          <p class='card-txt-secondary text-muted'>
+            Personal
+          </p>
+          <h4>
+            <%= link_to exercise.title, exercise_path(exercise), class: 'card-txt-primary' %>
+          </h4>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>
