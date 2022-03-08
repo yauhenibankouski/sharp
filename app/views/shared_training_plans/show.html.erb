@@ -33,14 +33,14 @@
                 </li>
               <% end %>
             </ol>
-              <% if @booking.user == current_user && !@available_exercises.empty? %>
-                <%= simple_form_for [@booking, @shared_training_plan], remote: true do |f| %>
-                  <%= f.input :shared_exercise, label: 'Add exercise', collection: @available_exercises %>
-                  <%= f.hidden_field :id, value: @stp.id  %>
-                  <%= f.hidden_field :training, value: @training.id  %>
-                  <%= f.submit 'Add', class: 'button-orange px-2'%>
-                <% end %>
+            <% if @booking.user == current_user && !@available_exercises.empty? %>
+              <%= simple_form_for [@booking, @shared_training_plan], remote: true do |f| %>
+                <%= f.input :shared_exercise, label: 'Add exercise', collection: @available_exercises, input_html: { class:"assign-form w-100" } %>
+                <%= f.hidden_field :id, value: @stp.id  %>
+                <%= f.hidden_field :training, value: @training.id  %>
+                <%= f.submit 'Add', class: 'button-orange px-2'%>
               <% end %>
+            <% end %>
           </div>
         </div>
       </div>

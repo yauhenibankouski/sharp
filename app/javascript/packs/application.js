@@ -24,7 +24,7 @@ import { initChatroomCable } from "../channels/shared_exercise_channel"
 import { initBookingCable, initClientCable } from "../channels/booking_channel";
 
 // Internal imports, e.g:
-// import { initSelect2 } from '../components/init_select2';
+import { initSelect2 } from '../components/init_select2';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
@@ -32,4 +32,5 @@ document.addEventListener('turbolinks:load', () => {
   initChatroomCable();
   initBookingCable();
   initClientCable();
+  initSelect2();
 });
