@@ -1,32 +1,13 @@
-.image-holder{
-  position: relative;
-}
-
-#home-image{
-  height: 100%;
-  width: auto;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  object-fit: cover;
-}
-
-// .cover{
-//   height: 100%;
-//   width: auto;
-//   object-fit: cover;
-//   position: relative;
-// }
-
-.link {
-  width: 80%;
+.bg-image img {
   position: absolute;
-  bottom: 0rem; /*your button position*/
-  right: 0rem; /*your button position*/
+  min-height: 100vh;
+  object-fit: cover;
+  width: 100%;
 }
 
-
-
-.half{
-  width: 40%;
+.buttons {
+  width: 100%;
+  position: absolute;
+  bottom: 2rem; /*your button position*/
+  margin-right: 1rem;
 }
