@@ -26,29 +26,21 @@
                   <% end %>
                   <div class="exercise-info text-black-50" style="font-size: .7rem">
                     <span>
-                      <%= exercise.sets %> sets / <%= exercise.repetitions %> reps
+                      <%= "#{exercise.sets} set".pluralize(exercise.sets) %> / <%= "#{exercise.repetitions} rep".pluralize(exercise.repetitions) %>
 
                     </span>
                   </div>
                 </li>
               <% end %>
             </ol>
-              <% if @booking.user == current_user && !@available_exercises.empty? %>
-                <p class='my-1'>Quick add</p>
-                <ul>
-                  <% @available_exercises.each do |exercise| %>
-                    <li>
-                      <%= simple_form_for [@booking, @shared_training_plan], remote: true do |f| %>
-                        <%= link_to exercise.title %>
-                        <%= f.hidden_field :id, value: @stp.id  %>
-                        <%= f.hidden_field :training, value: @training.id  %>
-                        <%= f.hidden_field :shared_exercise, value: exercise.id  %>
-                        <%= f.submit '+', class: 'text-primary px-2'%>
-                      <% end %>
-                    </li>
-                  <% end %>
-                </ul>
+            <% if @booking.user == current_user && !@available_exercises.empty? %>
+              <%= simple_form_for [@booking, @shared_training_plan], remote: true do |f| %>
+                <%= f.input :shared_exercise, label: 'Add exercise', collection: @available_exercises, input_html: { class:"assign-form w-100" } %>
+                <%= f.hidden_field :id, value: @stp.id  %>
+                <%= f.hidden_field :training, value: @training.id  %>
+                <%= f.submit 'Add', class: 'button-orange px-2'%>
               <% end %>
+            <% end %>
           </div>
         </div>
       </div>
