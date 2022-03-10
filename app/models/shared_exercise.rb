@@ -4,6 +4,7 @@ class SharedExercise < ApplicationRecord
   has_one_attached :photo
   has_many :messages
   belongs_to :user
+  belongs_to :exercise
   validates :user, presence: true
   validates :exercise, presence: true
   validates :title, presence: true

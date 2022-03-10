@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     end
 
     resources :shared_training_plans, except: [:new] do
-      resources :shared_exercises, only: %i[show destroy] do
+      resources :shared_exercises, only: %i[show edit update destroy] do
         resources :messages, only: :create
         resources :history_logs, only: %i[new create index delete]
       end
