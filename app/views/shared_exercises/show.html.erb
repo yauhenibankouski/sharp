@@ -10,26 +10,43 @@
   </div>
 </div>
 
-<% if @shared_exercise.photo.key%>
-<%= cl_image_tag @shared_exercise.photo.key, height: 300, width: 400, crop: :fill %>
-<% end %>
-<p><%= @shared_exercise.description %></p>
-<p><%= @shared_exercise.technique %></p>
-<p><%= @shared_exercise.sets %></p>
-<p><%= @shared_exercise.repetitions %></p>
+<div class="container">
+  <% if @shared_exercise.photo.key%>
+    <%= cl_image_tag @shared_exercise.photo.key, height: 300, width: 400, crop: :fill %>
+  <% end %>
 
+  <div class="card-general">
+    <div class="card-body">
+      <h3>Notes from trainer</h3>
+      <p><%= @shared_exercise.description %></p>
+      <p><%= @shared_exercise.technique %></p>
+      <div class="row">
+        <div class="col-6 d-inline">
+          <h3>Sets</h3>
+          <p><%= @shared_exercise.sets %></p>
+        </div>
+        <div class="col-6">
+          <h3>Reps</h3>
+          <p><%= @shared_exercise.repetitions %></p>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<%= link_to 'Upload', new_booking_shared_training_plan_shared_exercise_history_log_path(@booking, @shared_training_plan, @shared_exercise), class: "button-orange" %>
-<%= link_to 'My Progress', booking_shared_training_plan_shared_exercise_history_logs_path(@booking, @shared_training_plan, @shared_exercise), class: "button-orange" %>
+  <div class="row">
+    <%= link_to 'Upload training', new_booking_shared_training_plan_shared_exercise_history_log_path(@booking, @shared_training_plan, @shared_exercise), class: "button-orange col-6 mr-0 p" %>
+    <%= link_to 'See progress', booking_shared_training_plan_shared_exercise_history_logs_path(@booking, @shared_training_plan, @shared_exercise), class: "button-orange col-6" %>
+  </div>
 
-<h3>Chat</h3>
-<div id="messages" data-shared-exercise-id="<%= @shared_exercise.id %>">
-  <% @shared_exercise.messages.each do |message| %>
-    <%= render '/messages/message', message: message %>
+  <h3>Chat</h3>
+  <div id="messages" data-shared-exercise-id="<%= @shared_exercise.id %>">
+    <% @shared_exercise.messages.each do |message| %>
+      <%= render '/messages/message', message: message %>
+    <% end %>
+  </div>
+
+  <%= simple_form_for [@booking, @shared_training_plan, @shared_exercise, @message] do |f| %>
+    <%= f.input :content %>
+    <%= f.submit %>
   <% end %>
 </div>
-
-<%= simple_form_for [@booking, @shared_training_plan, @shared_exercise, @message] do |f| %>
-  <%= f.input :content %>
-  <%= f.submit %>
-<% end %>

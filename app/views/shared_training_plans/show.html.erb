@@ -1,46 +1,51 @@
   <% if @booking.user == current_user || @booking.client == current_user %>
     <div class="jumbotron d-flex align-items-center bg-orange text-light">
-    <h2>
-      <%= link_to booking_shared_training_plans_path(@booking) do %>
-        <i class="fas fa-angle-left pr-3 text-light"></i>
-      <% end %>
-    </h2>
-    <h2 class="page-head"><%= @training.title %></h2>
-  </div>
+      <h2>
+        <%= link_to booking_shared_training_plans_path(@booking) do %>
+          <i class="fas fa-angle-left pr-3 text-light"></i>
+        <% end %>
+      </h2>
+      <div class="container text-center">
+        <h2><%= @training.title %></h2>
+      </div>
+    </div>
     <div class="shared-training-card-wrapper">
       <img src="<%= asset_path('runner.png')%>" alt="" height="150px" width="100%" class="rounded bg-center">
       <div >
   <div class="container h-100">
         <div class="card-long">
           <div class="card-body">
-            <ol>
-              <% @training.shared_exercises.each do |exercise| %>
-                <li>
-                  <span><%= link_to exercise.title, booking_shared_training_plan_shared_exercise_path(@booking, @stp, exercise)  %></span>
-                  <% if @booking.user == current_user %>
-                    <span style="font-size: 10px">
-                      <%= link_to 'X', booking_shared_training_plan_shared_exercise_path(@booking, @stp, exercise), method: :delete,
-                                                                                         remote: true,
-                                                                                         class: 'text-danger' %>
-                    </span>
-                    <span style="font-size: 10px">
-                      <%= link_to edit_booking_shared_training_plan_shared_exercise_path(@booking, @stp, exercise), class: 'text-warning' do %>
-                        <i class="fas fa-edit pr-3"></i>
-                      <% end %>
-                    </span>
-                  <% end %>
-                  <div class="exercise-info text-black-50" style="font-size: .7rem">
-                    <span>
-                      <%= "#{exercise.sets} set".pluralize(exercise.sets) %> / <%= "#{exercise.repetitions} rep".pluralize(exercise.repetitions) %>
-
-                    </span>
-                  </div>
-                </li>
-              <% end %>
-            </ol>
+            <div class="ordered-list">
+              <ol class="mb-1">
+                <% @training.shared_exercises.each do |exercise| %>
+                  <li>
+                    <h3 class="mb-0">
+                      <span><%= link_to exercise.title, booking_shared_training_plan_shared_exercise_path(@booking, @stp, exercise)  %></span>
+                      <% if @booking.user == current_user %>
+                        <span style="font-size: 10px">
+                          <%= link_to 'X', booking_shared_training_plan_shared_exercise_path(@booking, @stp, exercise), method: :delete,
+                                                                                            remote: true,
+                                                                                            class: 'text-danger' %>
+                        </span>
+                        <span style="font-size: 10px">
+                          <%= link_to edit_booking_shared_training_plan_shared_exercise_path(@booking, @stp, exercise), class: 'text-warning' do %>
+                            <i class="fas fa-edit pr-3"></i>
+                          <% end %>
+                        </span>
+                      </h3>
+                    <% end %>
+                    <div class="exercise-info text-muted m-0 pb-1 mb-1">
+                      <span>
+                        <%= "#{exercise.sets} set".pluralize(exercise.sets) %> / <%= "#{exercise.repetitions} rep".pluralize(exercise.repetitions) %>
+                      </span>
+                    </div>
+                  </li>
+                <% end %>
+              </ol>
+            </div>
             <% if @booking.user == current_user && !@available_exercises.empty? %>
               <%= simple_form_for [@booking, @shared_training_plan], remote: true do |f| %>
-                <%= f.input :shared_exercise, label: 'Add exercise', collection: @available_exercises, input_html: { class:"assign-form w-100" } %>
+                <%= f.input :shared_exercise, label: false, prompt: 'Add exercise', collection: @available_exercises, input_html: { class:"assign-form w-100" } %>
                 <%= f.hidden_field :id, value: @stp.id  %>
                 <%= f.hidden_field :training, value: @training.id  %>
                 <%= f.submit 'Add', class: 'button-orange px-2'%>
