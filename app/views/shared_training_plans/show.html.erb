@@ -26,7 +26,7 @@
                   <% end %>
                   <div class="exercise-info text-black-50" style="font-size: .7rem">
                     <span>
-                      <%= exercise.sets %> sets / <%= exercise.repetitions %> reps
+                      <%= "#{exercise.sets} set".pluralize(exercise.sets) %> / <%= "#{exercise.repetitions} rep".pluralize(exercise.repetitions) %>
 
                     </span>
                   </div>
