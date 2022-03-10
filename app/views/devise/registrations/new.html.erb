@@ -1,8 +1,8 @@
-<div class="jumbotron d-flex align-items-center text-light bg-orange" >
+<div class="jumbotron vertical-center text-light bg-orange">
   <h2>Sign up</h2>
 </div>
-<div class="container">
-  <div class="form-floating">
+
+<div class="container vertical-center">
     <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= f.error_notification %>
       <%= f.input :first_name,
@@ -15,20 +15,25 @@
                   input_html: { autocomplete: "Last name" }%>
       <%= f.input :email,
                   required: true,
+                  label: false,
+                  placeholder: "Email",
                   autofocus: true,
                   input_html: { autocomplete: "email" }%>
       <%= f.input :password,
                   required: true,
+                  label: false,
+                  placeholder: "Password",
                   hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
                   input_html: { autocomplete: "new-password" } %>
       <%= f.input :password_confirmation,
+                  label: false,
+                  placeholder: "Password confirmation",
                   required: true,
                   input_html: { autocomplete: "new-password" } %>
-      <%= f.input :trainer, as: :boolean, label: "Are you a trainer?" %>
-    <div class="button-orange">
-      <%= f.button :submit, "Sign up" %>
-    </div>
-      <%= link_to "Back", :back, class: "form-link" %>
+      <%= f.input :trainer, 
+                  as: :boolean,  
+                  label: "Are you a trainer?" %>
+      <%= f.button :submit, "Sign up", class:"button-orange" %>
+      <%= link_to "Back", :back, class: "button-transparent" %>
     <% end %>
-  </div>
 </div>
