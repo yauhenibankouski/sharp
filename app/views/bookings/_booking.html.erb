@@ -1,4 +1,4 @@
-<h3 class="text-muted m-0">Pending requests</h3>
+<h3 class="text-muted m-0">Pending requests<%= " (#{pending_bookings.count})" %></h3>
 <div id="pending-bookings">
   <% pending_bookings.each do |booking|%>
     <div class="card-general">
@@ -19,7 +19,7 @@
   <% end %>
 </div>
 
-<h3 class="text-muted m-0">Waitlist</h3>
+<h3 class="text-muted m-0">Waitlist<%= " (#{rejected_bookings.count})"%></h3>
 <div id="rejected-bookings">
   <% rejected_bookings.each do |booking|%>
     <div class="card-general">

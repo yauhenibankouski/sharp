@@ -1,9 +1,18 @@
 <div class="jumbotron vertical-center text-light bg-orange">
   <h2>Sign up</h2>
 </div>
+
 <div class="container vertical-center">
     <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= f.error_notification %>
+      <%= f.input :first_name,
+                  required: true,
+                  autofocus: true,
+                  input_html: { autocomplete: "First name" }%>
+      <%= f.input :last_name,
+                  required: true,
+                  autofocus: true,
+                  input_html: { autocomplete: "Last name" }%>
       <%= f.input :email,
                   required: true,
                   label: false,
@@ -21,9 +30,10 @@
                   placeholder: "Password confirmation",
                   required: true,
                   input_html: { autocomplete: "new-password" } %>
-    <div class="d-flex justify-content-center btn-group">
-      <%= f.button :submit, "Sign up", class:"button-orange"%>
-    </div>
+      <%= f.input :trainer, 
+                  as: :boolean,  
+                  label: "Are you a trainer?" %>
+      <%= f.button :submit, "Sign up", class:"button-orange" %>
       <%= link_to "Back", :back, class: "button-transparent" %>
     <% end %>
 </div>
