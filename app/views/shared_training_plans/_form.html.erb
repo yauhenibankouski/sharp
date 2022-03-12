@@ -5,11 +5,13 @@
           <%= f.input :training,
                       label: false,
                       prompt: "Choose training",
-                      collection: current_user.available_trainings(@trainings)%>
+                      collection: current_user.available_trainings(@trainings),
+                      input_html: { class: 'assign-form' } %>
           <%= f.input :shared_exercise,
                       label: false,
                       prompt: "Choose exercise",
-                      collection: current_user.exercises %>
+                      collection: current_user.exercises,
+                      input_html: { class: 'assign-form' } %>
           <%= f.submit 'Add client training', class: 'button-orange' %>
         <% end %>
       <% else %>
