@@ -1,15 +1,20 @@
 <% if @booking.user == current_user %>
-  <div class="container">
   <div class="form mt-2">
     <% unless current_user.training_plans.empty? || current_user.available_trainings(@trainings).empty? %>
       <%= simple_form_for [@booking, @shared_training_plan], remote: true do |f| %>
-          <%= f.input :training, collection: current_user.available_trainings(@trainings) %>
-          <%= f.input :shared_exercise, collection: current_user.exercises %>
+          <%= f.input :training,
+                      label: false,
+                      prompt: "Choose training",
+                      collection: current_user.available_trainings(@trainings)%>
+          <%= f.input :shared_exercise,
+                      label: false,
+                      prompt: "Choose exercise",
+                      collection: current_user.exercises %>
           <%= f.submit 'Add client training', class: 'button-orange' %>
         <% end %>
       <% else %>
         <%= link_to 'Create a training', new_training_path, class: "button-orange" %>
       <% end %>
-  </div>
+
 <% end %>
 </div>
