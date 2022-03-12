@@ -14,9 +14,11 @@
       <% @training_plans.each do |training_plan| %>
         <div class="card-general">
           <div class="card-body">
-          <h4 class="card-title"><%= link_to training_plan.training.title, training_plan %></h4>
-          <%= link_to 'Edit', edit_training_plan_path(training_plan) %>
-          <%= link_to 'Delete', training_plan, method: :delete, remote: true %>
+          <h3 class="card-title"><%= link_to training_plan.training.title, training_plan %></h3>
+          <p>
+            <%= link_to 'Edit', edit_training_plan_path(training_plan) %>
+            <%= link_to 'Delete', training_plan, method: :delete, remote: true %>
+          </p>
           </div>
         </div>
       <% end %>

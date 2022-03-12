@@ -1,0 +1,14 @@
+
+
+<%= simple_form_for(@training, :defaults => { :input_html => { :class => "abbr" } }) do |f| %>
+  <%= f.input :title,
+              label: false,
+              placeholder: "Notes"%>
+  <%= f.input :description,
+              label: false,
+              placeholder: "Description"%>
+  <%= f.input :activity,
+              label: false,
+              placeholder: "Activity"%>
+  <%= f.submit class: "button-orange" %>
+<% end %>
