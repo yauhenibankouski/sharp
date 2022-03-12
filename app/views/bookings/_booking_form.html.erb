@@ -28,15 +28,8 @@
             </div>
           </div>
         </div>
-        <div>
-          <i class="fas fa-star text-warning"></i>
-          <i class="fas fa-star text-warning"></i>
-          <i class="fas fa-star text-warning"></i>
-          <i class="fas fa-star text-warning"></i>
-          <i class="far fa-star text-warning"></i>
-        </div>
       </div>
-    </div> 
+    </div>
       <div id="trainer-<%= trainer.id %>" >
         <% if trainer.bookings.any? { |b| b.client_id == user.id } %>
           <% case trainer.bookings.select { |b| b.client_id == user.id }.first.status %>
