@@ -12,10 +12,12 @@
   <p class="keyword"><%= @training_plan.training.activity %></p>
   <p><%= @training_plan.training.description %></p>
   <% @training_plan_exercises.each_with_index do |exercise| %>
-    <div class="card-general">
-      <h2><%= exercise.title %></h2>
-      <p><%= exercise.description %></p>
-      <p><%= exercise.repetitions %> reps / <%= @training_plan.exercise.sets %> sets</p>
+    <div class="card-long">
+      <div class="card-body">
+        <h2><%= exercise.title %></h2>
+        <p><%= exercise.description %></p>
+        <p><%= exercise.repetitions %> reps / <%= @training_plan.exercise.sets %> sets</p>
+      </div>
     </div>
   <% end %>
 </div>
