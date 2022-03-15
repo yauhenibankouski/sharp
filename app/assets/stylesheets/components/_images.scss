@@ -1,4 +1,7 @@
-.image-placeholder {
-  background-image: url("app/assets/images/question-mark.jpeg");
+.placeholder-image {
+  position: relative;
+  max-height: 30vh;
   object-fit: cover;
+  width: 100%;
+  margin-bottom: 1rem;
 }
