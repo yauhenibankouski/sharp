@@ -5,12 +5,17 @@
     <% end %>
   </h2>
   <div class="container text-center">
-    <h2>Add some details</h2>
+    <h2>Add content</h2>
   </div>
 </div>
 
-<%= simple_form_for [@booking, @shared_training_plan, @shared_exercise, @history_log] do |f| %>
-  <%= f.input :notes, label: "Notes" %>
-  <%= f.input :photo, as: :file, label: "Video" %>
-  <%= f.submit 'Upload', class: "button-orange" %>
-<% end %>
+<div class="container">
+  <%= simple_form_for [@booking, @shared_training_plan, @shared_exercise, @history_log] do |f| %>
+    <%= f.input :notes,
+                label: false,
+                placeholder: "Notes for yourself"%>
+    <%= f.input :photo, as: :file,
+                label: false %>
+    <%= f.submit 'Upload', class: "button-orange" %>
+  <% end %>
+</div>
