@@ -5,15 +5,28 @@
     <% end %>
   </h2>
   <div class="container text-center">
-    <h2>History logs</h2>
+    <h2>Your progress</h2>
   </div>
 </div>
+</div>
 
-<% @history_log.each do |history_log| %>
-  <p><%= history_log.notes %></p>
-  <p><%= history_log.photo.key %></p>
-  <%#= link_to 'Show', training_plan %>
-  <%#= link_to 'Edit', edit_training_plan_path(training_plan) %>
-  <%#= link_to 'Delete', training_plan, method: :delete, remote: true %>
+<% if false %>
+  <% @history_log.each do |history_log| %>
+      <%= cl_image_tag history_log.photo.key, height: 300, width: 400, crop: :fill %>
+      <p><%= history_log.notes %></p>
+      <%#= link_to 'Show', training_plan %>
+      <%#= link_to 'Edit', edit_training_plan_path(training_plan) %>
+      <%#= link_to 'Delete', training_plan, method: :delete, remote: true %>
+  <% end %>
 <% end %>
+
+<div class="container">
+<div class="swiper mySwiper mb-5">
+    <% @history_log.each do |history_log| %>
+      <%= cl_image_tag history_log.photo.key, height: 300, width: 400, crop: :fill %>
+                    <p><%= history_log.notes %></p>
+        <% end %>
+  <div class="swiper-button-next swiper-nav text-lighter-gray"></div>
+  <div class="swiper-button-prev swiper-nav text-lighter-gray"></div>
+  </div>
 </div>

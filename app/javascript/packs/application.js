@@ -25,6 +25,8 @@ import { initBookingCable, initClientCable } from "../channels/booking_channel";
 
 // Internal imports, e.g:
 import { initSelect2 } from '../components/init_select2';
+import { loadSwiperCarousel } from '../components/init_swiper';
+
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
@@ -33,4 +35,5 @@ document.addEventListener('turbolinks:load', () => {
   initBookingCable();
   initClientCable();
   initSelect2();
+  loadSwiperCarousel();
 });
