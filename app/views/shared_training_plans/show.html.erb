@@ -35,9 +35,7 @@
                       </h3>
                     <% end %>
                     <div class="exercise-info text-muted m-0 pb-1 mb-1">
-                      <span>
-                        <%= "#{exercise.sets} set".pluralize(exercise.sets) %> / <%= "#{exercise.repetitions} rep".pluralize(exercise.repetitions) %>
-                      </span>
+                      <p><%= "#{exercise.sets} set".pluralize(exercise.sets) %> / <%= "#{exercise.repetitions} rep".pluralize(exercise.repetitions) %></p>
                     </div>
                   </li>
                 <% end %>
