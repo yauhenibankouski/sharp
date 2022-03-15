@@ -15,8 +15,11 @@
     <div id="booking-requests">
       <%= render 'booking', pending_bookings: @pending_bookings, rejected_bookings: @rejected_bookings %>
     </div>
-
-    <h2 class="text-muted m-0 pb-2">Clients<%= " (#{@accepted_bookings.count})" %></h2>
+    <div class="relative-wrapper">
+      <h2 class="text-muted m-0 pb-2">
+        Clients <span class="superscript"><%= " (#{@accepted_bookings.count})" %></span>
+      </h2>
+    </div>
     <% @accepted_bookings.each do |booking| %>
     <div class="card-general">
       <div class="card-body">

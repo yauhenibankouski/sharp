@@ -64,6 +64,16 @@ abbr {
   text-align: center;
 }
 
+.relative-wrapper {
+  position: relative;
+
+  .superscript {
+    position: absolute;
+    top: 0;
+    font-size: 0.8rem;
+  }
+}
+
 .form-link {
   text-decoration: none;
   color: var(--grey);
