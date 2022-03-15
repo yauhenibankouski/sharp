@@ -14,7 +14,7 @@ class BookingsController < ApplicationController
         @booking.user,
         render_to_string(partial: "booking", locals: { pending_bookings: @pending_bookings, rejected_bookings: @rejected_bookings })
       )
-      redirect_to bookings_path, notice: "Request sent to #{@booking.user.first_name.capitalize}!"
+      redirect_to bookings_path
     else
       render :index
     end
@@ -30,7 +30,7 @@ class BookingsController < ApplicationController
         render_to_string(partial: "booking_form",
                          locals: { available_trainers: @available_trainers, user: @booking.client })
       )
-      redirect_to clients_bookings_path, notice: "Request #{@booking.status}!"
+      redirect_to clients_bookings_path
     else
       redirect_to clients_bookings_path, notice: "Oops, something went wrong."
     end
@@ -46,7 +46,7 @@ class BookingsController < ApplicationController
       @booking.user,
       render_to_string(partial: "booking", locals: { pending_bookings: @pending_bookings, rejected_bookings: @rejected_bookings })
     )
-    redirect_to bookings_path, notice: "Booking request canceled!"
+    redirect_to bookings_path
   end
 
   def clients
