@@ -1,10 +1,22 @@
-<div class="form mt-2">
-  <%= simple_form_for [@booking, @shared_training_plan, @shared_exercise] do |f| %>
-    <%= f.input :description %>
-    <%= f.input :technique %>
-    <%= f.input :sets %>
-    <%= f.input :repetitions %>
-    <%= f.input :photo, as: :file %>
-    <%= f.submit class: "button-orange" %>
-  <% end %>
+<div class="container">
+  <div class="form mt-2">
+    <%= simple_form_for [@booking, @shared_training_plan, @shared_exercise] do |f| %>
+      <%= f.input :description,
+                  label: false,
+                  placeholder: "Description" %>
+      <%= f.input :technique,
+                  label: false,
+                  placeholder: "Technique"  %>
+      <%= f.input :sets,
+                  label: false,
+                  placeholder: "Sets"  %>
+      <%= f.input :repetitions,
+                  label: false,
+                  placeholder: "Repetitions"  %>
+      <%= f.input :photo,
+                  as: :file,
+                  label: false%>
+      <%= f.submit class: "button-orange" %>
+    <% end %>
+  </div>
 </div>

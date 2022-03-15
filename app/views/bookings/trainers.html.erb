@@ -13,7 +13,7 @@
     <% @bookings.each do |b| %>
       <div class="card-general">
         <div class="card-body">
-          <h4 class="card-title"><%= link_to "#{b.user.first_name.capitalize} #{b.user.last_name.capitalize}",  booking_shared_training_plans_path(b) %></h4>
+          <h3 class="card-title"><%= link_to "#{b.user.first_name.capitalize} #{b.user.last_name.capitalize}",  booking_shared_training_plans_path(b) %></h3>
         </div>
       </div>
     <% end %>

@@ -4,10 +4,12 @@
       <%= link_to booking_shared_training_plan_path(@booking, @shared_training_plan) do %>
         <i class="fas fa-angle-left pr-3 text-light"></i>
       <% end %>
+        <div class="container">
     </h2>
     <div class="container text-center">
       <h2><%= @shared_exercise.title %></h2>
     </div>
   </div>
   <%= render 'form' %>
-<% end %>
+  <% end %>
+</div>
