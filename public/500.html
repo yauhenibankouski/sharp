@@ -4,63 +4,56 @@
   <title>We're sorry, but something went wrong (500)</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <style>
-  .rails-default-error-page {
-    background-color: #EFEFEF;
-    color: #2E2F30;
-    text-align: center;
-    font-family: arial, sans-serif;
-    margin: 0;
-  }
+    body {
+      margin: 15% auto;
+      text-align: center;
+      background-color: #e0e0e0;
+    }
+    
+    .button-orange {
+      width: 5%;
+      height: 40px;
+      color: white;
+      background-color: #ff9b70;
+      border-radius: 1rem;
+      border-width: 0;
+      display: inline-block;
+      line-height: 35px;
+      list-style: none;
+      padding: 4px 4px;
+      text-align: center;
+      font-size: 1rem;
+    }
 
-  .rails-default-error-page div.dialog {
-    width: 95%;
-    max-width: 33em;
-    margin: 4em auto 0;
-  }
+    a.button-orange.p{
+      text-decoration: none;
+      font-size: 20px;
+    }
+    
+    a:visited { 
+      text-decoration: none; 
+      color: white;
+    }
 
-  .rails-default-error-page div.dialog > div {
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #BBB;
-    border-top: #B00100 solid 4px;
-    border-top-left-radius: 9px;
-    border-top-right-radius: 9px;
-    background-color: white;
-    padding: 7px 12% 0;
-    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
-  }
+    h2 {
+      text-decoration: none;
+      font-size: 20px;
+      font-family: "Work Sans", "Helvetica", "sans-serif";
+    }
 
-  .rails-default-error-page h1 {
-    font-size: 100%;
-    color: #730E15;
-    line-height: 1.5em;
-  }
+    p {
+      text-decoration: none;
+      font-size: 16px;
+      font-family: "Work Sans", "Helvetica", "sans-serif";
+    }
 
-  .rails-default-error-page div.dialog > p {
-    margin: 0 0 1em;
-    padding: 1em;
-    background-color: #F7F7F7;
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #999;
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
-    border-top-color: #DADADA;
-    color: #666;
-    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
-  }
+    @import url('https://fonts.googleapis.com/css?family=Nunito:400,700|Work+Sans:400,700&display=swap');
+
   </style>
 </head>
-
-<body class="rails-default-error-page">
-  <!-- This file lives in public/500.html -->
-  <div class="dialog">
-    <div>
-      <h1>We're sorry, but something went wrong.</h1>
-    </div>
-    <p>If you are the application owner check the logs for more information.</p>
-  </div>
+<body>
+  <h2>500 Error</h2>
+  <p>We are sorry, but something went wrong.</p>
+  <a class="button-orange p" href="#" onclick="history.go(-1)">Back</a>  
 </body>
 </html>

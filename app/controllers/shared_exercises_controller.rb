@@ -5,6 +5,7 @@ class SharedExercisesController < ApplicationController
     @shared_training_plan = SharedTrainingPlan.find(params[:shared_training_plan_id])
     @history_log = HistoryLog.new
     @message = Message.new
+    @messages = @shared_exercise.messages.order(created_at: :desc)
   end
 
   def edit
