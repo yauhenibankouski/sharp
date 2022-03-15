@@ -48,11 +48,12 @@
       <%= f.submit "Send", class: "button-transparent" %>
     <% end %>
     </div>
-
-    <div id="messages" data-shared-exercise-id="<%= @shared_exercise.id %>">
-      <% @shared_exercise.messages.each do |message| %>
-        <%= render '/messages/message', message: message %>
-      <% end %>
+    <div class="container">
+      <div id="messages" data-shared-exercise-id="<%= @shared_exercise.id %>">
+        <% @messages.each do |message| %>
+          <%= render '/messages/message', message: message %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
