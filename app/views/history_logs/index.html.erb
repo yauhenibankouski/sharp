@@ -21,11 +21,15 @@
 <% end %>
 
 <div class="container">
-<div class="swiper mySwiper mb-5">
+  <div class="swiper mySwiper mb-5">
+    <div class="swiper-wrapper">
     <% @history_log.each do |history_log| %>
-      <%= cl_image_tag history_log.photo.key, height: 300, width: 400, crop: :fill %>
-                    <p><%= history_log.notes %></p>
-        <% end %>
+      <div class="swiper-slide">
+        <%= cl_image_tag history_log.photo.key, height: 300, width: 400, crop: :fill, class: "swiper-slide" %>
+        <p><%= history_log.notes %></p>
+      </div>
+      <% end %>
+    </div>
   <div class="swiper-button-next swiper-nav text-lighter-gray"></div>
   <div class="swiper-button-prev swiper-nav text-lighter-gray"></div>
   </div>

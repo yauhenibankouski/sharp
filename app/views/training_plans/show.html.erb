@@ -9,8 +9,11 @@
   </div>
 </div>
 <div class="container h-100">
-  <p class="keyword"><%= @training_plan.training.activity %></p>
-  <p><%= @training_plan.training.description %></p>
+  <div class="card-long">
+    <div class="card-body">
+      <p><%= @training_plan.training.description %></p>
+    </div>
+  </div>
   <% @training_plan_exercises.each_with_index do |exercise| %>
     <div class="card-long">
       <div class="card-body">
