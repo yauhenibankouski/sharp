@@ -1,3 +1,6 @@
+require_relative 'about'
+require_relative 'exercises'
+
 puts 'Deleting training plans'
 TrainingPlan.destroy_all
 puts 'Training plans deleted'
@@ -36,21 +39,20 @@ def create_user(name, boolean = false)
       email: "#{name}@test.com",
       password: "123456",
       trainer: boolean,
-      about: "I care deeply about my clients, and there's nothing of more value to me than helping somebody go through
-      an experience that makes them happy, confident, and strong. I realize how being overweight affects many aspects
-      of your life, and I want to be there for you and help you discover the benefits and joys of training that helped
-      me become the person I am today. I'm here to be your personal guide on every step of the journey."
+      about: ABOUT.sample
     }
   )
 end
 
 puts '----------------------------------------------------------------'
 
-puts 'Creating 4 users'
+puts 'Creating 10 users'
 create_user('yauheni', true)
-create_user('whalton', true)
-create_user('bassem')
+create_user('bassem', true)
+create_user('whalton')
 create_user('aris')
+
+6.times { create_user(Faker::Name.first_name, true) }
 
 puts "Creating 4 trainings"
 @user1 = User.all[0]
@@ -95,24 +97,24 @@ Training.create!(
   }
 )
 
-puts 'Creating 10 exercises'
+puts 'Creating exercises'
 
-titles_array = ['Lunges', 'dumbbell press', 'Dumbbell rows', 'Single-leg deadlifts', 'Squats', 'Push-ups', 'Abdominal Crunches', 'Bent-over Row', 'Bench Press', 'Side Planks']
 description_array = ['2 minutes rest between each repetition', '1 minutes rest between each repetition', 'keep your back straight']
 
-titles_array.each_with_index do |title, i|
-  puts "Creating exercise #{i + 1}"
+EXERCISES.each do |ex_title, image_name|
   user = [@user1, @user2].sample
   exercise = Exercise.create!(
     {
       user: user,
-      title: title,
+      title: ex_title,
       description: description_array.sample,
       technique: description_array.sample,
       sets: rand(1..6),
       repetitions: rand(6..22)
     }
   )
+  exercise.photo.attach(io: File.open(Rails.root.join("app/assets/images/exercises/#{image_name}")),
+                        filename: image_name)
 
   puts 'Creating shared exercises'
 
