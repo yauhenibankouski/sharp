@@ -1,30 +1,51 @@
 <% available_trainers.each do |trainer| %>
   <div class="row">
-    <div class="col">
+    <div class="col-6">
       <div class="card" >
         <img class="card-img-top" src="https://source.unsplash.com/random" alt="Image of user goes here">
         <div class="row card-text-block">
-          <span class="col">About</span>
-          <span class="col">Book me</span>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card" >
-      <img class="card-img-top" src="https://source.unsplash.com/random" alt="Image of user goes here">
-        <div class="row card-text-block">
-          <span class="col-6">About</span>
-          <span class="col-6">Book me</span>
+          <div class="col">
+            <button class="button-transparent" data-toggle="modal" data-target="#exampleModal<%= trainer.id %>">
+              <p class="card-subtitle"><%= "About"%></p>
+            </button>
+          </div>
+          <div class="col"><div id="trainer-<%= trainer.id %>" >
+            <% if trainer.bookings.any? { |b| b.client_id == user.id } %>
+              <% case trainer.bookings.select { |b| b.client_id == user.id }.first.status %>
+                <% when 'Pending' %>
+                  <div class='m-0 p-1 text-black-50'>
+                    <i class="fas fa-spinner"></i>
+                    <span>Request sent<%#= trainer.first_name.capitalize %></span>
+                    <%= simple_form_for trainer.bookings.select { |b| b.client_id == user.id}, id: 'cancel', remote: true, method: :delete do |f| %>
+                      <%= f.submit "Cancel", class: 'button-red' %>
+                    <% end %>
+                  </div>
+                <% when 'Accepted' %>
+                  <%= link_to "See assigned workouts",
+                  booking_shared_training_plans_path(trainer.bookings.select { |b| b.client_id == user.id }.first), class: 'button-orange' %>
+                <% when 'Rejected' %>
+                  <div class='m-0 p-1'>
+                    <i class="fas fa-exclamation-triangle text-warning"></i>
+                    <span class="text-dark"><%= trainer.first_name.capitalize %> is full already</span>
+                    <p class="text-black-50">You are added to <%= trainer.first_name.capitalize %>'s' waitlist</p>
+                    <%= link_to "Cancel", trainer.bookings.select { |b| b.client_id == user.id }.first, id: 'cancel', remote: true, method: :delete %>
+                  </div>
+              <% end %>
+              <% else %>
+                <%= simple_form_for @booking, remote: true do |f| %>
+                  <%= f.hidden_field :status, value: "Pending" %>
+                  <%= f.hidden_field :user_id, value: trainer.id %>
+                  <%= f.hidden_field :client_id, value: user.id %>
+                  <%= f.submit "Book #{trainer.first_name.capitalize}", class: 'button-transparent'%>
+              <% end %>
+            <% end %>
+          </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-
-  <div class="d-flex justify-content-between">
-    <a data-toggle="modal" data-target="#exampleModal<%= trainer.id %>">
-      <h3 class="card-subtitle"> <%= "About"%></h3>
-    </a>
     <div class="modal fade" id="exampleModal<%= trainer.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -44,40 +65,8 @@
     </div>
   </div>
 
-  </div>
 
 
 
 
-  <div id="trainer-<%= trainer.id %>" >
-    <% if trainer.bookings.any? { |b| b.client_id == user.id } %>
-      <% case trainer.bookings.select { |b| b.client_id == user.id }.first.status %>
-        <% when 'Pending' %>
-          <div class='m-0 p-1 text-black-50'>
-            <i class="fas fa-spinner"></i>
-            <span>Request sent to <%= trainer.first_name.capitalize %></span>
-            <%= simple_form_for trainer.bookings.select { |b| b.client_id == user.id}, id: 'cancel', remote: true, method: :delete do |f| %>
-              <%= f.submit "Cancel", class: 'btn btn-danger' %>
-            <% end %>
-          </div>
-        <% when 'Accepted' %>
-          <%= link_to "See assigned workouts",
-          booking_shared_training_plans_path(trainer.bookings.select { |b| b.client_id == user.id }.first), class: 'button-orange' %>
-        <% when 'Rejected' %>
-          <div class='m-0 p-1'>
-            <i class="fas fa-exclamation-triangle text-warning"></i>
-            <span class="text-dark">It seems that <%= trainer.first_name.capitalize %> is full right now</span>
-            <p class="text-black-50">You've been added to <%= trainer.first_name.capitalize %>'s' waitlist and we'll notify you when the request is approved</p>
-            <%= link_to "Cancel", trainer.bookings.select { |b| b.client_id == user.id }.first, id: 'cancel', remote: true, method: :delete %>
-          </div>
-      <% end %>
-      <% else %>
-        <%= simple_form_for @booking, remote: true do |f| %>
-          <%= f.hidden_field :status, value: "Pending" %>
-          <%= f.hidden_field :user_id, value: trainer.id %>
-          <%= f.hidden_field :client_id, value: user.id %>
-          <%= f.submit "Book #{trainer.first_name.capitalize}", class: 'button-transparent'%>
-      <% end %>
-    <% end %>
-  </div>
 <% end %>
