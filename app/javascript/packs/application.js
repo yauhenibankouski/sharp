@@ -32,8 +32,8 @@ document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
   initChatroomCable();
-  initBookingCable();
-  initClientCable();
+  // initBookingCable();
+  // initClientCable();
   initSelect2();
   loadSwiperCarousel();
 });
