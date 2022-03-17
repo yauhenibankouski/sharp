@@ -1,3 +1,10 @@
+// .cards{
+//   display: grid;
+//   grid-template-columns: repeat(3, 1fr);
+//   grid-auto-rows: auto;
+//   grid-gap: 1rem;
+// }
+
 .card-general {
   position: relative;
   width: 100%;
@@ -8,14 +15,10 @@
   margin-bottom: 1rem;
 }
 
-.card-general-small {
-  position: relative;
-  width: 40%;
-  height: 160px;
-  border-radius: 1rem;
-  background-color: var(--white);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  margin-bottom: 1rem;
+.card-img-top {
+  width: 100%;
+  height: 40vw;
+  object-fit: cover;
 }
 
 .card-long {
@@ -27,6 +30,20 @@
   background-color: var(--white);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   margin: 0 0 1rem 0;
+}
+
+.card-text-block{
+  position: absolute;
+  bottom: 1rem;
+  background: var(--white);
+  opacity: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  display: inline-block;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  justify-content: space-between;
+  text-align: center;
 }
 
 .card-body {
@@ -42,6 +59,11 @@
   top: 120px;
 }
 
+.card-subtitle{
+  margin: 0;
+  padding: 0;
+}
+
 .card-options {
   position: absolute;
   top: 120px;
@@ -50,7 +72,7 @@
 
 .card {
   display: flex;
-  padding: 0.5rem 1rem;
+  padding: 0rem;
   border-radius: 1rem;
   background-color: white;
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
@@ -68,20 +90,6 @@
   }
 }
 
-// .shared-training-card {
-//   position: absolute;
-//   width: 100%;
-//   top: 7.5rem;
-//   left: 0;
-//   right: 0;
-//   margin: 0 auto;
-//   border-radius: 1rem;
-//   border-color: none;
-//   margin-top: 1 auto;
-//   background-color: var(--white);
-//   box-shadow: 0 10px 30px rgba(0,0,0,.1);
-// &-wrapper {
-//     position: relative;
-//     width: 100%;
-//   }
-// }
+img.card-img-top{
+  border-radius: 1rem;
+}
