@@ -1,9 +1,7 @@
-  <% if current_user %>
-    <div class="jumbotron align-items-center text-light bg-orange">
-      <h2 class="mt-4"><%= current_user.email.capitalize %></h2>
-      <h5>Dashboard</h5>
+<% if current_user %>
+  <div class="jumbotron home align-items-center text-light bg-orange">
+  <h2 class="mt-4"><%= current_user.first_name.capitalize %>'s dashboard</h2>
 </div>
-
   <div class="container h-100">
     <h5 class="text-muted m-0">My overview</h5>
     <div class="dashboard-grid mt-2">
@@ -13,8 +11,8 @@
       <% end %>
 
       <%= link_to bookings_path, class: "text-center text-dark" do %>
-        <i class="p-3 fas fa-search"></i>
-        <h6 class="fs-md">Pick an expert</h6>
+        <i class="p-3 fas fa-running"></i>
+        <h6 class="fs-md">Find a trainer</h6>
       <% end %>
 
       <%= link_to training_plans_path, class: "text-center text-dark" do %>
@@ -27,6 +25,11 @@
         <h6 class="fs-md">My clients</h6>
       <% end %>
 
+      <%= link_to all_exercises_bookings_path, class: "text-center text-dark" do %>
+        <i class="p-3 fas fa-search"></i>
+        <h6 class="fs-md">My exercises</h6>
+      <% end %>
+
       <%= link_to new_training_plan_path, class: "text-center text-dark" do %>
         <i class="p-3 fas fa-plus"></i>
         <h6 class="fs-md">Create training</h6>
@@ -37,14 +40,12 @@
         <h6 class="fs-md">Create exercise</h6>
       <% end %>
 
-      <%= link_to all_exercises_bookings_path, class: "text-center text-dark" do %>
-        <i class="p-3 fas fa-search"></i>
-        <h6 class="fs-md">Search exercises</h6>
-      <% end %>
     </div>
   </div>
+
 <% else %>
       <div class="bg-image">
+      <%# TODO %>
         <%= image_tag("home2.jpg") %>
         <div class="row buttons">
           <div class="col-6"><%= link_to "Log in", user_session_path, class: 'button-transparent' %></div>

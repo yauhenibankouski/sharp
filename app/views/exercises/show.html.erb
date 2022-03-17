@@ -1,8 +1,36 @@
-<% if @exercise.photo.key %>
-<%= cl_image_tag @exercise.photo.key, height: 300, width: 400, crop: :fill %>
-<% end %>
-<h2><%= @exercise.title %></h2>
-<p><%= @exercise.description %></p>
-<p><%= @exercise.technique %></p>
-<p><%= @exercise.sets %></p>
-<p><%= @exercise.repetitions %></p>
+<div class="jumbotron d-flex align-items-center bg-orange text-light mb-0">
+  <h2>
+    <%= link_to all_exercises_bookings_path do %>
+      <i class="fas fa-angle-left pr-3 text-light"></i>
+    <% end %>
+  </h2>
+  <div class="container text-center">
+    <h2><%= @exercise.title %></h2>
+  </div>
+</div>
+<div>
+  <% if @exercise.photo.key%>
+    <%= cl_image_tag @exercise.photo.key, height: 300, width: 400, crop: :fill %>
+  <% else %>
+    <img src="<%= asset_path('question-mark.jpg')%>" class="placeholder-image" alt="fit-man">
+  <% end %>
+</div>
+
+<div class="container">
+  <div class="card-long">
+    <div class="card-body">
+      <p><%= @exercise.description %></p>
+      <p><%= @exercise.technique %></p>
+      <div class="row">
+        <div class="col-6 d-inline">
+          <h3>Sets</h3>
+          <p><%= @exercise.sets %></p>
+        </div>
+        <div class="col-6">
+          <h3>Reps</h3>
+          <p><%= @exercise.repetitions %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

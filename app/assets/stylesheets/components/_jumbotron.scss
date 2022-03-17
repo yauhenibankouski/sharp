@@ -1,8 +1,12 @@
 .jumbotron {
   padding: 2rem 1rem 0rem 1rem;
+  margin-bottom: 1rem;
 }
-
 
 .jumbotron.vertical-center {
   margin-bottom: 1rem; /* Remove the default bottom margin of .jumbotron */
+}
+
+.jumbotron.home {
+  height: 6rem;
 }

@@ -31,9 +31,9 @@ import { loadSwiperCarousel } from '../components/init_swiper';
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
-  initChatroomCable();
-  initBookingCable();
-  initClientCable();
-  initSelect2();
+  // initChatroomCable();
+  // initBookingCable();
+  // initClientCable();
   loadSwiperCarousel();
+  initSelect2();
 });
