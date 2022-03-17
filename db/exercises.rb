@@ -1,9 +1,16 @@
 TRAININGS = [
   'Back Workout',
   'Chest Workout',
-  'Legs Workout',
-  'Shoulders Workout'
-  # 'Arms Workout'
+  'Leg Workout',
+  'Shoulder Workout'
+]
+
+TRAIN_DESC = [
+  'A big, strong back can take you far in your athletic endeavors.
+  The back muscles help you to twist your torso, pull your arms in and down from overhead, and, most importantly, stabilize your spine.',
+  'A selection of great exercises to create a wide and strong chest',
+  'A selection of brutal lower-body exercises designed for optimal leg growth and strength',
+  'Do these awesome exercises to develop strong, rounded and healthy shoulders'
 ]
 
 EXERCISES = [
@@ -28,7 +35,7 @@ EXERCISES = [
   'Face Pull'
 ]
 
-DESECRIPTIONS = [
+DESCRIPTION = [
   'The barbell deadlift is a classic bodybuilding exercise meant for putting on mass and building overall strength throughout the entire body.',
   'The bent over row is a multi-jointed exercise that recruits several different muscles.
   It improves strength in the upper and lower back, glutes, hamstrings, lats, and shoulders',

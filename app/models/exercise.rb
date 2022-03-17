@@ -5,8 +5,8 @@ class Exercise < ApplicationRecord
 
   # Validations
   validates :title, presence: true
-  validates :description, presence: true, length: { maximum: 500 }
-  validates :technique, presence: true, length: { maximum: 500 }
+  validates :description, presence: true
+  validates :technique, presence: true
   validates :sets, presence: true, numericality: { less_than_or_equal_to: 100,  only_integer: true }
   validates :repetitions, presence: true, numericality: { less_than_or_equal_to: 100,  only_integer: true }
 

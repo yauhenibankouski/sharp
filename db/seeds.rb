@@ -47,138 +47,121 @@ end
 puts '----------------------------------------------------------------'
 
 puts 'Creating 10 users'
-create_user('yauheni', true)
 create_user('bassem', true)
+create_user('yauheni')
 create_user('whalton')
 create_user('aris')
 
 6.times { create_user(Faker::Name.first_name, true) }
 
-puts "Creating 4 trainings"
-@user1 = User.all[0]
-@user2 = User.all[1]
-@user3 = User.all[2]
-@user4 = User.all[3]
+@bassem = User.all[0]
+@aris = User.all[3]
 
-Training.create!(
-  {
-    title: "Chest Workout",
-    description: "Intensive training of Pectoralis major and minor, Serratus anterior, and the Subclavius",
-    activity: "Gym",
-    user: @user1
-  }
-)
-
-Training.create!(
-  {
-    title: "Back Workout Routine",
-    description: "Try this back workout to grow bigger, stronger and wider back",
-    activity: "Gym",
-    user: @user1
-  }
-)
-
-Training.create!(
-  {
-    title: "Shoulder Workout Routine",
-    description: "Try this tri-set deltoids workout to grow bigger, stronger and wider shoulders",
-    activity: "Gym",
-    user: @user2
-  }
-)
-
-Training.create!(
-  {
-    title: "Maximum Mass Workout",
-    description: "A mass building routine that features a great combination of effective compound
-    and isolation movements along with intense, high impact five minute burn sets.",
-    activity: "Gym",
-    user: @user2
-  }
-)
+puts "Creating trainings"
+TRAININGS.each_with_index do |training, i|
+  Training.create!(
+    {
+      title: training,
+      description: TRAIN_DESC[i],
+      activity: "Gym",
+      user: @bassem
+    }
+  )
+end
 
 puts 'Creating exercises'
 
-description_array = ['2 minutes rest between each repetition', '1 minutes rest between each repetition', 'keep your back straight']
-
-EXERCISES.each do |ex_title|
-  user = [@user1, @user2].sample
+EXERCISES.each_with_index do |ex_title, i|
   exercise = Exercise.create!(
     {
-      user: user,
+      user: @bassem,
       title: ex_title,
-      description: description_array.sample,
-      technique: description_array.sample,
+      description: DESCRIPTION[i],
+      technique: TECHNIQUE[i],
       sets: rand(1..6),
       repetitions: rand(6..22)
     }
   )
-
   puts 'Creating shared exercises'
 
   SharedExercise.create!(
-    user: user,
+    user: @bassem,
     description: exercise.description,
+    technique: exercise.technique,
     title: exercise.title,
-    sets: rand(1..6),
-    repetitions: rand(6..22),
+    sets: exercise.sets,
+    repetitions: exercise.repetitions,
     exercise: exercise
   )
 end
 
-puts "Creating 2 bookings"
+puts "Creating 4 bookings"
 
 Booking.create!(
   {
-    user: @user1,
-    client: @user3,
+    user: @bassem,
+    client: @aris,
     status: "Accepted"
   }
 )
 Booking.create!(
   {
-    user: @user2,
-    client: @user4,
+    user: @bassem,
+    client: User.all[1],
+    status: "Accepted"
+  }
+)
+Booking.create!(
+  {
+    user: @bassem,
+    client: User.all[6],
+    status: "Accepted"
+  }
+)
+Booking.create!(
+  {
+    user: @bassem,
+    client: User.all[2],
     status: "Accepted"
   }
 )
 
-TrainingPlan.create!(
-  {
-    training: @user1.trainings.first,
-    exercise: @user1.exercises.sample
-  }
-)
+Exercise.all.each_with_index do |ex, i|
+  if i < 4
+    TrainingPlan.create!(
+      {
+        training: Training.all[0],
+        exercise: ex
+      }
+    )
+  elsif i >= 4 && i < 8
+    TrainingPlan.create!(
+      {
+        training: Training.all[1],
+        exercise: ex
+      }
+    )
+  elsif i >= 8 && i < 12
+    TrainingPlan.create!(
+      {
+        training: Training.all[2],
+        exercise: ex
+      }
+    )
+  else
+    TrainingPlan.create!(
+      {
+        training: Training.all[3],
+        exercise: ex
+      }
+    )
+  end
+end
 
-TrainingPlan.create!(
-  {
-    training: @user1.trainings.last,
-    exercise: @user1.exercises.sample
-  }
-)
-
-TrainingPlan.create!(
-  {
-    training: @user2.trainings.first,
-    exercise: @user2.exercises.sample
-  }
-)
-
-TrainingPlan.create!(
-  {
-    training: @user2.trainings.last,
-    exercise: @user2.exercises.sample
-  }
-)
-
-SharedTrainingPlan.create!(
-    training: @user1.trainings.sample,
-    shared_exercise: @user1.shared_exercises.sample,
-    booking: Booking.where(user: @user1).sample
+TrainingPlan.first(8).each do |tp|
+  SharedTrainingPlan.create!(
+    training: tp.training,
+    shared_exercise: SharedExercise.find_by(exercise: tp.exercise),
+    booking: @bassem.bookings.first
   )
-
-SharedTrainingPlan.create!(
-    training: @user2.trainings.sample,
-    shared_exercise: @user2.shared_exercises.sample,
-    booking: Booking.where(user: @user2).sample
-  )
+end
