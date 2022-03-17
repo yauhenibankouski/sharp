@@ -1,4 +1,9 @@
 <div class="jumbotron d-flex align-items-center bg-orange text-light">
+  <h2>
+    <%= link_to training_plans_path do %>
+      <i class="fas fa-angle-left pr-3 text-light"></i>
+    <% end %>
+  </h2>
   <div class="container text-center">
     <h2> <%= @training_plan.training.title %></h2>
   </div>
