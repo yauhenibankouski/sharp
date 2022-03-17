@@ -7,10 +7,10 @@ class MessagesController < ApplicationController
     @message.shared_exercise = @shared_exercise
     @message.user = current_user
     if @message.save
-      SharedExerciseChannel.broadcast_to(
-        @shared_exercise,
-        render_to_string(partial: "message", locals: { message: @message })
-      )
+      # SharedExerciseChannel.broadcast_to(
+      #   @shared_exercise,
+      #   render_to_string(partial: "message", locals: { message: @message })
+      # )
       redirect_to booking_shared_training_plan_shared_exercise_path(@booking, @shared_training_plan, @shared_exercise)
     else
       render "booking/shared_training_plan/shared_exercise/show"
