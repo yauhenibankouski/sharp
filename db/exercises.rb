@@ -1,8 +1,8 @@
 TRAININGS = [
   'Back Workout',
   'Chest Workout',
-  'Legs Workout'
-  # 'Shoulders Workout',
+  'Legs Workout',
+  'Shoulders Workout'
   # 'Arms Workout'
 ]
 
@@ -20,7 +20,12 @@ EXERCISES = [
   'Squat',
   'Leg Extension',
   'Hamstring Curl',
-  'Calf Press'
+  'Calf Press',
+
+  'Dumbbell Overhead Press',
+  'Dumbbell Front Raise',
+  'Lateral Raises',
+  'Face Pull'
 ]
 
 DESECRIPTIONS = [
@@ -42,7 +47,13 @@ DESECRIPTIONS = [
   'The squat is a dynamic strength training exercise that requires several muscles in your upper and lower body to work together simultaneously.',
   'The leg extension is an isolated exercise that strengthens one specific muscle group, the quadriceps.',
   'The hamstring curl is an isolated exercise that strengthens the hamstrings',
-  'The calf press is an isolated exercise that strengthens the calfs'
+  'The calf press is an isolated exercise that strengthens the calfs',
+
+  'A dumbbell overhead press is a weightlifting exercise that targets muscles throughout your body—including your triceps, glutes, trapezius, and lower back muscles.',
+  'The front dumbbell raise is a simple weightlifting exercise that targets the fronts and sides of the shoulders, upper chest muscles, and biceps.',
+  'A lateral raise is a strength training shoulder exercise characterized by lifting a pair of dumbbells away from your body in an external rotation.
+  Lateral raises work the trapezius muscle in your upper back as well as the deltoid muscle group in your shoulders—particularly the anterior and lateral deltoids.',
+  'The face pull is an isolation exercise that activates muscles in your lower back and upper back—specifically the rear deltoids on the back of your shoulders.'
 ]
 
 TECHNIQUE = [
@@ -101,5 +112,21 @@ TECHNIQUE = [
   'Sit down on a Leg Press Machine and press the plate up as if you were performing a leg press.
   Slide your feet down so that the balls of your feet are pressing against the rack (with your heels hanging free)
   Keeping the handles locked, press up and flex your toes and then slowly bring your toes back towards your body (dorsiflex).
-  Perform these movements slowly for maximum benefit.'
+  Perform these movements slowly for maximum benefit.',
+
+  'Stand with feet shoulder-width apart and hold the dumbbells at shoulder height with your elbows at a 90-degree angle.
+  Slowly lift the dumbbells above your head without fully straightening your arms. Pause at the top.
+  Slowly return to the start position.',
+  'Stand with your feet about shoulder-width apart. Let your arms hang in front of you with the dumbbells in front of the thighs (palms facing the thighs).
+  Lift the weights upward while inhaling. Your arms are extended, palms facing down, with a slight bend in the elbows to reduce the stress on the joints.
+  Pause briefly when your arms are horizontal to the floor.
+  Lower the dumbbells to the starting position (at the thighs) with a slow and controlled motion while exhaling.',
+  'Grab a set of dumbbells and stand straight.
+  With your palms facing down, lift the dumbbells and raise your arms out to the sides.
+  Once your elbows are at shoulder height, pause, and then slowly lower the arms back to the initial position.
+  Repeat.',
+  'Set up a cable machine with a double-rope attachment fixed to the high pulley.
+  Grasp the handle in an overhand grip (palms facing the floor) and hold it with your arms fully extended out in front of you.
+  Pull the handles towards you, keeping your upper arms parallel to the floor, so that the handles go either side of your face.
+  Then return to the starting position, keeping the tension in the cable. Keep your movements slow and controlled throughout the exercise.'
 ]
