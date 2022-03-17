@@ -101,7 +101,7 @@ puts 'Creating exercises'
 
 description_array = ['2 minutes rest between each repetition', '1 minutes rest between each repetition', 'keep your back straight']
 
-EXERCISES.each do |ex_title, image_name|
+EXERCISES.each do |ex_title|
   user = [@user1, @user2].sample
   exercise = Exercise.create!(
     {
@@ -113,8 +113,6 @@ EXERCISES.each do |ex_title, image_name|
       repetitions: rand(6..22)
     }
   )
-  exercise.photo.attach(io: File.open(Rails.root.join("app/assets/images/exercises/#{image_name}")),
-                        filename: image_name)
 
   puts 'Creating shared exercises'
 
