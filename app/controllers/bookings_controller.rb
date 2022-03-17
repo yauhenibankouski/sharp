@@ -10,10 +10,10 @@ class BookingsController < ApplicationController
     if @booking.save
       @pending_bookings = @booking.user.bookings.select { |booking| booking.status == 'Pending' }
       @rejected_bookings = @booking.user.bookings.select { |booking| booking.status == 'Rejected' }
-      BookingChannel.broadcast_to(
-        @booking.user,
-        render_to_string(partial: "booking", locals: { pending_bookings: @pending_bookings, rejected_bookings: @rejected_bookings })
-      )
+      # BookingChannel.broadcast_to(
+      #   @booking.user,
+      #   render_to_string(partial: "booking", locals: { pending_bookings: @pending_bookings, rejected_bookings: @rejected_bookings })
+      # )
       redirect_to bookings_path
     else
       render :index
