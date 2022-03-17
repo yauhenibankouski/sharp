@@ -22,6 +22,9 @@
         </div>
       <% end %>
   <% else %>
-    <p>You don't have any training plans created yet.</p>
+    <p class="mb-2 text-center">You don't have any trainings yet.</p>
+    <%= link_to new_training_plan_path, class: "text-center text-dark" do %>
+        <h6 class="button-orange">Create training</h6>
+      <% end %>
   <% end %>
 </div>

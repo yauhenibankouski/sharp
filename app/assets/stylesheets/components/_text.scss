@@ -1,10 +1,22 @@
 p {
   text-decoration: none;
   font-size: 16px;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 span.p-extra-small{
   size: 7px;
+}
+
+#p-extra-small{
+  size: 5px;
+}
+
+u {
+  background-color: var(--white);
+  padding: 0rem 0.5rem 0 0.5rem;
+  opacity: 80%;
 }
 
 p a{
@@ -19,14 +31,14 @@ h2 {
 }
 
 h3 {
-  color: orange;
+  color: var(--orange);
   text-decoration: none;
   font-size: 18px;
   font-weight: bold;
 }
 
 h3 a {
-  color: orange;
+  color: var(--orange);
   text-decoration: none;
 }
 
@@ -78,37 +90,36 @@ abbr {
   text-decoration: none;
   color: var(--grey);
   font-size: small;
+}
 
 @import url("https://fonts.googleapis.com/css?family=Lato:400,400i,700");
 
 ol {
+  max-width: 350px;
   counter-reset: my-awesome-counter;
   list-style: none;
-  padding-left: 1rem;
+  padding-left: 40px;
 }
-
 ol li {
-  margin: 0 0 0.5rem 0.5rem;
+  margin: 0 0 0.5rem 0;
   counter-increment: my-awesome-counter;
   position: relative;
 }
-
-
 ol li::before {
   content: counter(my-awesome-counter);
-  color: var(--white);
-  font-size: 1.2rem;
+  color: var(--orange);
+  font-size: 1.5rem;
   font-weight: bold;
   position: absolute;
-  --size: 2rem;
+  --size: 32px;
   left: calc(-1 * var(--size) - 10px);
   line-height: var(--size);
   width: var(--size);
   height: var(--size);
-  transform: rotate(-10deg);
-  background: var(--orange);
+  top: 0;
+  transform: rotate(-5deg);
+  background: var(--white);
   border-radius: 50%;
   text-align: center;
-  box-shadow: 1px 1px 0 var(--light-grey);
-  }
+  box-shadow: 1px 1px 0 rgb(210, 210, 210);
 }
