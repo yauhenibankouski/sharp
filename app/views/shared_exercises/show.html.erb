@@ -40,7 +40,7 @@
         <span><%= link_to 'Upload training', new_booking_shared_training_plan_shared_exercise_history_log_path(@booking, @shared_training_plan, @shared_exercise), class: "button-orange" %></span>
         <span><%= link_to 'See progress', booking_shared_training_plan_shared_exercise_history_logs_path(@booking, @shared_training_plan, @shared_exercise), class: "button-orange" %></span>
       </div>
-    <%= simple_form_for [@booking, @shared_training_plan, @shared_exercise, @message] do |f| %>
+    <%= simple_form_for [@booking, @shared_training_plan, @shared_exercise, @message], remote: true do |f| %>
       <%= f.input :content,
                   label: false,
                   placeholder: "Message" %>
