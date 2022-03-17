@@ -34,6 +34,6 @@ document.addEventListener('turbolinks:load', () => {
   // initChatroomCable();
   // initBookingCable();
   // initClientCable();
-  initSelect2();
   loadSwiperCarousel();
+  initSelect2();
 });
