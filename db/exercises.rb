@@ -1,7 +1,7 @@
 TRAININGS = [
   'Back Workout',
-  'Chest Workout'
-  # 'Legs Workout',
+  'Chest Workout',
+  'Legs Workout'
   # 'Shoulders Workout',
   # 'Arms Workout'
 ]
@@ -15,11 +15,12 @@ EXERCISES = [
   'Barbell Bench Press',
   'Dumbbell Chest Fly',
   'Pec-Deck',
-  'Chest Dips'
+  'Chest Dips',
 
-  # 'Squat',
-  # 'Leg Press',
-  # 'Calf Raise'
+  'Squat',
+  'Leg Extension',
+  'Hamstring Curl',
+  'Calf Press'
 ]
 
 DESECRIPTIONS = [
@@ -36,7 +37,12 @@ DESECRIPTIONS = [
   'The pec deck works both your chest and its supporting muscles, primarily your pectoralis major, which is the muscle that allows you to swing and bring your arms together.',
   'The chest dip is a bodyweight exercise performed on parallel bars or on a pull-up and dip station.
   It targets the chest, triceps, and shoulders.
-  Dips with a chest focus are usually performed with the torso leaning forward and the elbows angled out from the torso.'
+  Dips with a chest focus are usually performed with the torso leaning forward and the elbows angled out from the torso.',
+
+  'The squat is a dynamic strength training exercise that requires several muscles in your upper and lower body to work together simultaneously.',
+  'The leg extension is an isolated exercise that strengthens one specific muscle group, the quadriceps.',
+  'The hamstring curl is an isolated exercise that strengthens the hamstrings',
+  'The calf press is an isolated exercise that strengthens the calfs'
 ]
 
 TECHNIQUE = [
@@ -74,5 +80,26 @@ TECHNIQUE = [
   Lower your body by bending your arms while leaning forward.
   Dip down until your shoulders are below your elbows.
   Lift your body up by straightening your arms.
-  Lock your elbows at the top'
+  Lock your elbows at the top',
+
+  'Start with your feet slightly wider than hip-width apart.
+  Keep your chest up, engage your abdominals, and shift your weight onto your heels as you push your hips back into a sitting position.
+  Lower your hips until your thighs are parallel or almost parallel to the floor.
+  You should feel the squat in your thighs and glutes.
+  Pause with your knees over, but not beyond, your toes.
+  Exhale and push back up to the starting position.',
+  'Sit on a leg extension machine. Position your legs under the pad and grasp the side bars with your hands. This is the starting position.
+  Extend your legs to the maximum, exhaling as you do so. Pause a second in this contracted position.
+  Lower the weight back to the original position as you inhale. Make sure your legs don\'t go past the 90-degree angle point.
+  Repeat for the desired number of reps.',
+  'Lie face down on the leg curl machine, stretching your legs out fully.
+  The roller pad should rest a few inches over your calves, just above the heels.
+  Grasp the support handles on each side of the machine.
+  Exhale and flex your knees, pulling your ankles as close to your buttocks as you can. Keep your hips firmly on the bench.
+  Hold briefly.
+  Inhale as you return your feet to the starting position in a slow and controlled movement.',
+  'Sit down on a Leg Press Machine and press the plate up as if you were performing a leg press.
+  Slide your feet down so that the balls of your feet are pressing against the rack (with your heels hanging free)
+  Keeping the handles locked, press up and flex your toes and then slowly bring your toes back towards your body (dorsiflex).
+  Perform these movements slowly for maximum benefit.'
 ]
