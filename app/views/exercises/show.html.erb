@@ -8,17 +8,29 @@
     <h2><%= @exercise.title %></h2>
   </div>
 </div>
-
+<div>
   <% if @exercise.photo.key%>
     <%= cl_image_tag @exercise.photo.key, height: 300, width: 400, crop: :fill %>
   <% else %>
     <img src="<%= asset_path('question-mark.jpg')%>" class="placeholder-image" alt="fit-man">
   <% end %>
-
-  </div>
 </div>
 
-<p><%= @exercise.description %></p>
-<p><%= @exercise.technique %></p>
-<p><%= @exercise.sets %></p>
-<p><%= @exercise.repetitions %></p>
+<div class="container">
+  <div class="card-long">
+    <div class="card-body">
+      <p><%= @exercise.description %></p>
+      <p><%= @exercise.technique %></p>
+      <div class="row">
+        <div class="col-6 d-inline">
+          <h3>Sets</h3>
+          <p><%= @exercise.sets %></p>
+        </div>
+        <div class="col-6">
+          <h3>Reps</h3>
+          <p><%= @exercise.repetitions %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
