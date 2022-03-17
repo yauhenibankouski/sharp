@@ -25,11 +25,11 @@ class BookingsController < ApplicationController
 
     if @booking.update(booking_params)
       @available_trainers = User.includes(:bookings).where(trainer: true).where.not(id: @booking.client.id)
-      BookingChannel.broadcast_to(
-        @booking.client,
-        render_to_string(partial: "booking_form",
-                         locals: { available_trainers: @available_trainers, user: @booking.client })
-      )
+      # BookingChannel.broadcast_to(
+      #   @booking.client,
+      #   render_to_string(partial: "booking_form",
+      #                    locals: { available_trainers: @available_trainers, user: @booking.client })
+      # )
       redirect_to clients_bookings_path
     else
       redirect_to clients_bookings_path, notice: "Oops, something went wrong."
