@@ -1,26 +1,30 @@
 <div class="jumbotron d-flex align-items-center bg-orange text-light">
-  <h2>
-    <%= link_to training_plans_path do %>
-      <i class="fas fa-angle-left pr-3 text-light"></i>
-    <% end %>
-  </h2>
   <div class="container text-center">
     <h2> <%= @training_plan.training.title %></h2>
   </div>
 </div>
+<div class="shared-training-card-wrapper">
+  <img src="<%= asset_path('runner.png')%>" alt="" height="150px" width="100%" class="rounded bg-center">
+<div >
 <div class="container h-100">
   <div class="card-long">
     <div class="card-body">
-      <p><%= @training_plan.training.description %></p>
-    </div>
-  </div>
-  <% @training_plan_exercises.each_with_index do |exercise| %>
-    <div class="card-long">
-      <div class="card-body">
-        <h2><%= exercise.title %></h2>
-        <p><%= exercise.description %></p>
-        <p><%= exercise.repetitions %> reps / <%= @training_plan.exercise.sets %> sets</p>
+      <div class="ordered-list">
+        <ol class="mb-1">
+          <% @training_plan_exercises.each_with_index do |exercise| %>
+            <li>
+              <h3 class="mb-0">
+                <span><%= exercise.title %></span>
+                </h3>
+              <div class="exercise-info text-muted m-0 pb-1 mb-1">
+                <p><%= exercise.repetitions %> reps / <%= @training_plan.exercise.sets %> sets</p>
+              </div>
+            </li>
+          <% end %>
+        </ol>
+      </div>
+        </div>
       </div>
     </div>
-  <% end %>
+  </div>
 </div>
