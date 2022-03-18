@@ -60,7 +60,13 @@ file = URI.open('https://ca.slack-edge.com/T02NE0241-U02G0FC8WTZ-449cacc71b3c-51
 @bassem.avatar.attach(io: file, filename: "bassem.jpg", content_type: 'image/jpg')
 
 yau = create_user({ name: 'Yauheni' })
+file = URI.open('https://avatars.githubusercontent.com/u/25736333?v=4')
+yau.avatar.attach(io: file, filename: "yauheni.jpg", content_type: 'image/jpg')
+
 wha = create_user({ name: 'Whalton' })
+file = URI.open('https://avatars.githubusercontent.com/u/87471833?v=4')
+wha.avatar.attach(io: file, filename: "aris.jpg", content_type: 'image/jpg')
+
 @aris = create_user({ name: 'Aris' })
 file = URI.open('https://avatars.githubusercontent.com/u/65190225?v=4')
 @aris.avatar.attach(io: file, filename: "aris.jpg", content_type: 'image/jpg')
@@ -116,6 +122,13 @@ puts "Creating 4 bookings"
 Booking.create!(
   {
     user: @bassem,
+    client: arnold,
+    status: "Accepted"
+  }
+)
+Booking.create!(
+  {
+    user: @bassem,
     client: @aris,
     status: "Accepted"
   }
@@ -123,21 +136,14 @@ Booking.create!(
 Booking.create!(
   {
     user: @bassem,
-    client: User.all[-1],
+    client: yau,
     status: "Accepted"
   }
 )
 Booking.create!(
   {
     user: @bassem,
-    client: User.all[-2],
-    status: "Accepted"
-  }
-)
-Booking.create!(
-  {
-    user: @bassem,
-    client: User.all[-3],
+    client: wha,
     status: "Accepted"
   }
 )
