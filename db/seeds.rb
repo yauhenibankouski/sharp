@@ -44,7 +44,7 @@ def create_user(name, boolean = false)
       last_name: '',
       weight: rand(40..250),
       gender: "M",
-      email: "#{name}@test.com",
+      email: "#{name}@gmail.com",
       password: "123456",
       trainer: boolean,
       about: ABOUT.sample
