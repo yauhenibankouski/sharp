@@ -16,7 +16,7 @@
       class: "form-control round-one mb-4",
       placeholder: "Find by title, description"
     %>
-<% end %>
+  <% end %>
 
   <% unless @shared_training_plans.empty? %>
     <% @shared_training_plans.map(&:shared_exercise).each_with_index do |exercise, i| %>
@@ -35,17 +35,17 @@
   <% end %>
 
   <% unless @exercises.empty? %>
-    <% @exercises.each_with_index do |exercise, i| %>
-      <div class="card-general">
-        <div class="card-body">
-          <p class='card-txt-secondary text-muted'>
-            Personal
-          </p>
-          <h3 class="card-title">
-            <%= link_to exercise.title, exercise_path(exercise)%>
-          </h3>
-        </div>
-      </div>
-    <% end %>
+    <div class="bg-light">
+      <% @exercises.each_with_index do |exercise, i| %>
+          <div class="d-flex justify-content-between pb-3">
+            <h3 class="lead">
+              <%= link_to exercise.title, exercise_path(exercise)%>
+            </h3>
+            <p class='card-txt-secondary text-muted fs-md'>
+              Personal
+            </p>
+          </div>
+      <% end %>
+    </div>
   <% end %>
 </div>
