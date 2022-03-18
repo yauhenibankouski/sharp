@@ -19,7 +19,7 @@ class SharedExercisesController < ApplicationController
     @booking = Booking.find(params[:booking_id])
     @shared_training_plan = SharedTrainingPlan.find(params[:shared_training_plan_id])
     if @shared_exercise.update(shared_exercise_params)
-      redirect_to booking_shared_training_plan_shared_exercise_path(@booking, @shared_training_plan, @shared_exercise)
+      redirect_to booking_shared_training_plan_path(@booking, @shared_training_plan)
     else
       render :edit
     end
