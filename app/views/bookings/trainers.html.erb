@@ -9,16 +9,18 @@
   </div>
 </div>
 <div class="container h-100">
-  <% if user_signed_in? %>
+  <% if user_signed_in? && !@bookings.empty? %>
     <% @bookings.each do |b| %>
-      <div class="card-general">
-        <div class="card-body">
-          <h3 class="card-title"><%= link_to "#{b.user.first_name.capitalize} #{b.user.last_name.capitalize}",  booking_shared_training_plans_path(b) %></h3>
+      <% if b.status == 'Accepted' %>
+        <div class="card-general">
+          <div class="card-body">
+            <h3 class="card-title"><%= link_to "#{b.user.first_name.capitalize} #{b.user.last_name.capitalize}",  booking_shared_training_plans_path(b) %></h3>
+          </div>
         </div>
-      </div>
+      <% end %>
     <% end %>
   <% else %>
-    <h3>You haven't booked a trainer yet.</h3>
-    <%= link_to "Choose your trainer", bookings_path %>
+    <h5 class="text-muted my-4">You haven't booked a trainer yet.</h5>
+    <%= link_to "Find a trainer", bookings_path, class: 'button-orange' %>
   <% end %>
 </div>

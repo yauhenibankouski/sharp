@@ -1,19 +1,33 @@
-<div class="jumbotron d-flex align-items-center text-light" style="background-color:var(--orange)">
+<div class="jumbotron d-flex align-items-center text-light bg-gradient" >
   <div class="container text-center">
     <h2>Edit profile</h2>
   </div>
 </div>
 <div class="container vertical-center">
+  <div class='d-flex align-items-center mb-2'>
+    <% if current_user.avatar.key %>
+      <%= cl_image_tag current_user.avatar.key, crop: :fill, class: 'avatar-large mr-3'%>
+    <% end %>
+      <div>
+        <h2 class="lead"><%= current_user.first_name.capitalize %></h2>
+      </div>
+  </div>
     <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
       <%= f.error_notification %>
+        <%= f.input :avatar,
+                    as: :file,
+                    label: 'Upload a new picture' %>
         <%= f.input :email,
-                    label: false,
+                    label: 'Email',
                     placeholder: "Email",
                     required: true,
                     autofocus: true %>
           <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
             <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
           <% end %>
+          <%= f.input :trainer,
+                      as: :boolean,
+                      label: "Are you a trainer?" %>
           <%= f.input :password,
                       hint: "Leave it blank if you want to keep the same password",
                       label: false,
@@ -22,7 +36,7 @@
                       input_html: { autocomplete: "new-password" } %>
           <%= f.input :password_confirmation,
                       label: false,
-                      placeholder: "Password confimration",
+                      placeholder: "Password confirmation",
                       required: false,
                       input_html: { autocomplete: "new-password" } %>
           <%= f.input :current_password,
@@ -30,6 +44,7 @@
                       placeholder: "Current password",
                       required: true,
                       input_html: { autocomplete: "current-password" } %>
+
     <div>
       <%= f.button :submit, "Update", class: "button-orange" %>
           <% end %>

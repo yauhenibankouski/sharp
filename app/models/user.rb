@@ -9,7 +9,7 @@ class User < ApplicationRecord
   has_many :bookings, dependent: :destroy
   has_many :shared_exercises, dependent: :destroy
   has_many :training_plans, through: :trainings
-
+  has_one_attached :avatar
 
   def my_trainer?(trainer)
     Booking.find_by(user_id: trainer.id, client_id: id) ? true : false
