@@ -24,13 +24,13 @@ html, body {
 
 .info {
   color: white;
-  background-color: #3E8E7E;
+  background-color: #3C8DAD;
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
   transition: all 0.2s ease-out;
   &:hover {
     cursor: pointer;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.8);
     color: #3E8E7E;
     transition: all 0.1s ease-out;
   }

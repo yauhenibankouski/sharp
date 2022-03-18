@@ -56,11 +56,11 @@
   padding: 0.5rem 0.5rem;
   border-radius: 0.5rem;
   color: var(--white);
-  background-color: #3C8DAD;
+  background-color: #3E8E7E;
   transition: all 0.1s ease-out;
   &:hover {
-    color: var(--white);
-    background-color: $c-orange-dark;
+    color:  #3E8E7E;
+    background-color: rgba(255, 255, 255, 0.8);
     transition: all 0.1s ease-out;
   }
 }
