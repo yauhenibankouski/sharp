@@ -3,7 +3,7 @@
     <div class="col-12">
       <div class="card">
         <% if trainer.avatar.key %>
-          <%= cl_image_tag trainer.avatar.key, crop: :fill, class: "card-img-top" %>
+          <%= cl_image_tag trainer.avatar.key, crop: :fill, class: "card-img-top opct-95" %>
         <% else %>
           <img class="card-img-top" src="<%= asset_path('trainer.jpg')%>" alt="Image of user goes here">
         <% end %>

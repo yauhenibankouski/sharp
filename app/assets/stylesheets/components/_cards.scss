@@ -18,7 +18,6 @@
   width: 100%;
   height: 40vw;
   object-fit: cover;
-  opacity: 0.9;
 }
 
 .card-long {
@@ -56,7 +55,8 @@
 
 .card-title {
   position: absolute;
-  top: 120px;
+  top: 110px;
+  font-size: 1.5rem;
 }
 
 .card-subtitle{

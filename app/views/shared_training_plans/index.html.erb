@@ -26,6 +26,7 @@
             <% if training.photo.key %>
               <%= cl_image_tag training.photo.key, crop: :fill, class: "card-img-top" %>
             <% end %>
+            <div class="filter round-one"></div>
             <h3 class="card-title pl-3 lead"><%= link_to training.title, booking_shared_training_plan_path(@booking, SharedTrainingPlan.find_by(training: training, booking: @booking)) %></h3>
           </div>
         </div>
