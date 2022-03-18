@@ -1,6 +1,14 @@
 require_relative 'about'
 require_relative 'exercises'
 
+puts 'Deleting history'
+HistoryLog.destroy_all
+puts 'History deleted'
+
+puts 'Deleting messages'
+Message.destroy_all
+puts 'Messages deleted'
+
 puts 'Deleting training plans'
 TrainingPlan.destroy_all
 puts 'Training plans deleted'
