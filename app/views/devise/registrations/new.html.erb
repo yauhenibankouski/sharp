@@ -1,4 +1,4 @@
-<div class="jumbotron vertical-center text-light bg-orange">
+<div class="jumbotron vertical-center text-light bg-gradient">
   <h2>Sign up</h2>
 </div>
 
@@ -30,8 +30,8 @@
                   placeholder: "Password confirmation",
                   required: true,
                   input_html: { autocomplete: "new-password" } %>
-      <%= f.input :trainer, 
-                  as: :boolean,  
+      <%= f.input :trainer,
+                  as: :boolean,
                   label: "Are you a trainer?" %>
       <%= f.button :submit, "Sign up", class:"button-orange" %>
       <%= link_to "Back", :back, class: "button-transparent" %>
