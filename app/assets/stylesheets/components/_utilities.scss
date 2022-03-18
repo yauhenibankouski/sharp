@@ -21,3 +21,11 @@ html, body {
   width: 100%;
   justify-content: space-between;
 }
+
+$c-orange-dark: #FF8154;
+$c-orange-light: #FF965A;
+
+
+.bg-gradient {
+  background: linear-gradient($c-orange-dark, $c-orange-light);
+}
