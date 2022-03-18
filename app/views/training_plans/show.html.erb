@@ -19,7 +19,7 @@
           <% @training_plan_exercises.each_with_index do |exercise| %>
             <li>
               <h3 class="mb-0">
-                <span><%= exercise.title %></span>
+                <span><%= link_to exercise.title, exercise_path(exercise) %></span>
                 </h3>
               <div class="exercise-info text-muted m-0 pb-1 mb-1">
                 <p><%= exercise.repetitions %> reps / <%= @training_plan.exercise.sets %> sets</p>

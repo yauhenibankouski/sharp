@@ -14,7 +14,7 @@
       <% @trainings.uniq.each do |training| %>
         <div class="card-general">
           <div class="card-body">
-          <h3 class="card-title"><%= link_to training.title, TrainingPlan.find_by(training: training)%></h3>
+          <h3 class="card-title"><%= link_to training.title, TrainingPlan.find_by(training: training) %></h3>
           </div>
         </div>
       <% end %>
