@@ -56,6 +56,10 @@ puts '----------------------------------------------------------------'
 
 puts 'Creating 10 users'
 create_user({ name: 'Bassem', trainer: true })
+bassem = User.last
+file = URI.open('https://ca.slack-edge.com/T02NE0241-U02G0FC8WTZ-449cacc71b3c-512')
+bassem.avatar.attach(io: file, filename: "bassem.jpg", content_type: 'image/jpg')
+
 create_user({ name: 'Yauheni' })
 create_user({ name: 'Whalton' })
 create_user({ name: 'Aris' })
