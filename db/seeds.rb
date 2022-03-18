@@ -37,16 +37,16 @@ puts 'Deleting users'
 User.destroy_all
 puts 'Users deleted'
 
-def create_user(name, boolean = false)
+def create_user(params)
   User.create!(
     {
-      first_name: name,
+      first_name: params[:name],
       last_name: '',
       weight: rand(40..250),
       gender: "M",
-      email: "#{name}@gmail.com",
+      email: "#{params[:name]}@gmail.com",
       password: "123456",
-      trainer: boolean,
+      trainer: params[:trainer],
       about: ABOUT.sample
     }
   )
@@ -55,12 +55,12 @@ end
 puts '----------------------------------------------------------------'
 
 puts 'Creating 10 users'
-create_user('bassem', true)
-create_user('yauheni')
-create_user('whalton')
-create_user('aris')
+create_user({ name: 'Bassem', trainer: true })
+create_user({ name: 'Yauheni' })
+create_user({ name: 'Whalton' })
+create_user({ name: 'Aris' })
 
-6.times { create_user(Faker::Name.first_name, true) }
+6.times { create_user({ name: Faker::Name.first_name, trainer: true }) }
 
 @bassem = User.all[0]
 @aris = User.all[3]
