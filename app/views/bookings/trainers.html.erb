@@ -13,10 +13,14 @@
     <% @bookings.each do |b| %>
       <% if b.status == 'Accepted' %>
         <h2 class="text-muted">My trainers</h2>
-        <div class="card-general">
-          <div class="card-body">
-            <h3 class="card-title"><%= link_to "#{b.user.first_name.capitalize} #{b.user.last_name.capitalize}",  booking_shared_training_plans_path(b) %></h3>
-          <%= raise %>
+        <div class="card">
+          <% if b.user.avatar.key %>
+            <%= cl_image_tag b.user.avatar.key, crop: :fill, class: "card-img-top opct-95" %>
+          <% else %>
+            <img class="card-img-top" src="<%= asset_path('trainer.jpg')%>" alt="Image of user goes here">
+          <% end %>
+          <div class="d-flex card-text-block w-100 p-2">
+            <h3 class='lead trainer-name'><%= link_to "#{b.user.first_name.capitalize} #{b.user.last_name.capitalize}",  booking_shared_training_plans_path(b), class:"text-white" %></h3>
           </div>
         </div>
       <% else %>
@@ -24,7 +28,7 @@
         <div class="">
           <div class="card">
             <% if b.user.avatar.key %>
-              <%= cl_image_tag b.user.avatar.key, crop: :fill, class: "card-img-top" %>
+              <%= cl_image_tag b.user.avatar.key, crop: :fill, class: "card-img-top opct-95" %>
             <% else %>
               <img class="card-img-top" src="<%= asset_path('trainer.jpg')%>" alt="Image of user goes here">
             <% end %>
