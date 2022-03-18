@@ -61,6 +61,10 @@ create_user({ name: 'Whalton' })
 create_user({ name: 'Aris' })
 
 6.times { create_user({ name: Faker::Name.first_name, trainer: true }) }
+create_user({ name: 'Arnold', trainer: true })
+arnold = User.last
+file = URI.open('https://www.manify.nl/wp-content/uploads/2020/09/Arnold-Schwarzenegger-manify.jpg')
+arnold.avatar.attach(io: file, filename: "arnold.jpg", content_type: 'image/jpg')
 
 @bassem = User.all[0]
 @aris = User.all[3]
