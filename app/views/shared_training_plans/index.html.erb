@@ -23,7 +23,7 @@
       <% @trainings.uniq.each_with_index do |training, i| %>
         <div class="card-general">
           <div class="card-body">
-            <h3 class="card-title"><%= link_to training.title, booking_shared_training_plan_path(@booking, @shared_training_plans[i]) %></h3>
+            <h3 class="card-title"><%= link_to training.title, booking_shared_training_plan_path(@booking, SharedTrainingPlan.find_by(training: training, booking: @booking)) %></h3>
             <p class="card-subtitle text-muted">Trainer: <%= @booking.user.first_name.capitalize %></p>
           </div>
         </div>
