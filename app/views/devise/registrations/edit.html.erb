@@ -8,43 +8,52 @@
     <% if current_user.avatar.key %>
       <%= cl_image_tag current_user.avatar.key, crop: :fill, class: 'avatar-large mr-3'%>
     <% end %>
-      <div>
-        <h2 class="lead"><%= current_user.first_name.capitalize %></h2>
-      </div>
+    <div>
+      <h2 class="lead"><%= current_user.first_name.capitalize %></h2>
+    </div>
   </div>
-    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-      <%= f.error_notification %>
-        <%= f.input :avatar,
-                    as: :file,
-                    label: 'Upload a new picture' %>
-        <%= f.input :email,
-                    label: 'Email',
-                    placeholder: "Email",
+  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= f.error_notification %>
+      <%= f.input :avatar,
+                  as: :file,
+                  label: 'Upload avatar' %>
+      <%= f.input :email,
+                  label: false,
+                  placeholder: "Email",
+                  required: true,
+                  autofocus: true %>
+      <%= f.input :first_name,
+                  label: false,
+                  placeholder: "First name",
+                  required: true,
+                  autofocus: true %>
+      <%= f.input :last_name,
+                  label: false,
+                  placeholder: "Last name",
+                  required: true,
+                  autofocus: true %>
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+          <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+        <% end %>
+        <%= f.input :trainer,
+                    as: :boolean,
+                    label: "Are you a trainer?" %>
+        <%= f.input :password,
+                    hint: "Leave it blank if you want to keep the same password",
+                    label: false,
+                    placeholder: "Password",
+                    required: false,
+                    input_html: { autocomplete: "new-password" } %>
+        <%= f.input :password_confirmation,
+                    label: false,
+                    placeholder: "Password confirmation",
+                    required: false,
+                    input_html: { autocomplete: "new-password" } %>
+        <%= f.input :current_password,
+                    label: false,
+                    placeholder: "Current password",
                     required: true,
-                    autofocus: true %>
-          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-            <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
-          <% end %>
-          <%= f.input :trainer,
-                      as: :boolean,
-                      label: "Are you a trainer?" %>
-          <%= f.input :password,
-                      hint: "Leave it blank if you want to keep the same password",
-                      label: false,
-                      placeholder: "Password",
-                      required: false,
-                      input_html: { autocomplete: "new-password" } %>
-          <%= f.input :password_confirmation,
-                      label: false,
-                      placeholder: "Password confirmation",
-                      required: false,
-                      input_html: { autocomplete: "new-password" } %>
-          <%= f.input :current_password,
-                      label: false,
-                      placeholder: "Current password",
-                      required: true,
-                      input_html: { autocomplete: "current-password" } %>
-
+                    input_html: { autocomplete: "current-password" } %>
     <div>
       <%= f.button :submit, "Update", class: "button-orange" %>
           <% end %>

@@ -13,7 +13,7 @@
   <% if @shared_exercise.photo.key%>
     <%= cl_image_tag @shared_exercise.photo.key, height: 300, width: 400, crop: :fill %>
   <% else %>
-    <img src="<%= asset_path('question-mark.jpg')%>" class="placeholder-image" alt="fit-man">
+    <img src="<%= asset_path('question-mark.png')%>" class="placeholder-image" alt="fit-man">
   <% end %>
 
 <%if false%>

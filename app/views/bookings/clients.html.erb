@@ -8,8 +8,7 @@
     <h2>My clients</h2>
   </div>
 </div>
-
-<div class="container h-100">
+<div class="container">
   <% unless @bookings.empty? %>
 
     <div id="booking-requests">
@@ -21,13 +20,16 @@
       </h2>
     </div>
     <% @accepted_bookings.each do |booking| %>
-    <div class="card-general">
-      <div class="card-body">
-        <h3 class="card-title"><%= link_to "#{booking.client.first_name.capitalize} #{booking.client.last_name.capitalize}", booking_shared_training_plans_path(booking) %></h3>
+    <div class="row justify-content-center">
+      <div class="card-square">
+        <%= cl_image_tag booking.client.avatar.key, crop: :fill, class: "avatar-large mb-2" %>
+        <h3><%= link_to "#{booking.client.first_name.capitalize} #{booking.client.last_name.capitalize}", booking_shared_training_plans_path(booking) %></h3>
       </div>
     </div>
     <% end %>
   <% else %>
-    <h5 class="text-muted">You don't seem to have any clients yet.</h5>
+  <div class="container text-center">
+    <p class="text-muted">You don't seem to have any clients yet.</p>
+  </div>
   <% end %>
 </div>
