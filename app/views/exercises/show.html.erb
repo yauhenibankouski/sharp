@@ -10,7 +10,7 @@
 </div>
 <div>
   <% if @exercise.photo.key%>
-    <%= cl_image_tag @exercise.photo.key, height: 300, width: 400, crop: :fill %>
+    <%= cl_image_tag @exercise.photo.key, height: 200, width: 400, crop: :fill, class: 'w-100'  %>
   <% else %>
     <img src="<%= asset_path('question-mark.png')%>" class="placeholder-image" alt="fit-man">
   <% end %>

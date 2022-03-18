@@ -34,7 +34,7 @@ Booking.destroy_all
 puts 'Bookings deleted'
 
 puts 'Deleting users'
-User.destroy_all
+User.delete_all
 puts 'Users deleted'
 
 def create_user(params)
@@ -55,23 +55,49 @@ end
 puts '----------------------------------------------------------------'
 
 puts 'Creating 10 users'
-create_user({ name: 'Bassem', trainer: true })
-bassem = User.last
+@bassem = create_user({ name: 'Bassem', trainer: true })
 file = URI.open('https://ca.slack-edge.com/T02NE0241-U02G0FC8WTZ-449cacc71b3c-512')
-bassem.avatar.attach(io: file, filename: "bassem.jpg", content_type: 'image/jpg')
+@bassem.avatar.attach(io: file, filename: "bassem.jpg", content_type: 'image/jpg')
 
-create_user({ name: 'Yauheni' })
-create_user({ name: 'Whalton' })
-create_user({ name: 'Aris' })
+yau = create_user({ name: 'Yauheni' })
+file = URI.open('https://avatars.githubusercontent.com/u/25736333?v=4')
+yau.avatar.attach(io: file, filename: "yauheni.jpg", content_type: 'image/jpg')
 
-6.times { create_user({ name: Faker::Name.first_name, trainer: true }) }
-create_user({ name: 'Arnold', trainer: true })
-arnold = User.last
+wha = create_user({ name: 'Whalton' })
+file = URI.open('https://avatars.githubusercontent.com/u/87471833?v=4')
+wha.avatar.attach(io: file, filename: "aris.jpg", content_type: 'image/jpg')
+
+@aris = create_user({ name: 'Aris' })
+file = URI.open('https://avatars.githubusercontent.com/u/65190225?v=4')
+@aris.avatar.attach(io: file, filename: "aris.jpg", content_type: 'image/jpg')
+
+user = create_user({ name: 'Rebecca', trainer: true })
+file = URI.open('https://media.istockphoto.com/photos/portrait-of-a-beautiful-woman-at-the-gym-picture-id856797530?k=20&m=856797530&s=612x612&w=0&h=kFFhoXpDoF6jCmerJe-cZzOMKRvpl2orilNip2t3McU=')
+user.avatar.attach(io: file, filename: "#{user.first_name.downcase}.jpg", content_type: 'image/jpg')
+
+user = create_user({ name: 'Alex', trainer: true })
+file = URI.open('https://media.istockphoto.com/photos/fitness-trainer-at-gym-picture-id1072395722?k=20&m=1072395722&s=612x612&w=0&h=zhxJbv4VDqOqt5JwXI7CgZ0CXfXtagmdtF2mSITW0eo=')
+user.avatar.attach(io: file, filename: "#{user.first_name.downcase}.jpg", content_type: 'image/jpg')
+
+arnold = create_user({ name: 'Arnold', trainer: true })
 file = URI.open('https://www.manify.nl/wp-content/uploads/2020/09/Arnold-Schwarzenegger-manify.jpg')
 arnold.avatar.attach(io: file, filename: "arnold.jpg", content_type: 'image/jpg')
 
-@bassem = User.all[0]
-@aris = User.all[3]
+user = create_user({ name: 'Nick', trainer: true })
+file = URI.open('https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/portrait-of-a-trainer-in-gym-royalty-free-image-1584723855.jpg')
+user.avatar.attach(io: file, filename: "#{user.first_name.downcase}.jpg", content_type: 'image/jpg')
+
+user = create_user({ name: 'Maria', trainer: true })
+file = URI.open('https://media.istockphoto.com/photos/portrait-of-a-female-personal-trainer-in-the-gym-picture-id1040495528?k=20&m=1040495528&s=612x612&w=0&h=cu4iGBipe6RvjeEJDOuBTJJuyTNbTeE2kqvFgQhHC7I=')
+user.avatar.attach(io: file, filename: "#{user.first_name.downcase}.jpg", content_type: 'image/jpg')
+
+user = create_user({ name: 'Jess', trainer: true })
+file = URI.open('https://media.istockphoto.com/photos/young-asian-healthy-and-happy-beautiful-fitness-female-athlete-in-picture-id1132187883?k=20&m=1132187883&s=612x612&w=0&h=jLKzGD3lkbWoCwrwjKyyIQVqjaSb7fpDd8nV3dTSAq0=')
+user.avatar.attach(io: file, filename: "#{user.first_name.downcase}.jpg", content_type: 'image/jpg')
+
+user = create_user({ name: 'John', trainer: true })
+file = URI.open('https://www.fitonefour.com/wp-content/uploads/bb-plugin/cache/Personal-Trainer-Adam-Quick-Headshot-scaled-landscape.jpg')
+user.avatar.attach(io: file, filename: "#{user.first_name.downcase}.jpg", content_type: 'image/jpg')
 
 puts "Creating trainings"
 TRAININGS.each_with_index do |training, i|
@@ -98,9 +124,13 @@ EXERCISES.each_with_index do |ex_title, i|
       repetitions: rand(6..22)
     }
   )
+  link = EX_IMG[i]
+  file = URI.open(link)
+  exercise.photo.attach(io: file, filename: "exercise-#{i}.jpg", content_type: 'image/jpg')
+
   puts 'Creating shared exercises'
 
-  SharedExercise.create!(
+  shared = SharedExercise.create!(
     user: @bassem,
     description: exercise.description,
     technique: exercise.technique,
@@ -116,6 +146,13 @@ puts "Creating 4 bookings"
 Booking.create!(
   {
     user: @bassem,
+    client: arnold,
+    status: "Accepted"
+  }
+)
+Booking.create!(
+  {
+    user: @bassem,
     client: @aris,
     status: "Accepted"
   }
@@ -123,21 +160,14 @@ Booking.create!(
 Booking.create!(
   {
     user: @bassem,
-    client: User.all[1],
+    client: yau,
     status: "Accepted"
   }
 )
 Booking.create!(
   {
     user: @bassem,
-    client: User.all[6],
-    status: "Accepted"
-  }
-)
-Booking.create!(
-  {
-    user: @bassem,
-    client: User.all[2],
+    client: wha,
     status: "Accepted"
   }
 )
