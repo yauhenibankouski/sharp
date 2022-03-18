@@ -8,7 +8,6 @@
     <h2>My clients</h2>
   </div>
 </div>
-
 <div class="container">
   <% unless @bookings.empty? %>
 
@@ -23,26 +22,6 @@
     <% @accepted_bookings.each do |booking| %>
     <div class="row justify-content-center">
       <div class="card-square">
-        <%= cl_image_tag booking.client.avatar.key, crop: :fill, class: "avatar-large mb-2" %>
-        <h3><%= link_to "#{booking.client.first_name.capitalize} #{booking.client.last_name.capitalize}", booking_shared_training_plans_path(booking) %></h3>
-      </div>
-      <div class="card-square text-center">
-        <%= cl_image_tag booking.client.avatar.key, crop: :fill, class: "avatar-large mb-2" %>
-        <h3><%= link_to "#{booking.client.first_name.capitalize} #{booking.client.last_name.capitalize}", booking_shared_training_plans_path(booking) %></h3>
-      </div>
-      <div class="card-square text-center">
-        <%= cl_image_tag booking.client.avatar.key, crop: :fill, class: "avatar-large mb-2" %>
-        <h3><%= link_to "#{booking.client.first_name.capitalize} #{booking.client.last_name.capitalize}", booking_shared_training_plans_path(booking) %></h3>
-      </div>
-      <div class="card-square text-center">
-        <%= cl_image_tag booking.client.avatar.key, crop: :fill, class: "avatar-large mb-2" %>
-        <h3><%= link_to "#{booking.client.first_name.capitalize} #{booking.client.last_name.capitalize}", booking_shared_training_plans_path(booking) %></h3>
-      </div>
-      <div class="card-square text-center">
-        <%= cl_image_tag booking.client.avatar.key, crop: :fill, class: "avatar-large mb-2" %>
-        <h3><%= link_to "#{booking.client.first_name.capitalize} #{booking.client.last_name.capitalize}", booking_shared_training_plans_path(booking) %></h3>
-      </div>
-      <div class="card-square text-center">
         <%= cl_image_tag booking.client.avatar.key, crop: :fill, class: "avatar-large mb-2" %>
         <h3><%= link_to "#{booking.client.first_name.capitalize} #{booking.client.last_name.capitalize}", booking_shared_training_plans_path(booking) %></h3>
       </div>
