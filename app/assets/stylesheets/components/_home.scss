@@ -12,3 +12,14 @@
   bottom: 2rem; /*your button position*/
   margin-right: 1rem;
 }
+
+.brand {
+  width: 100%;
+  position: absolute;
+  text-align: center;
+  font-size: 6rem;
+  top: 2rem; /*your button position*/
+  z-index: 1;
+  color: rgba(255, 255, 255, 0.8);
+  letter-spacing: 4px;
+}

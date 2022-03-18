@@ -45,11 +45,11 @@
 
 <% else %>
       <div class="bg-image">
-      <%# TODO %>
-        <%= image_tag("home2.jpg") %>
-        <div class="row buttons">
-          <div class="col-6"><%= link_to "Log in", user_session_path, class: 'button-transparent' %></div>
-          <div class="col-6"><%= link_to "Sign up", new_user_registration_path, class: 'button-transparent' %></div>
-        </div>
+        <h1 class='brand'>SHARP</h1>
+          <%= image_tag("home2.jpg") %>
+          <div class="row buttons">
+            <div class="col-6"><%= link_to "Log in", user_session_path, class: 'button-transparent' %></div>
+            <div class="col-6"><%= link_to "Sign up", new_user_registration_path, class: 'button-transparent' %></div>
+          </div>
       </div>
 <% end %>

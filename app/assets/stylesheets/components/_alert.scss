@@ -1,6 +1,15 @@
 .alert {
   position: fixed;
-  top: 5px;
+  top: 0;
   right: 5px;
   z-index: 1000;
+  background-color: $orange;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 1rem;
+  padding: 0.55rem 4rem 0.55rem 1.45rem;
+}
+
+.alert-dismissible .close {
+  padding: 0.55rem 1.45rem;
 }
