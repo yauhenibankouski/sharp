@@ -34,7 +34,7 @@ Booking.destroy_all
 puts 'Bookings deleted'
 
 puts 'Deleting users'
-User.destroy_all
+User.delete_all
 puts 'Users deleted'
 
 def create_user(params)
@@ -55,23 +55,23 @@ end
 puts '----------------------------------------------------------------'
 
 puts 'Creating 10 users'
-create_user({ name: 'Bassem', trainer: true })
-bassem = User.last
+@bassem = create_user({ name: 'Bassem', trainer: true })
 file = URI.open('https://ca.slack-edge.com/T02NE0241-U02G0FC8WTZ-449cacc71b3c-512')
-bassem.avatar.attach(io: file, filename: "bassem.jpg", content_type: 'image/jpg')
+@bassem.avatar.attach(io: file, filename: "bassem.jpg", content_type: 'image/jpg')
 
-create_user({ name: 'Yauheni' })
-create_user({ name: 'Whalton' })
-create_user({ name: 'Aris' })
+yau = create_user({ name: 'Yauheni' })
+wha = create_user({ name: 'Whalton' })
+@aris = create_user({ name: 'Aris' })
+file = URI.open('https://avatars.githubusercontent.com/u/65190225?v=4')
+@aris.avatar.attach(io: file, filename: "aris.jpg", content_type: 'image/jpg')
 
-6.times { create_user({ name: Faker::Name.first_name, trainer: true }) }
-create_user({ name: 'Arnold', trainer: true })
-arnold = User.last
+6.times do
+  create_user({ name: Faker::Name.first_name, trainer: true })
+end
+
+arnold = create_user({ name: 'Arnold', trainer: true })
 file = URI.open('https://www.manify.nl/wp-content/uploads/2020/09/Arnold-Schwarzenegger-manify.jpg')
 arnold.avatar.attach(io: file, filename: "arnold.jpg", content_type: 'image/jpg')
-
-@bassem = User.all[0]
-@aris = User.all[3]
 
 puts "Creating trainings"
 TRAININGS.each_with_index do |training, i|
@@ -123,21 +123,21 @@ Booking.create!(
 Booking.create!(
   {
     user: @bassem,
-    client: User.all[1],
+    client: User.all[-1],
     status: "Accepted"
   }
 )
 Booking.create!(
   {
     user: @bassem,
-    client: User.all[6],
+    client: User.all[-2],
     status: "Accepted"
   }
 )
 Booking.create!(
   {
     user: @bassem,
-    client: User.all[2],
+    client: User.all[-3],
     status: "Accepted"
   }
 )

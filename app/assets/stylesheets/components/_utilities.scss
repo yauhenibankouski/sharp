@@ -36,6 +36,14 @@ html, body {
   }
 }
 
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+  gap: 1rem;
+  .card-square {
+    margin: 0;
+  }
+}
 
 .bg-gradient {
   background: linear-gradient($c-orange-dark, $c-orange-light);

@@ -8,6 +8,7 @@
     <h2>My clients</h2>
   </div>
 </div>
+
 <div class="container">
   <% unless @bookings.empty? %>
 
@@ -19,14 +20,19 @@
         Clients <span class="superscript"><%= " (#{@accepted_bookings.count})" %></span>
       </h2>
     </div>
-    <% @accepted_bookings.each do |booking| %>
-    <div class="row justify-content-center">
-      <div class="card-square">
-        <%= cl_image_tag booking.client.avatar.key, crop: :fill, class: "avatar-large mb-2" %>
-        <h3><%= link_to "#{booking.client.first_name.capitalize} #{booking.client.last_name.capitalize}", booking_shared_training_plans_path(booking) %></h3>
-      </div>
+    <div class="grid">
+      <% @accepted_bookings.each do |booking| %>
+        <div class="card-square">
+          <%= link_to booking_shared_training_plans_path(booking) do %>
+            <% if booking.client.avatar.key %>
+              <%= cl_image_tag booking.client.avatar.key, crop: :fill, class: "avatar-xl mb-2" %>
+            <% end %>
+            <h3 class='text-center'><%= booking.client.first_name.capitalize %></h3>
+          <% end %>
+        </div>
+      <% end %>
     </div>
-    <% end %>
+
   <% else %>
   <div class="container text-center">
     <p class="text-muted">You don't seem to have any clients yet.</p>
