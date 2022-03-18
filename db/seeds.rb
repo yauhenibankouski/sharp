@@ -75,13 +75,13 @@ user = create_user({ name: 'Rebecca', trainer: true })
 file = URI.open('https://media.istockphoto.com/photos/portrait-of-a-beautiful-woman-at-the-gym-picture-id856797530?k=20&m=856797530&s=612x612&w=0&h=kFFhoXpDoF6jCmerJe-cZzOMKRvpl2orilNip2t3McU=')
 user.avatar.attach(io: file, filename: "#{user.first_name.downcase}.jpg", content_type: 'image/jpg')
 
-user = create_user({ name: 'Alex', trainer: true })
-file = URI.open('https://media.istockphoto.com/photos/fitness-trainer-at-gym-picture-id1072395722?k=20&m=1072395722&s=612x612&w=0&h=zhxJbv4VDqOqt5JwXI7CgZ0CXfXtagmdtF2mSITW0eo=')
-user.avatar.attach(io: file, filename: "#{user.first_name.downcase}.jpg", content_type: 'image/jpg')
-
 arnold = create_user({ name: 'Arnold', trainer: true })
 file = URI.open('https://www.manify.nl/wp-content/uploads/2020/09/Arnold-Schwarzenegger-manify.jpg')
 arnold.avatar.attach(io: file, filename: "arnold.jpg", content_type: 'image/jpg')
+
+user = create_user({ name: 'Alex', trainer: true })
+file = URI.open('https://media.istockphoto.com/photos/fitness-trainer-at-gym-picture-id1072395722?k=20&m=1072395722&s=612x612&w=0&h=zhxJbv4VDqOqt5JwXI7CgZ0CXfXtagmdtF2mSITW0eo=')
+user.avatar.attach(io: file, filename: "#{user.first_name.downcase}.jpg", content_type: 'image/jpg')
 
 user = create_user({ name: 'Nick', trainer: true })
 file = URI.open('https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/portrait-of-a-trainer-in-gym-royalty-free-image-1584723855.jpg')
