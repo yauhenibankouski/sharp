@@ -153,13 +153,6 @@ Booking.create!(
 Booking.create!(
   {
     user: @bassem,
-    client: @aris,
-    status: "Accepted"
-  }
-)
-Booking.create!(
-  {
-    user: @bassem,
     client: yau,
     status: "Accepted"
   }
@@ -168,6 +161,13 @@ Booking.create!(
   {
     user: @bassem,
     client: wha,
+    status: "Accepted"
+  }
+)
+Booking.create!(
+  {
+    user: @bassem,
+    client: @aris,
     status: "Accepted"
   }
 )

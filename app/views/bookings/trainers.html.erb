@@ -12,9 +12,30 @@
   <% if user_signed_in? && !@bookings.empty? %>
     <% @bookings.each do |b| %>
       <% if b.status == 'Accepted' %>
+        <h2 class="text-muted">My trainers</h2>
         <div class="card-general">
           <div class="card-body">
             <h3 class="card-title"><%= link_to "#{b.user.first_name.capitalize} #{b.user.last_name.capitalize}",  booking_shared_training_plans_path(b) %></h3>
+          <%= raise %>
+          </div>
+        </div>
+      <% else %>
+        <h2 class="text-muted">Bookings requested</h2>
+        <div class="">
+          <div class="card">
+            <% if b.user.avatar.key %>
+              <%= cl_image_tag b.user.avatar.key, crop: :fill, class: "card-img-top" %>
+            <% else %>
+              <img class="card-img-top" src="<%= asset_path('trainer.jpg')%>" alt="Image of user goes here">
+            <% end %>
+            <div class="d-flex card-text-block w-100 p-2">
+              <h3 class='text-white lead trainer-name'><%= b.user.first_name.capitalize %></h3>
+              <div class='m-0 p-1 text-black-50'>
+                <%= simple_form_for b, id: 'cancel', remote: true, method: :delete do |f| %>
+                  <%= f.submit "Cancel", class: 'button-red' %>
+                <% end %>
+              </div>
+            </div>
           </div>
         </div>
       <% end %>
