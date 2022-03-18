@@ -1,28 +1,25 @@
 <% available_trainers.each do |trainer| %>
   <div class="row">
-    <div class="col-6">
+    <div class="col-12">
       <div class="card" >
         <img class="card-img-top" src="https://source.unsplash.com/random" alt="Image of user goes here">
-        <div class="row card-text-block">
-          <div class="col">
-            <button class="button-transparent" data-toggle="modal" data-target="#exampleModal<%= trainer.id %>">
-              <p class="card-subtitle"><%= "About"%></p>
-            </button>
-          </div>
-          <div class="col"><div id="trainer-<%= trainer.id %>" >
+        <div class="row card-text-block w-100 p-2">
+          <h3 class='text-white lead'><%= trainer.first_name.capitalize %></h3>
+          <div class="d-flex align-items-center justify-content-between" id="trainer-<%= trainer.id %>">
+            <i class="fa-solid fa-info info" data-toggle="modal" data-target="#exampleModal<%= trainer.id %>"></i>
             <% if trainer.bookings.any? { |b| b.client_id == user.id } %>
               <% case trainer.bookings.select { |b| b.client_id == user.id }.first.status %>
                 <% when 'Pending' %>
                   <div class='m-0 p-1 text-black-50'>
                     <i class="fas fa-spinner"></i>
-                    <span>Request sent<%#= trainer.first_name.capitalize %></span>
+                    <span>Request sent</span>
                     <%= simple_form_for trainer.bookings.select { |b| b.client_id == user.id}, id: 'cancel', remote: true, method: :delete do |f| %>
                       <%= f.submit "Cancel", class: 'button-red' %>
                     <% end %>
                   </div>
                 <% when 'Accepted' %>
                   <%= link_to "See assigned workouts",
-                  booking_shared_training_plans_path(trainer.bookings.select { |b| b.client_id == user.id }.first), class: 'button-orange' %>
+                  booking_shared_training_plans_path(trainer.bookings.select { |b| b.client_id == user.id }.first), class: 'button-orange-b' %>
                 <% when 'Rejected' %>
                   <div class='m-0 p-1'>
                     <i class="fas fa-exclamation-triangle text-warning"></i>
@@ -36,7 +33,7 @@
                   <%= f.hidden_field :status, value: "Pending" %>
                   <%= f.hidden_field :user_id, value: trainer.id %>
                   <%= f.hidden_field :client_id, value: user.id %>
-                  <%= f.submit "Book #{trainer.first_name.capitalize}", class: 'button-transparent'%>
+                  <%= f.submit "Book #{trainer.first_name.capitalize}", class: 'button-action'%>
               <% end %>
             <% end %>
           </div>

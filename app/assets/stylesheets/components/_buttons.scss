@@ -17,7 +17,32 @@
     background-color: $c-orange-dark;
   }
 }
+.button-orange-b {
+  padding: 0.4rem;
+  border-radius: 0.5rem;
+  color: white;
+  background-color: $orange;
+  transition: all 0.1s ease-out;
+  &:hover {
+    color: white;
+    background-color: $c-orange-dark;
+    transition: all 0.1s ease-out;
+  }
+}
 
+.button-action {
+  border: none;
+  padding: 0.4rem;
+  border-radius: 0.5rem;
+  color: white;
+  background-color: #3C8DAD;
+  transition: all 0.1s ease-out;
+  &:hover {
+    color: white;
+    background-color: $c-orange-dark;
+    transition: all 0.1s ease-out;
+  }
+}
 
 .button-transparent {
   width: 100%;

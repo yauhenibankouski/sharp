@@ -22,7 +22,19 @@ html, body {
   justify-content: space-between;
 }
 
-
+.info {
+  color: white;
+  background-color: #3E8E7E;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease-out;
+  &:hover {
+    cursor: pointer;
+    background-color: white;
+    color: #3E8E7E;
+    transition: all 0.1s ease-out;
+  }
+}
 
 
 .bg-gradient {
