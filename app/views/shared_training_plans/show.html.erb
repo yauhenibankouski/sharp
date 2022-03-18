@@ -22,13 +22,13 @@
                     <h3 class="mb-0">
                       <span><%= link_to exercise.title, booking_shared_training_plan_shared_exercise_path(@booking, @stp, exercise)  %></span>
                       <% if @booking.user == current_user %>
-                        <span style="font-size: 10px">
+                        <span class="ml-2 mr-1" style="font-size: 13px">
                           <%= link_to 'X', booking_shared_training_plan_shared_exercise_path(@booking, @stp, exercise), method: :delete,
                                                                                             remote: true,
                                                                                             class: 'text-danger' %>
                         </span>
-                        <span style="font-size: 10px">
-                          <%= link_to edit_booking_shared_training_plan_shared_exercise_path(@booking, @stp, exercise), class: 'text-warning' do %>
+                        <span style="font-size: 13px">
+                          <%= link_to edit_booking_shared_training_plan_shared_exercise_path(@booking, @stp, exercise), class: 'text-info' do %>
                             <i class="fas fa-edit pr-3"></i>
                           <% end %>
                         </span>
