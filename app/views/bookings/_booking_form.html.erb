@@ -8,7 +8,7 @@
           <img class="card-img-top" src="<%= asset_path('trainer.jpg')%>" alt="Image of user goes here">
         <% end %>
         <div class="row card-text-block w-100 p-2">
-          <h3 class='text-white lead'><%= trainer.first_name.capitalize %></h3>
+          <h3 class='text-white lead trainer-name'><%= trainer.first_name.capitalize %></h3>
           <div class="d-flex align-items-center justify-content-between" id="trainer-<%= trainer.id %>">
             <i class="fa-solid fa-info info" data-toggle="modal" data-target="#exampleModal<%= trainer.id %>"></i>
             <% if trainer.bookings.any? { |b| b.client_id == user.id } %>

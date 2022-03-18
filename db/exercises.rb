@@ -35,6 +35,28 @@ EXERCISES = [
   'Face Pull'
 ]
 
+EX_IMG = [
+  'https://qph.fs.quoracdn.net/main-qimg-4253a6807ee54cc6d139227a10c209aa-lq',
+  'https://cdn.mos.cms.futurecdn.net/spmeMadc8qAz59nKTFJmZj.jpg',
+  'https://www.dutch4health.nl/wp-content/uploads/2017/08/dumbbell-pullover.jpg',
+  'https://www.muscleandfitness.com/wp-content/uploads/2012/10/shrug.jpg?quality=86&strip=all',
+
+  'https://bodybuilding-wizard.com/wp-content/uploads/2014/03/flat-barbell-bench-press-0-1-2-2-1.jpg',
+  'https://seannal.com/images/flat-dumbbell-flye.jpg',
+  'https://ignorelimits.com/wp-content/uploads/2016/08/How-to-pec-dec-fly-Copy.jpg',
+  'https://madbarzpictures.blob.core.windows.net/madbarzpictures/16122925_596970827156737_2401573818742079488_n.jpg',
+
+  'https://hips.hearstapps.com/vidthumb/brightcove/578940a2e694aa370d88355b/thumb_1468612771.png',
+  'https://www.physiotutors.com/wp-content/uploads/2022/01/Seated-Leg-Extension.png',
+  'https://www.t-nation.com/wp-content/uploads/2018/07/The-Hamstring-Exercise-That-Beats-Leg-Curls.jpg',
+  'https://www.infofitness.nl/wp-content/uploads/2021/03/seated-calf-press-jpg.jpg',
+
+  'https://lifestylegeeky.com/wp-content/uploads/2019/05/Seated_Dumbbell_Overhead_Press-1.jpg',
+  'https://voeding-en-fitness.nl/wordpress/wp-content/uploads/2016/04/dumbbell-front-raise.jpg',
+  'https://www.bodybuilding.com/images/2017/june/modify-your-lateral-raises-to-keep-your-shoulders-growing-header-960x540.jpg',
+  'https://voeding-en-fitness.nl/wordpress/wp-content/uploads/2018/12/face-pull-rear-delt-pull.jpg'
+]
+
 DESCRIPTION = [
   'The barbell deadlift is a classic bodybuilding exercise meant for putting on mass and building overall strength throughout the entire body.',
   'The bent over row is a multi-jointed exercise that recruits several different muscles.
