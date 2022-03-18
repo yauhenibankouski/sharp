@@ -1,8 +1,10 @@
 <div class="jumbotron d-flex align-items-center bg-orange text-light">
   <% if @booking.user == current_user %>
-    <%= link_to clients_bookings_path do %>
-      <i class="fas fa-angle-left pr-3 text-light"></i>
-    <% end %>
+    <h2>
+      <%= link_to clients_bookings_path do %>
+        <i class="fas fa-angle-left pr-3 text-light"></i>
+      <% end %>
+    </h2>
     <div class="container text-center">
       <h2><%= @booking.user == current_user ? "#{@booking.client.first_name.capitalize}'s" : "Assigned" %> trainings</h2>
     </div>
