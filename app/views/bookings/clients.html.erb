@@ -22,7 +22,7 @@
     </div>
     <div class="grid">
       <% @accepted_bookings.each do |booking| %>
-        <div class="card-square">
+        <div class="card-square d-flex flex-column align-items-center">
           <%= link_to booking_shared_training_plans_path(booking) do %>
             <% if booking.client.avatar.key %>
               <%= cl_image_tag booking.client.avatar.key, crop: :fill, class: "avatar-xl mb-2" %>

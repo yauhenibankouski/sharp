@@ -38,8 +38,9 @@ html, body {
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
   gap: 1rem;
+  align-items: center;
   .card-square {
     margin: 0;
   }
