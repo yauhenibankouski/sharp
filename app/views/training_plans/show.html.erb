@@ -1,4 +1,4 @@
-<div class="jumbotron d-flex align-items-center bg-gradient text-light">
+<div class="jumbotron d-flex align-items-center bg-gradient text-light mb-0">
   <h2>
     <%= link_to training_plans_path do %>
       <i class="fas fa-angle-left pr-3 text-light"></i>
@@ -9,7 +9,9 @@
   </div>
 </div>
 <div>
-  <img src="<%= asset_path('question-mark.png')%>" alt="" class="placeholder-image">
+  <% if @training_plan.training.photo.key %>
+    <%= cl_image_tag @training_plan.training.photo.key, crop: :fill, class: "card-img-top rounded-0" %>
+  <% end %>
 </div >
 <div class="container h-100">
   <div class="card-long">

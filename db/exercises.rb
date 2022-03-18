@@ -4,6 +4,12 @@ TRAININGS = [
   'Leg Workout',
   'Shoulder Workout'
 ]
+TRAIN_IMG = [
+  'https://www.t-nation.com/wp-content/uploads/2020/08/9-Exercises-for-a-Complete-Back.jpeg',
+  'https://rjhealthfitness.com/wp-content/uploads/2017/06/abs.jpg',
+  'https://www.muscleandfitness.com/wp-content/uploads/2000/09/Man-And-Woman-Showing-Muscular-Legs.jpg?w=1109&quality=86&strip=all',
+  'https://pbs.twimg.com/media/DrfzbfmX4AAzTeE.jpg'
+]
 
 TRAIN_DESC = [
   'A big, strong back can take you far in your athletic endeavors.

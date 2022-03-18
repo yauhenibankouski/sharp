@@ -101,14 +101,17 @@ user.avatar.attach(io: file, filename: "#{user.first_name.downcase}.jpg", conten
 
 puts "Creating trainings"
 TRAININGS.each_with_index do |training, i|
-  Training.create!(
-    {
-      title: training,
-      description: TRAIN_DESC[i],
-      activity: "Gym",
-      user: @bassem
-    }
-  )
+  training = Training.create!(
+              {
+                title: training,
+                description: TRAIN_DESC[i],
+                activity: "Gym",
+                user: @bassem
+              }
+            )
+  link = TRAIN_IMG[i]
+  file = URI.open(link)
+  training.photo.attach(io: file, filename: "training-#{i}.jpg", content_type: 'image/jpg')
 end
 
 puts 'Creating exercises'
