@@ -3,6 +3,7 @@ class TrainingPlansController < ApplicationController
 
   def index
     @training_plans = current_user.training_plans
+    @trainings = @training_plans.map(&:training)
   end
 
   def show

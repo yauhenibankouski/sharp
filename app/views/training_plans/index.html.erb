@@ -11,13 +11,10 @@
 
 <div class='container h-100'>
   <% unless @training_plans.empty? %>
-      <% @training_plans.each do |training_plan| %>
+      <% @trainings.uniq.each do |training| %>
         <div class="card-general">
           <div class="card-body">
-          <h3 class="card-title"><%= link_to training_plan.training.title, training_plan %></h3>
-          <p>
-            <%= link_to 'Delete', training_plan, method: :delete, remote: true %>
-          </p>
+          <h3 class="card-title"><%= link_to training.title, TrainingPlan.find_by(training: training) %></h3>
           </div>
         </div>
       <% end %>
