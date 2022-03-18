@@ -11,7 +11,7 @@
 
 
   <% if @shared_exercise.exercise.photo.key%>
-    <%= cl_image_tag @shared_exercise.exercise.photo.key, height: 200, width: 400, crop: :fill, class: 'w-100' %>
+    <%= cl_image_tag @shared_exercise.exercise.photo.key, height: 200, width: 400, crop: :fill, class: 'w-100 mb-2' %>
   <% else %>
     <img src="<%= asset_path('question-mark.png')%>" class="placeholder-image" alt="fit-man">
   <% end %>

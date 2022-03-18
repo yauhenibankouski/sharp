@@ -19,8 +19,10 @@
 <div class="container">
   <div class="card-long">
     <div class="card-body">
-      <p><%= @exercise.description %></p>
-      <p><%= @exercise.technique %></p>
+      <h3>Description</h3>
+      <p class='mb-2'><%= @exercise.description %></p>
+      <h3>Technique</h3>
+      <p class='mb-2'><%= @exercise.technique %></p>
       <div class="row">
         <div class="col-6 d-inline">
           <h3>Sets</h3>
@@ -28,7 +30,7 @@
         </div>
         <div class="col-6">
           <h3>Reps</h3>
-          <p><%= @exercise.repetitions %></p>
+          <p ><%= @exercise.repetitions %></p>
         </div>
       </div>
     </div>
