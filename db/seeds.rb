@@ -207,10 +207,32 @@ Exercise.all.each_with_index do |ex, i|
   end
 end
 
-TrainingPlan.first(8).each do |tp|
-  SharedTrainingPlan.create!(
+TrainingPlan.first(8).each_with_index do |tp, i|
+  stp = SharedTrainingPlan.create!(
     training: tp.training,
     shared_exercise: SharedExercise.find_by(exercise: tp.exercise),
     booking: @bassem.bookings.first
   )
+  if i == 1
+    post = HistoryLog.create!(
+      notes: 'Different angle.',
+      shared_exercise: stp.shared_exercise
+    )
+    file = URI.open('https://i.pinimg.com/originals/eb/ab/94/ebab945aedca242da2c12e8e04022222.jpg')
+    post.photo.attach(io: file, filename: "post-2.jpg", content_type: 'image/jpg')
+
+    post = HistoryLog.create!(
+      notes: 'Feeling strong today and upped the weights.',
+      shared_exercise: stp.shared_exercise
+    )
+    file = URI.open('https://miro.medium.com/max/1200/0*FNuZ4XhkYRCDsz38.jpg')
+    post.photo.attach(io: file, filename: "post-1.jpg", content_type: 'image/jpg')
+
+
+    Message.create!(
+      content: 'What do you think of my form?',
+      shared_exercise: stp.shared_exercise,
+      user: arnold
+    )
+  end
 end
